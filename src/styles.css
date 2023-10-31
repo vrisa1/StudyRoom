@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --bg-color: #f0fbfa; /* color de fondo */
+    --color2: #d8f3f5;
+    --color3: #b6e8eb;
+    --color4: #84d6dc;
+    --color5: #4abbc6;
+    --color6: #2f9fab;
+    --color7: #277987;
+    --color8: #286976;
+    --color9: #285762;
+    --color10: #254954;
+    --txt-color: #143038; /*color de letra y detalles*/
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    font-family: "Avenir Next", "Avenir", sans-serif;
+}
+
