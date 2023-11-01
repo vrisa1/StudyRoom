@@ -13,6 +13,7 @@ export class NavBarComponent implements OnInit{
   ngOnInit(): void {
     
   }
+  
   constructor(private router: Router){}
 
   //rutas

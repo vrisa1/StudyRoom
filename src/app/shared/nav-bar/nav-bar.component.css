@@ -135,7 +135,8 @@ h4{
 #menu
 {
   position: absolute;
-  width: 300px;
+  width: 180px;
+  /* height: 530px; //para que llegue hasta abajo*/
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
@@ -165,6 +166,3 @@ h4{
   transform: none;
 }
 
-/* .ocultar{
-    display: none;
-} */
