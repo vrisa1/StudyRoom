@@ -6,9 +6,10 @@ import { Route, Router } from '@angular/router';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
+
 export class NavBarComponent implements OnInit{
   
-  @Input() isUser: boolean = true; 
+  @Input() isUser: boolean = false; 
 
   ngOnInit(): void {
     
