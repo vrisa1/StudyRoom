@@ -1,28 +1,27 @@
 <nav role="navigation">
-    
-    <!-- *ngIf="isUser" -->
-    <div *ngIf= "isUser" id="menuToggle" class="ocultar">
-           
-        <input type="checkbox" />
-      
-      <span></span>
-      <span></span>
-      <span></span>
-      
-      <ul id="menu">
-        <a href="#"><li>Home</li></a>
-        <a href="#"><li>About</li></a>
-        <a href="#"><li>Info</li></a>
-        <a href="#"><li>Contact</li></a>
-        <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
-      </ul>
+  <!-- *ngIf="isUser" -->
+  <div *ngIf="isUser" id="menuToggle" class="ocultar">
+    <input type="checkbox" />
 
-    </div>
+    <span></span>
+    <span></span>
+    <span></span>
 
-    <h1 id="logotipo"> StudyRoom </h1>
+    <ul id="menu">
+      <a href="#"><li>Home</li></a>
+      <a href="#"><li>About</li></a>
+      <a href="#"><li>Info</li></a>
+      <a href="#"><li>Contact</li></a>
+      <a href="https://erikterwan.com/" target="_blank"
+        ><li>Show me more</li></a
+      >
+    </ul>
+  </div>
 
-    <h4 *ngIf= "isUser" id="usuario"> [---] </h4>
+  <!-- <h1 id="logotipo"> StudyRoom </h1> -->
+  <img id="logotipo" src="assets/studyroomlogo2.png" alt="" />
 
-    <h4 *ngIf= "!isUser" id="ingresar"> Iniciar Sesion </h4>
-    
+  <h4 *ngIf="isUser" id="usuario">[---]</h4>
+
+  <h4 *ngIf="!isUser" id="ingresar">Iniciar Sesion</h4>
 </nav>

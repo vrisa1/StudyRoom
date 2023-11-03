@@ -1,0 +1,15 @@
+#errorContainer{
+    margin-top: 5em;
+}
+
+#gatito{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20em;
+}
+
+.texto{
+    text-align: center;
+    color: var(--txt-color);
+}

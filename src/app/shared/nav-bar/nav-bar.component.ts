@@ -9,7 +9,7 @@ import { Route, Router } from '@angular/router';
 
 export class NavBarComponent implements OnInit{
   
-  @Input() isUser: boolean = false; 
+  @Input() isUser: boolean = true; 
 
   ngOnInit(): void {
     
