@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginModule } from './modules/login/login.module';
+import { MainModule } from './modules/main/main.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +16,11 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    OAuthModule.forRoot(),
+    HttpClientModule,
+    LoginModule,
+    MainModule
   ],
   providers: [],
   bootstrap: [AppComponent]
