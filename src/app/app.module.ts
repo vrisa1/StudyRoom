@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { LandingModule } from './modules/landing/landing.module';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginModule } from './modules/login/login.module';
+import { MainModule } from './modules/main/main.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,12 @@ import { LandingModule } from './modules/landing/landing.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    LandingModule
+    LandingModule,
+    OAuthModule.forRoot(),
+    HttpClientModule,
+    LoginModule,
+    MainModule,
+    origin/login
   ],
   providers: [],
   bootstrap: [AppComponent]
