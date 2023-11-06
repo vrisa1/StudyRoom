@@ -5,7 +5,7 @@ import { AuthGoogleService } from '../../login/service/auth-google.service';
 @Component({
   selector: 'app-main-comp',
   templateUrl: './main-comp.component.html',
-  styleUrls: ['./main-comp.component.css']
+  styleUrls: ['./main-comp.component.scss']
 })
 export class MainCompComponent {
 

@@ -4,7 +4,7 @@ import { AuthGoogleService } from '../../login/service/auth-google.service'
 @Component({
   selector: 'app-login-comp',
   templateUrl: './login-comp.component.html',
-  styleUrls: ['./login-comp.component.css']
+  styleUrls: ['./login-comp.component.scss']
 })
 export class LoginCompComponent {
 

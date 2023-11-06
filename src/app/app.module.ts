@@ -22,10 +22,10 @@ import { MainModule } from './modules/main/main.module';
     OAuthModule.forRoot(),
     HttpClientModule,
     LoginModule,
-    MainModule,
-    origin/login
+    MainModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
