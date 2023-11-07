@@ -4,6 +4,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { Error404Component } from './error404/error404.component';
 import { LoginModule } from "../modules/login/login.module";
 import { UserAccComponent } from './user-acc/user-acc.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -11,10 +12,12 @@ import { UserAccComponent } from './user-acc/user-acc.component';
     declarations: [
         NavBarComponent,
         Error404Component,
-        UserAccComponent
+        UserAccComponent,
+        FooterComponent
     ],
     exports: [
-        NavBarComponent
+        NavBarComponent,
+        FooterComponent
     ],
     imports: [
         CommonModule,

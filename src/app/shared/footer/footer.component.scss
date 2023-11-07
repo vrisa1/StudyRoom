@@ -1,0 +1,13 @@
+footer{
+    background-color: var(--color9);
+    height: 2.5em;
+}
+
+div , a{
+    color: var(--bg-color);
+    font-size: medium;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4em;
+}
