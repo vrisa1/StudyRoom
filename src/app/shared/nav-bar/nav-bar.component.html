@@ -8,6 +8,7 @@
     <span></span>
 
     <ul id="menu">
+      <a href="#"><li>Inicio</li></a>
       <a href="#"><li>Calendario</li></a> <!-- el calendario y las tareas estan en la misma pestaña  -->
       <a href="#"><li>Gestor de archivos</li></a> <!-- los archivos y TTS tambien  -->
       <a href="#"><li>Temporizador</li></a>
@@ -15,11 +16,9 @@
     </ul>
   </div>
 
-  <!-- <h1 id="logotipo"> StudyRoom </h1> -->
   <img id="logotipo" src="assets/studyroomlogo2.png" alt="" />
 
-  <h4 *ngIf="isUser" id="usuario">[---]</h4>
+  <app-user-acc *ngIf="isUser" id="usuario"></app-user-acc>
 
-  <!-- <h4 *ngIf="!isUser" id="ingresar">Iniciar Sesion</h4> -->
   <app-login-comp *ngIf="!isUser" id="login"></app-login-comp>
 </nav>

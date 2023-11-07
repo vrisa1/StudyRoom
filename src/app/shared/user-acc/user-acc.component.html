@@ -1,3 +1,11 @@
-<p>user-acc works!</p>
-<button (click)="logout()">log out</button>
-<button (click)="mostrarDatos()">data</button>
+<div class="dropdown">
+    <button id="dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img id="imgUser" src="assets/glasses.svg" alt="">
+    </button>
+    <ul class="dropdown-menu">
+      <li><button (click)="mostrarDatos()" class="dropdown-item">Info</button></li>
+      <li><button (click)="logout()" class="dropdown-item">Cerrar Sesion</button></li>
+    </ul>
+  </div>
+
+

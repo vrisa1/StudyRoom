@@ -2,7 +2,6 @@ nav{
     height: 4em;
     display: grid;
     grid-template-areas: "hamburguesa logotipo usuario";
-    // grid-template-columns: 10em 61.5em auto;
     grid-template-columns: 20% 60% 20%;
     background-color: var(--color9);
 }
@@ -21,16 +20,7 @@ nav{
     
 }
 
-h4{
-    text-align: right;
-    margin-right: 20px;
-    grid-area: usuario;
-    justify-self: right;
-    align-self: center;
-    color: var(--bg-color);
-}
-
-#login{
+#login, #usuario{
   grid-area: usuario;
   margin-right: 20px;
   justify-self: right;
