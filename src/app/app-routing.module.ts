@@ -5,7 +5,7 @@ import { Error404Component } from './shared/error404/error404.component';
 import { LoginModule } from './modules/login/login.module';
 import { MainModule } from './modules/main/main.module';
 import { LoginCompComponent } from './modules/login/login-comp/login-comp.component';
-import { MainCompComponent } from './modules/main/main-comp/main-comp.component';
+import { UserAccComponent } from './shared/user-acc/user-acc.component';
 
 const routes: Routes = [
   {
@@ -14,12 +14,8 @@ const routes: Routes = [
     loadChildren: ()=> import("./modules/landing/landing.module").then(m => m.LandingModule)
   },
   {
-    path: 'login', 
-    component: LoginCompComponent
-  }, 
-  {
     path: 'main', 
-    component: MainCompComponent
+    component: UserAccComponent
   }, 
   {
     path: '',

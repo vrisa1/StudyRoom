@@ -1,30 +1,40 @@
 nav{   
+    height: 4em;
     display: grid;
     grid-template-areas: "hamburguesa logotipo usuario";
+    // grid-template-columns: 10em 61.5em auto;
+    grid-template-columns: 20% 60% 20%;
     background-color: var(--color9);
 }
 
-#logotipo, #usuario, #menuToggle{
-    justify-content: space-evenly;
-}
+// #logotipo, #usuario, #menuToggle, #login{
+//     justify-content: space-evenly;
+// }  no hace nada?????
 
 #logotipo{
     
-    /* text-align: center; */
     grid-area: logotipo;
-    margin-top: 6px;
-    place-self: center;
+    justify-self: center;
+    align-self: center;
     color: var(--bg-color);
     width: 12em;
     
 }
 
 h4{
-    
     text-align: right;
-    margin-right: 30px;
+    margin-right: 20px;
     grid-area: usuario;
+    justify-self: right;
+    align-self: center;
     color: var(--bg-color);
+}
+
+#login{
+  grid-area: usuario;
+  margin-right: 20px;
+  justify-self: right;
+  align-self: center;
 }
 
 #menuToggle{
@@ -136,10 +146,11 @@ h4{
  * Make this absolute positioned
  * at the top left of the screen
  */
+///tendria que ocupar toda la pantalla???
 #menu
 {
   position: absolute;
-  width: 180px;
+  width: 280px;
   /* height: 530px; //para que llegue hasta abajo*/
   margin: -100px 0 0 -50px;
   padding: 50px;

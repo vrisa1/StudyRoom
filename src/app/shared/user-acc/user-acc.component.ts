@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthGoogleService } from '../../login/service/auth-google.service';
+import { AuthGoogleService } from '../../modules/login/service/auth-google.service';
 
 @Component({
-  selector: 'app-main-comp',
-  templateUrl: './main-comp.component.html',
-  styleUrls: ['./main-comp.component.scss']
+  selector: 'app-user-acc',
+  templateUrl: './user-acc.component.html',
+  styleUrls: ['./user-acc.component.scss']
 })
-export class MainCompComponent {
-
+export class UserAccComponent {
   constructor(private AuthGoogleService : AuthGoogleService, private Router : Router){}
 
   logout(){
     this.AuthGoogleService.logout();
-    this.Router.navigate(['login']);
+    this.Router.navigate(['landing']);
   }
 
   mostrarDatos(){
    console.log(JSON.stringify(this.AuthGoogleService.getProfile()));
   }
-  
+
 }
