@@ -1,8 +1,9 @@
 <div class="dropdown">
     <button id="dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img id="imgUser" src="assets/glasses.svg" alt="">
+      <img id="imgUser" [src]="src" alt="">
     </button>
     <ul class="dropdown-menu">
+      <li>[name]</li>
       <li><button (click)="mostrarDatos()" class="dropdown-item">Info</button></li>
       <li><button (click)="logout()" class="dropdown-item">Cerrar Sesion</button></li>
     </ul>

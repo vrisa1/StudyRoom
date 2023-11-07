@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AuthGoogleService } from '../../modules/login/service/auth-google.service';
 
 @Component({
@@ -15,8 +16,18 @@ export class UserAccComponent {
     this.Router.navigate(['landing']);
   }
 
+  usuarioNuevo : any  = this.AuthGoogleService.getProfile();
+
+  src : string = this.usuarioNuevo.picture;
+
+  name  : string = this.usuarioNuevo.name;
+  
+
   mostrarDatos(){
-   console.log(JSON.stringify(this.AuthGoogleService.getProfile()));
+    //let usuarioNuevo : any = this.AuthGoogleService.getProfile()
+    
+   //console.log(`${usuarioNuevo.name} ${usuarioNuevo.picture} ${usuarioNuevo.email}`);
+    console.log(this.usuarioNuevo.name)
   }
 
 }
