@@ -17,17 +17,4 @@ export class UserAccComponent {
   }
 
   usuarioNuevo : any  = this.AuthGoogleService.getProfile();
-
-  src : string = this.usuarioNuevo.picture;
-
-  name  : string = this.usuarioNuevo.name;
-  
-
-  mostrarDatos(){
-    //let usuarioNuevo : any = this.AuthGoogleService.getProfile()
-    
-   //console.log(`${usuarioNuevo.name} ${usuarioNuevo.picture} ${usuarioNuevo.email}`);
-    console.log(this.usuarioNuevo.name)
-  }
-
 }
