@@ -3,7 +3,7 @@ nav{
     display: grid;
     grid-template-areas: "hamburguesa logotipo usuario";
     grid-template-columns: 20% 60% 20%;
-    background-color: var(--color9);
+    background-color: var(--color9); //con el color 7 u 8 queda mas alegre 
 }
 
 // #logotipo, #usuario, #menuToggle, #login{
