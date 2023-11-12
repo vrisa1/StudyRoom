@@ -2,8 +2,29 @@
     color: var(--bg-color);
 }
 
-img{
-    width: 55px;
-    color: var(--bg-color);
+#imgUser{
+    width: 48px;
+    border-radius: 50%;
+}
+
+ul{
+    background-color: var(--txt-color); //txt-color, color7, el del navBar(9) o el de la hamburguesa(2)
+    text-align: center;
+    width: 16em;
+    height: 16.5em;
+}
+
+li{
+    color: var(--bg-color); //--bg-color o txt-color
+    margin-bottom: 12px;
+}
+
+#botonCS{
+    color: rgb(35, 35, 35); //rgb(35, 35, 35) o bg-color
+    margin-top: 10px;
+}
+
+#imgUser2{
+    width: 95px;
     border-radius: 50%;
 }

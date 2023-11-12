@@ -4,8 +4,9 @@
     </button>
     <ul class="dropdown-menu">
       <li>{{usuarioNuevo.name}}</li>
+      <li><img id="imgUser2" src="{{usuarioNuevo.picture}}" alt=""></li>
       <li>{{usuarioNuevo.email}}</li>
-      <li><button (click)="logout()" class="dropdown-item">Cerrar Sesion</button></li>
+      <li><button (click)="logout()" type="button" class="btn btn-light" id="botonCS"><b>Cerrar Sesion</b></button></li> <!-- btn-light/btn-secondary -->
     </ul>
   </div>
 
