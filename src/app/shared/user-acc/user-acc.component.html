@@ -1,10 +1,12 @@
 <div class="dropdown">
     <button id="dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img id="imgUser" src="assets/glasses.svg" alt="">
+      <img id="imgUser" src="{{usuarioNuevo.picture}}" alt="">
     </button>
     <ul class="dropdown-menu">
-      <li><button (click)="mostrarDatos()" class="dropdown-item">Info</button></li>
-      <li><button (click)="logout()" class="dropdown-item">Cerrar Sesion</button></li>
+      <li>{{usuarioNuevo.name}}</li>
+      <li><img id="imgUser2" src="{{usuarioNuevo.picture}}" alt=""></li>
+      <li>{{usuarioNuevo.email}}</li>
+      <li><button (click)="logout()" type="button" class="btn btn-light" id="botonCS"><b>Cerrar Sesion</b></button></li> <!-- btn-light/btn-secondary -->
     </ul>
   </div>
 
