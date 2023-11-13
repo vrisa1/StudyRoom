@@ -3,12 +3,8 @@ nav{
     display: grid;
     grid-template-areas: "hamburguesa logotipo usuario";
     grid-template-columns: 20% 60% 20%;
-    background-color: var(--color9); //con el color 7 u 8 queda mas alegre 
+    background-color: var(--color9);
 }
-
-// #logotipo, #usuario, #menuToggle, #login{
-//     justify-content: space-evenly;
-// }  no hace nada?????
 
 #logotipo{
     
@@ -136,24 +132,23 @@ nav{
  * Make this absolute positioned
  * at the top left of the screen
  */
-///tendria que ocupar toda la pantalla???
+
 #menu
 {
   position: absolute;
   width: 280px;
-  /* height: 530px; //para que llegue hasta abajo*/
+  height: 44.5em; 
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
-  
   background: var(--color2);
+  filter: drop-shadow(rgb(100, 100, 100) 1px 0px 2px);
+
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
-  
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
-  
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 

@@ -13,3 +13,19 @@
     text-align: center;
     color: var(--txt-color);
 }
+
+.btn-bd-primary {
+     --bs-btn-color: var(--bg-color);
+     --bs-btn-bg: var(--txt-color);
+     --bs-btn-border-color: var(--txt-color);
+     --bs-btn-hover-color: var(--txt-color);
+     --bs-btn-hover-bg: rgb(175, 175, 175);
+}
+
+#boton{
+    display: block;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
