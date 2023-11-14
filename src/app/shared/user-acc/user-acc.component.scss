@@ -8,20 +8,29 @@
 }
 
 ul{
-    background-color: var(--txt-color); //txt-color, color7, el del navBar(9) o el de la hamburguesa(2)
+    background-color: var(--color2); 
     text-align: center;
     width: 16em;
-    height: 16.5em;
+    height: 16em;
+    filter: drop-shadow(rgb(100, 100, 100) 1px 1px 2px);
 }
 
 li{
-    color: var(--bg-color); //--bg-color o txt-color
+    color: var(--txt-color); 
     margin-bottom: 12px;
 }
 
 #botonCS{
-    color: rgb(35, 35, 35); //rgb(35, 35, 35) o bg-color
     margin-top: 10px;
+    border-radius: 20px;
+}
+
+.btn-bd-primary {
+    --bs-btn-color: var(--bg-color);
+    --bs-btn-bg: var(--txt-color);
+    --bs-btn-border-color: var(--txt-color);
+    --bs-btn-hover-color: var(--txt-color);
+    --bs-btn-hover-bg: rgb(175, 175, 175);
 }
 
 #imgUser2{

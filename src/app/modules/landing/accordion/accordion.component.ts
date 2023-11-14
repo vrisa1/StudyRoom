@@ -7,14 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AccordionComponent {
   ngOnInit(): void {
-    this.prueba();
+    this.accordion();
   }
 
-  public prueba() {
+  public accordion() {
     const cardsContainer: HTMLElement | null =
       document.querySelector('.container');
 
-    cardsContainer?.addEventListener('click', (e: MouseEvent) => {
+    cardsContainer?.addEventListener('mouseover', (e: MouseEvent) => {
       const target: HTMLElement | null = (e.target as HTMLElement).closest(
         '.card'
       );
