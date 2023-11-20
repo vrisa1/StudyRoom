@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthGoogleService } from '../../modules/login/service/auth-google.service';
@@ -8,8 +8,11 @@ import { AuthGoogleService } from '../../modules/login/service/auth-google.servi
   templateUrl: './user-acc.component.html',
   styleUrls: ['./user-acc.component.scss']
 })
-export class UserAccComponent {
+export class UserAccComponent implements OnInit{
   constructor(private AuthGoogleService : AuthGoogleService, private Router : Router){}
+  ngOnInit(): void {
+    console.log(this.AuthGoogleService.getAccessToken());
+  }
 
   logout(){
     this.AuthGoogleService.logout();
@@ -17,4 +20,6 @@ export class UserAccComponent {
   }
 
   usuarioNuevo : any  = this.AuthGoogleService.getProfile();
+
+  
 }

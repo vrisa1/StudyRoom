@@ -1,0 +1,16 @@
+<p>calendar-page works!</p>
+<app-form-event></app-form-event>
+
+  <div *ngIf="eventos.length > 0">
+    <h2>Eventos del calendario</h2>
+    <ul>
+      <li *ngFor="let event of eventos">
+        {{ event.summary }} - {{ event.start.dateTime }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="eventos.length === 0">
+    <p>No hay eventos disponibles.</p>
+  </div>
+
+ 
