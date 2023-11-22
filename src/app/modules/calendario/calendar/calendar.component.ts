@@ -16,7 +16,7 @@ import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import { CalendarPageComponent } from '../calendar-page/calendar-page.component';
 import { CalendarService } from '../service/calendar.service';
 import { T } from '@fullcalendar/core/internal-common';
-import { switchMap } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { AuthGoogleService } from '../../login/service/auth-google.service';
 import { RequestsService } from 'src/app/core/services/requests.service';
 
@@ -129,7 +129,35 @@ export class CalendarComponent implements OnInit{
     this.currentEvents.set(events);
     this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
   }
-
+  
+  private actualizarListaDeEventos(): void {
+    this.CalendarService.iniciarCalendario().pipe(
+      switchMap(() => this.CalendarService.updateEventList()),
+      map((data: any) => this.transformarEventos(data)) // Transforma los eventos aquí
+    ).subscribe(
+      (eventosTransformados: any) => {
+        this.calendarOptions.events = eventosTransformados;
+        console.log('Eventos obtenidos:', this.eventos);
+      },
+      (error) => {
+        console.error('Error al obtener eventos:', error);
+      }
+    );
+  }
+  
+  private transformarEventos(eventosGoogle: any[]): any[] {
+    // Realiza la lógica de transformación aquí
+    return eventosGoogle.map((eventoGoogle) => {
+      return {
+        id: eventoGoogle.id,
+        title: eventoGoogle.summary,
+        start: eventoGoogle.start.dateTime || eventoGoogle.start.date, // Ajusta según tus necesidades
+        end: eventoGoogle.end.dateTime || eventoGoogle.end.date, // Ajusta según tus necesidades
+        // Otras propiedades según tus necesidades
+      };
+    });
+  }
+ /*
   private actualizarListaDeEventos(): void{
     this.CalendarService.iniciarCalendario().pipe(
       switchMap(() => this.CalendarService.updateEventList())
@@ -144,7 +172,7 @@ export class CalendarComponent implements OnInit{
       }
     );
   }
-
+  */
   manejarEventoAgregadoOEliminado(): void {
     this.actualizarListaDeEventos();
   }
