@@ -7,6 +7,7 @@ import { MainModule } from './modules/main/main.module';
 import { LoginCompComponent } from './modules/login/login-comp/login-comp.component';
 import { UserAccComponent } from './shared/user-acc/user-acc.component';
 import { MainPageComponent } from './modules/main/main-page/main-page.component';
+import { TimerCompComponent } from './modules/timer/timer-comp/timer-comp.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'main', 
     component: MainPageComponent,
     loadChildren: ()=> import("./modules/main/main.module").then(m => m.MainModule)
+  }, 
+  {
+    path: 'timer', 
+    component: TimerCompComponent,
+    loadChildren: ()=> import("./modules/timer/timer.module").then(m => m.TimerModule)
   }, 
   {
     path: '',

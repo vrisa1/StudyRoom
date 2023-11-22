@@ -1,0 +1,55 @@
+<app-nav-bar [isUser]="true"></app-nav-bar>
+
+
+
+
+<div class="card">
+
+  <section class="position" [@pageNumber]="pageNumber">
+
+    <div class="flex">
+      <h1 class="title">set up focus time</h1>
+      <div class="counter">
+        <button (click)="decreaseFocusTime()" [disabled]="minFocusReached">-</button>
+        <div>{{workDuration}}</div>
+        <button (click)="increaseFocusTime()" [disabled]="maxFocusReached">+</button>
+      </div>
+      <button (click)="toggle('two')">Siguiente</button>
+    </div>
+
+    <div class="flex">
+      <h1 class="title">set up break time</h1>
+      <div class="counter">
+        <button (click)="decreaseBreakTime()" [disabled]="minBreakReached">-</button>
+        <div>{{breakDuration}}</div>
+        <button (click)="increaseBreakTime()" [disabled]="maxBreakReached">+</button>
+      </div>
+      <div class="buttons">
+        <button (click)="toggle('one')">Atrás</button>
+        <button (click)="toggle('three')">Siguiente</button>
+      </div>
+    </div>
+
+    <div class="flex">
+      <h1 class="title">{{message}}</h1>
+      <div class="counter">
+        <div>{{minutes | number: '2.'}}:{{seconds | number: '2.'}}</div>
+      </div>
+      <div class="buttons">
+        <button (click)="toggle('two')">Atrás</button>
+        <button (click)="start()">Comenzar</button>
+        <!-- agregar un boton -->
+      </div>
+    </div>
+
+  </section>
+  
+</div>
+
+
+<!-- ctrl + shift + p => wrap => dar formato al elemento seleccionado -->
+
+<!-- Formato para mostrar números de dos dígitos: {{nombreVariable | number: '2.'}} -->
+
+<app-footer></app-footer>
+
