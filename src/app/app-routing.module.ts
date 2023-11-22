@@ -8,6 +8,7 @@ import { LoginCompComponent } from './modules/login/login-comp/login-comp.compon
 import { UserAccComponent } from './shared/user-acc/user-acc.component';
 import { MainPageComponent } from './modules/main/main-page/main-page.component';
 import { CalendarPageComponent } from './modules/calendario/calendar-page/calendar-page.component';
+import { FilesPageComponent } from './modules/files/files-page/files-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
     path: 'calendar',
     component: CalendarPageComponent,
     loadChildren: ()=> import("./modules/calendario/calendario.module").then(m=>m.CalendarioModule)
+  },
+  {
+    path: 'files',
+    component: FilesPageComponent,
+    loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule)
   },
   {
     path: '',

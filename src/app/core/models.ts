@@ -1,7 +1,10 @@
 export class usuario {
-    nombreUsuario : string = '';
-    imagenPerfil : string = '';
-    email :string = '';
+    constructor(
+        public name : string,
+        public picture : string,
+        public email :string,
+        public token : string
+    ){}
 }
 
 export class evento {

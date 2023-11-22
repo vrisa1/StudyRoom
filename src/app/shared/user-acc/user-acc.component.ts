@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthGoogleService } from '../../modules/login/service/auth-google.service';
+import { AuthGoogleService } from '../../core/services/auth-google.service';
+import { usuario } from 'src/app/core/models';
 
 @Component({
   selector: 'app-user-acc',
@@ -9,17 +10,21 @@ import { AuthGoogleService } from '../../modules/login/service/auth-google.servi
   styleUrls: ['./user-acc.component.scss']
 })
 export class UserAccComponent implements OnInit{
+
+  usuarioNuevo: any;
+
   constructor(private AuthGoogleService : AuthGoogleService, private Router : Router){}
+  
   ngOnInit(): void {
-    console.log(this.AuthGoogleService.getAccessToken());
+    this.AuthGoogleService.userProfileSubject.subscribe((user) => {
+      this.usuarioNuevo = user;
+      console.log('Datos del usuario:', this.usuarioNuevo);
+    });
   }
 
   logout(){
     this.AuthGoogleService.logout();
     this.Router.navigate(['landing']);
   }
-
-  usuarioNuevo : any  = this.AuthGoogleService.getProfile();
-
   
 }

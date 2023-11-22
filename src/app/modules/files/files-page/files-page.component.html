@@ -1,0 +1,13 @@
+<p>files-page works!</p>
+
+<div *ngFor="let archivo of archivos">
+    {{ archivo.name }}
+</div>
+
+<p>Esto es un iframe??</p>
+<iframe
+  *ngIf="fileUrl"
+  [src]="fileUrl"
+  width="100%"
+  height="600"
+></iframe>
