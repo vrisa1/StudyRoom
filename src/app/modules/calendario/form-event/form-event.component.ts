@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { evento } from 'src/app/core/models';
 import { CalendarService } from '../service/calendar.service'
 import {CalendarPageComponent } from '../calendar-page/calendar-page.component'
+import { CalendarComponent } from '../calendar/calendar.component';
 
 @Component({
   selector: 'app-form-event',
@@ -14,7 +15,7 @@ export class FormEventComponent {
 
   @ViewChild('formulario') formulario!: NgForm;
 
-  constructor(private CalendarService: CalendarService, private CalendarPageComponent : CalendarPageComponent){}
+  constructor(private CalendarService: CalendarService, private CalendarPageComponent : CalendarPageComponent, private CalendarComponent: CalendarComponent){}
 
   crearEvento() {
     //Falta verificacion fechas inválidas!!!
@@ -34,7 +35,7 @@ export class FormEventComponent {
     console.log(nuevoEvento);
    
     this.CalendarService.crearEvento(nuevoEvento);
-    this.CalendarPageComponent.manejarEventoAgregadoOEliminado();
+    this.CalendarComponent.manejarEventoAgregadoOEliminado();
   
     this.formulario.resetForm();
   }

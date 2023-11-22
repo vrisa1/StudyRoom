@@ -9,6 +9,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './modules/login/login.module';
 import { MainModule } from './modules/main/main.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MainModule } from './modules/main/main.module';
     OAuthModule.forRoot(),
     HttpClientModule,
     LoginModule,
-    MainModule
+    MainModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import { evento } from 'src/app/core/models';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CalendarService {
    
   eventoId = "";
@@ -23,11 +24,10 @@ export class CalendarService {
       );
     });
   }
+
   updateEventList(): Observable<any[]>{
       return this.RequestsService.getEvents();
-    }
-  
-  
+  }
   
   borrarEvento(){
     this.RequestsService.deleteEvent(this.eventoId).subscribe(
