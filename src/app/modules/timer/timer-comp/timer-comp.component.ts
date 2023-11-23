@@ -123,9 +123,9 @@ export class TimerCompComponent implements OnInit{
 
   increaseTotalCycles(){
     this.totalCycles += 1
-    //   if(this.totalCycles == ){
-    //  this.maxCycles = true
-    //}
+      if(this.totalCycles == 10){
+     this.maxCycles = true
+    }
     if(this.totalCycles == 2){
      this.minCycles = false
     }
@@ -136,9 +136,9 @@ export class TimerCompComponent implements OnInit{
     if(this.totalCycles == 1){
      this.minCycles = true
     }
-    // if(this.totalCycles ==){
-    //  this.maxCycles = false
-    // }
+    if(this.totalCycles == 9){
+     this.maxCycles = false
+    }
   }
 
   //BOTONES "PAUSA", "STOP"
