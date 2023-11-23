@@ -9,6 +9,9 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './modules/login/login.module';
 import { MainModule } from './modules/main/main.module';
+import { TimerModule } from './modules/timer/timer.module';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { MainModule } from './modules/main/main.module';
     OAuthModule.forRoot(),
     HttpClientModule,
     LoginModule,
-    MainModule
+    MainModule,
+    TimerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
