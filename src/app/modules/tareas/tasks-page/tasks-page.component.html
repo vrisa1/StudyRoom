@@ -8,12 +8,8 @@
     <label>Description:</label>
     <input formControlName="description" />
   
-    <ng-container *ngIf="taskForm.get('id')">
-      <button type="button" (click)="acceptChanges()">Accept Changes</button>
-      <button type="button" (click)="rejectChanges()">Reject Changes</button>
-    </ng-container>
-    <button type="button" (click)="addTask()" *ngIf="!taskForm.get('id')">Add Task</button>
-    s|
+    <button type="button" (click)="addTask()">Add Task</button>
+
   </form>
 
   <ul>
@@ -22,6 +18,12 @@
       <ng-container *ngIf="task.state !== 'completed'">
       {{ task.title }} - {{ task.description }} - {{ task.state }}
       <button type="button" (click)="editTask(task)">Edit</button>
+
+      <ng-container *ngIf="editando">
+        <button type="button" (click)="acceptChanges(task)">Accept Changes</button>
+        <button type="button" (click)="rejectChanges()">Reject Changes</button>
+      </ng-container>
+
       <button type="button" (click)="deleteTask(task.id)">Delete</button>
       <button type="button" (click)="markAsCompleted(task)">Mark as Completed</button>
       </ng-container>

@@ -42,52 +42,9 @@ export class TasksPageComponent {
   
   markAsCompleted(task: any): void {
     task.state = 'completed';
-    this.updateTask(task);
-  }
-
-  updateTask(task: any, acceptChanges: boolean = false): void {
-    if (this.taskForm.valid) {
-      if (acceptChanges) {
-        const updatedTask: any = this.taskForm.value;
-        updatedTask.id = task.id; // Mantener el ID original
-        this.tasksService.updateTask(updatedTask).subscribe(() => {
-          this.loadTasks();
-          this.taskForm.reset();
-        });
-      } else {
-        this.taskForm.reset();
-      }
-    }
-  }
-
-  editTask(task: any): void {
-    this.taskForm.reset();  // Reiniciar el formulario antes de editar
-  
-    // Verificar si el control 'id' existe en el formulario
-    const idControl = this.taskForm.get('id');
-    if (idControl) {
-      idControl.setValue(task.id);
-    }
-  
-    // Establecer los valores para los otros controles
-    this.taskForm.patchValue({
-      title: task.title,
-      description: task.description,
+    this.tasksService.updateTask(task).subscribe(()=>{
+      console.log("Marcada como completada")
     });
-  }
-  
-  acceptChanges(): void {
-    const updatedTask: any = this.taskForm.value;
-    const index = this.tasks.findIndex((task) => task.id === updatedTask.id);
-    
-    if (index !== -1) {
-      this.tasks[index] = updatedTask;
-      this.taskForm.reset();
-    }
-  }
-  
-  rejectChanges(): void {
-    this.taskForm.reset();
   }
 
   deleteTask(taskId: number): void {
@@ -96,4 +53,31 @@ export class TasksPageComponent {
       this.taskForm.reset();
     });
   }
+  
+  editando : Boolean= false;
+
+  editTask(task: any): void {
+    this.taskForm.reset(); 
+    this.editando = true
+    this.taskForm.patchValue({
+      title: task.title,
+      description: task.description,
+    });
+
+  }
+  
+  acceptChanges(task: any): void {
+    const updatedTask: any = this.taskForm.value;
+    updatedTask.id = task.id; // Mantener el ID original
+    this.tasksService.updateTask(updatedTask).subscribe(() => {
+      this.loadTasks();
+      this.taskForm.reset();
+  })}
+  
+  rejectChanges(): void {
+    this.taskForm.reset();
+    this.editando = false
+  }
+
+  
 }
