@@ -10,9 +10,12 @@ import {CalendarPageComponent } from '../calendar-page/calendar-page.component'
   styleUrls: ['./form-event.component.scss']
 })
 export class FormEventComponent {
+
   @Output() eventoCreado = new EventEmitter<evento>();
 
+  
   @ViewChild('formulario') formulario!: NgForm;
+  @ViewChild('formulario2') formulario2!: NgForm;
 
   constructor(private CalendarService: CalendarService, private CalendarPageComponent : CalendarPageComponent){}
 
@@ -30,12 +33,17 @@ export class FormEventComponent {
         timeZone: 'America/Argentina/Buenos_Aires' 
       }
     );
-   
+    
     console.log(nuevoEvento);
    
     this.CalendarService.crearEvento(nuevoEvento);
     this.CalendarPageComponent.manejarEventoAgregadoOEliminado();
   
     this.formulario.resetForm();
+  }
+
+  verFechayHora() {
+    console.log("fecha: "+ this.formulario2.value.prueba);
+    console.log("Hora: "+ this.formulario2.value.prueba2);
   }
 }

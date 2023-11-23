@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarService } from '../service/calendar.service';
 import { switchMap } from 'rxjs';
+import { evento } from 'src/app/core/models';
 
 @Component({
   selector: 'app-calendar-page',
@@ -11,7 +12,15 @@ export class CalendarPageComponent implements OnInit {
 
   eventos: any[] = [];
 
+  evento = new evento("Evento Actualizado","Este evento fue actualizado",{
+    "dateTime": "2023-11-22T00:18:00Z",
+    "timeZone": "America/Argentina/Buenos_Aires"
+},{
+  "dateTime": "2023-11-22T00:24:00Z",
+  "timeZone": "America/Argentina/Buenos_Aires"
+})
   
+
 
   constructor(private CalendarService : CalendarService){}
   
@@ -35,6 +44,18 @@ export class CalendarPageComponent implements OnInit {
 
   manejarEventoAgregadoOEliminado(): void {
     this.actualizarListaDeEventos();
+  }
+
+  eventoId: string="slfkdst5ju1m151e64ghnn3av8" 
+  
+  borrarEvento(){
+    this.CalendarService.borrarEvento(this.eventoId);
+    this.manejarEventoAgregadoOEliminado();
+  }
+  
+  actualizarEvento(){
+    this.CalendarService.actualizarEvento(this.evento, this.eventoId);
+    this.manejarEventoAgregadoOEliminado();
   }
   
 }

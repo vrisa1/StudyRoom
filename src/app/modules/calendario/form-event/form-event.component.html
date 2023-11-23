@@ -10,10 +10,18 @@
   
       <label for="startDateTime">Fecha y hora de inicio:</label>
       <input type="datetime-local" id="startDateTime" name="startDateTime" ngModel required>
-  
+      
       <label for="endDateTime">Fecha y hora de fin:</label>
       <input type="datetime-local" id="endDateTime" name="endDateTime" ngModel required>
-  
+      <button type="submit">Crear Evento</button>
+      
+
+    </form>
+  </div>
+  <div>
+    <form (ngSubmit)="verFechayHora()" #formulario2="ngForm">
+      <input type="date" name="prueba" id="prueba" ngModel>
+      <input type="time" name="prueba2" id="prueba2" ngModel>
       <button type="submit">Crear Evento</button>
     </form>
   </div>
