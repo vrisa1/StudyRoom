@@ -8,6 +8,9 @@ import { LoginCompComponent } from './modules/login/login-comp/login-comp.compon
 import { UserAccComponent } from './shared/user-acc/user-acc.component';
 import { MainPageComponent } from './modules/main/main-page/main-page.component';
 import { TimerCompComponent } from './modules/timer/timer-comp/timer-comp.component';
+import { CalendarPageComponent } from './modules/calendario/calendar-page/calendar-page.component';
+import { FilesPageComponent } from './modules/files/files-page/files-page.component';
+import { TasksPageComponent } from './modules/tareas/tasks-page/tasks-page.component';
 
 const routes: Routes = [
   {
@@ -24,7 +27,22 @@ const routes: Routes = [
     path: 'timer', 
     component: TimerCompComponent,
     loadChildren: ()=> import("./modules/timer/timer.module").then(m => m.TimerModule)
-  }, 
+  },
+  {
+    path: 'calendar',
+    component: CalendarPageComponent,
+    loadChildren: ()=> import("./modules/calendario/calendario.module").then(m=>m.CalendarioModule)
+  },
+  {
+    path: 'files',
+    component: FilesPageComponent,
+    loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule)
+  },
+  {
+    path: 'tasks',
+    component: TasksPageComponent,
+    loadChildren: ()=> import("./modules/tareas/tareas.module").then(m=>m.TareasModule)
+  },
   {
     path: '',
     redirectTo: 'landing',

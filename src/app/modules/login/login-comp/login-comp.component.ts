@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthGoogleService } from '../../login/service/auth-google.service'
+import { AuthGoogleService } from '../../../core/services/auth-google.service'
 
 @Component({
   selector: 'app-login-comp',

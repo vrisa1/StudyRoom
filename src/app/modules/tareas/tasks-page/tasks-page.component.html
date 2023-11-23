@@ -1,0 +1,42 @@
+<p>tasks-page works!</p>
+
+<div>
+  <form [formGroup]="taskForm">
+    <label>Title:</label>
+    <input formControlName="title" />
+  
+    <label>Description:</label>
+    <input formControlName="description" />
+  
+    <button type="button" (click)="addTask()">Add Task</button>
+
+  </form>
+
+  <ul>
+    <label>Tareas Pendientes</label>
+    <li *ngFor="let task of tasks">
+      <ng-container *ngIf="task.state !== 'completed'">
+      {{ task.title }} - {{ task.description }} - {{ task.state }}
+      <button type="button" (click)="editTask(task)">Edit</button>
+
+      <ng-container *ngIf="editando">
+        <button type="button" (click)="acceptChanges(task)">Accept Changes</button>
+        <button type="button" (click)="rejectChanges()">Reject Changes</button>
+      </ng-container>
+
+      <button type="button" (click)="deleteTask(task.id)">Delete</button>
+      <button type="button" (click)="markAsCompleted(task)">Mark as Completed</button>
+      </ng-container>
+    </li>
+  </ul>
+ 
+  <ul>
+    <label>Tareas Completadas</label>
+    <li *ngFor="let task of tasks">
+      <ng-container *ngIf="task.state === 'completed'">
+        {{ task.title }} - {{ task.description }} - {{ task.state }}
+        <button type="button" (click)="deleteTask(task.id)">Delete</button>
+      </ng-container>
+    </li>
+  </ul>
+</div>
