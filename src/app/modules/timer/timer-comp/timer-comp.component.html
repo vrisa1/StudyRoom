@@ -11,7 +11,7 @@
       <h1 class="title">set up focus time</h1>
       <div class="counter">
         <button (click)="decreaseFocusTime()" [disabled]="minFocusReached">-</button>
-        <div>{{workDuration}}</div>
+        <div class="duration">{{workDuration}}</div>
         <button (click)="increaseFocusTime()" [disabled]="maxFocusReached">+</button>
       </div>
       <button (click)="toggle('two')">Siguiente</button>
@@ -21,7 +21,7 @@
       <h1 class="title">set up break time</h1>
       <div class="counter">
         <button (click)="decreaseBreakTime()" [disabled]="minBreakReached">-</button>
-        <div>{{breakDuration}}</div>
+        <div class="duration">{{breakDuration}}</div>
         <button (click)="increaseBreakTime()" [disabled]="maxBreakReached">+</button>
       </div>
       <div class="buttons">
@@ -33,12 +33,16 @@
     <div class="flex">
       <h1 class="title">{{message}}</h1>
       <div class="counter">
-        <div>{{minutes | number: '2.'}}:{{seconds | number: '2.'}}</div>
+        <div class="duration">{{minutes | number: '2.'}}:{{seconds | number: '2.'}}</div>
       </div>
-      <div class="buttons">
+      <div *ngIf="!running" class="buttons">
         <button (click)="toggle('two')">Atrás</button>
         <button (click)="start()">Comenzar</button>
-        <!-- agregar un boton -->
+      </div>
+      <div *ngIf="running" class="buttons">
+        <button *ngIf="!paused" (click)="interrupt()">Pausar ⏸️</button>
+        <button *ngIf="paused" (click)="resume()">Reanudar ▶️</button>
+        <button (click)="clear()">Detener ⏹️</button>
       </div>
     </div>
 

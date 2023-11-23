@@ -42,12 +42,12 @@ export class TimerCompComponent {
 
   //VARIABLE DE INTERVALO (FUNCIONALIDAD TEMPORIZADOR)
 
-  interval: any = 0
+  interval: any
 
   //BOOLEANOS DE ESTADO DEL TEMPORIZADOR (PAUSA, STOP, PLAY)
 
-  pause = false;
-  // stop = false;
+  running = false
+  paused = false;
 
   //LIMITES DE TIEMPO EN CONFIGURACIÓN
 
@@ -109,28 +109,39 @@ export class TimerCompComponent {
   //BOTONES "PAUSA", "STOP"
 
   interrupt(){
-    this.pause = true;
+    this.paused = true
   }
 
-  // clear(){
-  //   this.stop = true;
-  // }
+  resume(){
+    this.paused = false
+  }
+
+  clear(){ //Detiene el temporizador y lo devuelve al valor elegido. Cambia estado a !running
+    this.running = false
+    clearInterval(this.interval)
+    this.minutes = this.workDuration
+    this.seconds = 0
+  }
 
   //FUNCIONALIDAD
 
   start(){ //TERMINAR
 
+    this.running = true
+
     this.interval = setInterval(() => counter(), 1000) //intervalo o suscripcion?? Comienza el conteo cada 1 segundo.
 
     const counter = () => { //Función ejecutada dentro del intervalo.
 
-      if(!this.pause){ //Si el temporizador no está pausado,
+      if(!this.paused){ //Si el temporizador no está pausado,
 
         this.seconds -- //se decrementa 1 segundo.
+        //console.log(this.interval)
 
         if(this.seconds == -1 && this.minutes == 0){ //Cuando el tiempo de trabajo se termina,
           this.message = 'Descanso' //se cambia el estado a descanso,
 
+          this.playBreakAlarm()
           //aca deberia sonar la alarma
 
           this.minutes = this.breakDuration //se asigna la duración de descanso a la variable minutos,
@@ -150,6 +161,20 @@ export class TimerCompComponent {
     }
   }
   
+  playWorkAlarm(){ //Dispara la alarma de trabajo.
+    let audio = new Audio()
+    audio.src = "../assets/workAlarm.mp3"
+    audio.load()
+    audio.play()
+  }
+
+  playBreakAlarm(){ //Dispara la alarma de descanso.
+    let audio = new Audio()
+    audio.src = "../assets/breakAlarm.mp3"
+    audio.load()
+    audio.play()
+  }
+
 }
 
 
