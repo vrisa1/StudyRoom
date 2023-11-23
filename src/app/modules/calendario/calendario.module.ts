@@ -14,7 +14,8 @@ import { SharedModule } from "../../shared/shared.module";
 @NgModule({
   declarations: [
     CalendarPageComponent,
-    FormEventComponent
+    FormEventComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,

@@ -29,7 +29,7 @@ import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import { CalendarPageComponent } from '../calendar-page/calendar-page.component';
 import { CalendarService } from '../service/calendar.service';
 import { map, switchMap } from 'rxjs';
-import { AuthGoogleService } from '../../login/service/auth-google.service';
+import { AuthGoogleService } from '../../../core/services/auth-google.service';
 import { RequestsService } from 'src/app/core/services/requests.service';
 import { NgForm, FormsModule } from '@angular/forms';
 import { evento } from 'src/app/core/models';
