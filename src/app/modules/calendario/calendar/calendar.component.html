@@ -1,8 +1,7 @@
-<p>calendar works!</p>
 <div class='demo-app'>
 
     <div class='demo-app-main'>
-      <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions'>
+      <full-calendar [options]='calendarOptions'>
         <ng-template #eventContent let-arg>
           <b>{{ arg.timeText }}</b>
           <i>{{ arg.event.title }}</i>
@@ -21,13 +20,48 @@
           <h1 class="modal-title fs-5" id="addEventModalLabel">Agregar evento</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        </div>
+        <form (ngSubmit)="crearEvento()" #formulario="ngForm">
+            <div class="modal-body">
+                
+                <label for="summary" class="col-form-label">Título:</label>
+                <input type="text" id="summary" name="summary" class="form-control" ngModel required>
+            
+                <label for="description" class="col-form-label">Descripción:</label>
+                <textarea id="description" name="description" class="form-control" ngModel></textarea>
+            
+                <!-- <label for="startDateTime" class="col-form-label">Fecha y hora de inicio:</label>
+                <input type="datetime-local" id="startDateTime" name="startDateTime" class="form-control" ngModel required> -->
+
+                <label for="startDate" class="col-form-label">Fecha de inicio:</label>
+                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" required>
+
+                <label for="endDate" class="col-form-label">Fecha de finalización:</label>
+                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" required>
+            
+                <!-- <label for="endDateTime" class="col-form-label">Fecha y hora de fin:</label>
+                <input type="datetime-local" id="endDateTime" name="endDateTime" class="form-control" ngModel required> -->
+                
+                <label class="col-form-label"> <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
+                    Todo el día
+                </label>
+
+                <div *ngIf="!isAllDay">
+                    <label for="startTime" class="col-form-label">Hora de inicio:</label>
+                <input type="time" id="startTime" name="startTime" class="form-control" ngModel>
+
+                <label for="endTime" class="col-form-label">Hora de finalización:</label>
+                <input type="time" id="endTime" name="endTime" class="form-control" ngModel>
+
+                </div>
+                
+                <br>
+                
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </form>
       </div>
     </div>
   </div>

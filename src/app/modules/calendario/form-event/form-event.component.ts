@@ -10,33 +10,35 @@ import { CalendarComponent } from '../calendar/calendar.component';
   templateUrl: './form-event.component.html',
   styleUrls: ['./form-event.component.scss']
 })
+
 export class FormEventComponent {
-  @Output() eventoCreado = new EventEmitter<evento>();
 
-  @ViewChild('formulario') formulario!: NgForm;
+  // @Output() eventoCreado = new EventEmitter<evento>();
 
-  constructor(private CalendarService: CalendarService, private CalendarPageComponent : CalendarPageComponent, private CalendarComponent: CalendarComponent){}
+  // @ViewChild('formulario') formulario!: NgForm;
 
-  crearEvento() {
-    //Falta verificacion fechas inválidas!!!
-    const nuevoEvento = new evento(
-      this.formulario.value.summary,
-      this.formulario.value.description,
-      {
-        dateTime: new Date (this.formulario.value.startDateTime).toISOString(),
-        timeZone: 'America/Argentina/Buenos_Aires'
-      },
-      {
-        dateTime: new Date (this.formulario.value.endDateTime).toISOString(),
-        timeZone: 'America/Argentina/Buenos_Aires' 
-      }
-    );
+  // constructor(private CalendarService: CalendarService, private CalendarPageComponent : CalendarPageComponent, private CalendarComponent: CalendarComponent){}
+
+  // crearEvento() {
+  //   //Falta verificacion fechas inválidas!!!
+  //   const nuevoEvento = new evento(
+  //     this.formulario.value.summary,
+  //     this.formulario.value.description,
+  //     {
+  //       dateTime: new Date (this.formulario.value.startDateTime).toISOString(),
+  //       timeZone: 'America/Argentina/Buenos_Aires'
+  //     },
+  //     {
+  //       dateTime: new Date (this.formulario.value.endDateTime).toISOString(),
+  //       timeZone: 'America/Argentina/Buenos_Aires' 
+  //     }
+  //   );
    
-    console.log(nuevoEvento);
+  //   console.log(nuevoEvento);
    
-    this.CalendarService.crearEvento(nuevoEvento);
-    this.CalendarComponent.manejarEventoAgregadoOEliminado();
+  //   this.CalendarService.crearEvento(nuevoEvento);
+  //   this.CalendarComponent.manejarEventoAgregadoOEliminado();
   
-    this.formulario.resetForm();
-  }
+  //   this.formulario.resetForm();
+  // }
 }

@@ -1,6 +1,6 @@
-<app-nav-bar></app-nav-bar>
-<p>calendar-page works!</p>
-<!-- <app-form-event></app-form-event>
+<div id="calendarPage">
+  <app-nav-bar [isUser]="true"></app-nav-bar>
+  <!-- <app-form-event></app-form-event>
 
   <div *ngIf="eventos.length > 0">
     <h2>Eventos del calendario</h2>
@@ -13,8 +13,6 @@
   <div *ngIf="eventos.length === 0">
     <p>No hay eventos disponibles.</p>
   </div> -->
-
-<app-calendar></app-calendar>
-
-
- 
+  <app-calendar></app-calendar>
+  <app-footer></app-footer>
+</div>
