@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AuthConfig, OAuthService } from 'angular-oauth2-oidc'
+import { usuario } from 'src/app/core/models';
+
 
 @Injectable({
   providedIn: 'root'

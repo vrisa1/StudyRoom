@@ -1,0 +1,32 @@
+#landingPage{
+    min-height: 100%;
+    position: relative;
+    padding-top: 4em;
+    padding-bottom: 2.5em;
+}
+
+#presentacion{
+    display: inline-block;
+    width: 20rem;
+    height: 420px;
+    margin: 4em 3em 0 4em;
+    vertical-align: top;
+    text-align: center;
+}
+
+h5, p{
+    color: var(--bg-color);
+}
+
+#acordion{
+    display: inline-block;
+}
+
+#login{
+    display: inline-block;
+}
+
+#bigContainer{
+    background-color: var(--color5);
+    height: 553px;
+}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AuthGoogleService } from '../../modules/login/service/auth-google.service';
 
 @Component({
@@ -15,8 +16,5 @@ export class UserAccComponent {
     this.Router.navigate(['landing']);
   }
 
-  mostrarDatos(){
-   console.log(JSON.stringify(this.AuthGoogleService.getProfile()));
-  }
-
+  usuarioNuevo : any  = this.AuthGoogleService.getProfile();
 }

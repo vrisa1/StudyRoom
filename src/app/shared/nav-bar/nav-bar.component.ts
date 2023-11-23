@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterModule, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,7 +9,7 @@ import { Route, Router } from '@angular/router';
 
 export class NavBarComponent implements OnInit{
   
-  @Input() isUser: boolean = false; 
+  @Input() isUser: boolean = true; 
 
   ngOnInit(): void {
     

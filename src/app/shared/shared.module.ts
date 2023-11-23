@@ -5,6 +5,7 @@ import { Error404Component } from './error404/error404.component';
 import { LoginModule } from "../modules/login/login.module";
 import { UserAccComponent } from './user-acc/user-acc.component';
 import { FooterComponent } from './footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,7 +22,8 @@ import { FooterComponent } from './footer/footer.component';
     ],
     imports: [
         CommonModule,
-        LoginModule
+        LoginModule,
+        RouterModule
     ]
 })
 export class SharedModule { }
