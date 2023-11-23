@@ -9,6 +9,7 @@ import { UserAccComponent } from './shared/user-acc/user-acc.component';
 import { MainPageComponent } from './modules/main/main-page/main-page.component';
 import { CalendarPageComponent } from './modules/calendario/calendar-page/calendar-page.component';
 import { FilesPageComponent } from './modules/files/files-page/files-page.component';
+import { TasksPageComponent } from './modules/tareas/tasks-page/tasks-page.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'files',
     component: FilesPageComponent,
     loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule)
+  },
+  {
+    path: 'tasks',
+    component: TasksPageComponent,
+    loadChildren: ()=> import("./modules/tareas/tareas.module").then(m=>m.TareasModule)
   },
   {
     path: '',

@@ -12,16 +12,6 @@ export class CalendarPageComponent implements OnInit {
 
   eventos: any[] = [];
 
-  evento = new evento("Evento Actualizado","Este evento fue actualizado",{
-    "dateTime": "2023-11-22T00:18:00Z",
-    "timeZone": "America/Argentina/Buenos_Aires"
-},{
-  "dateTime": "2023-11-22T00:24:00Z",
-  "timeZone": "America/Argentina/Buenos_Aires"
-})
-  
-
-
   constructor(private CalendarService : CalendarService){}
   
   ngOnInit(): void {
@@ -45,6 +35,14 @@ export class CalendarPageComponent implements OnInit {
   manejarEventoAgregadoOEliminado(): void {
     this.actualizarListaDeEventos();
   }
+
+  evento = new evento("Evento Actualizado","Este evento fue actualizado",{
+    "dateTime": "2023-11-22T00:18:00Z",
+    "timeZone": "America/Argentina/Buenos_Aires"
+},{
+  "dateTime": "2023-11-22T00:24:00Z",
+  "timeZone": "America/Argentina/Buenos_Aires"
+})
 
   eventoId: string="slfkdst5ju1m151e64ghnn3av8" 
   

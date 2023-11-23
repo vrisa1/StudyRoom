@@ -16,3 +16,12 @@ export class evento {
         public end: { dateTime: string, timeZone: string }
       ) {}
 }
+
+export class tarea {
+    constructor(
+      public id: number,
+      public title: string,
+      public description: string,
+      public state: string
+    ) {}
+  }

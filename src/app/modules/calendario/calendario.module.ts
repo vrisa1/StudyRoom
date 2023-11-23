@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { CalendarioRoutingModule } from './calendario-routing.module';
 import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { FormEventComponent } from './form-event/form-event.component';
-import { FormsModule } from '@angular/forms';
-import { TasksPageComponent } from './tasks-page/tasks-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TasksPageComponent } from '../tareas/tasks-page/tasks-page.component';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { TasksPageComponent } from './tasks-page/tasks-page.component';
   imports: [
     CommonModule,
     CalendarioRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CalendarioModule { }
