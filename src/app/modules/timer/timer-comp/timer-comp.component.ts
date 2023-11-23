@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -26,8 +25,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     ])
   ]
 })
-export class TimerCompComponent {
-
+export class TimerCompComponent implements OnInit{
+  
   //VARIABLE DE PÁGINA (ANIMACIÓN)
 
   pageNumber = 'one'
@@ -64,6 +63,11 @@ export class TimerCompComponent {
   //LÍMITES DE CANTIDAD DE CICLOS
   minCycles = false
   maxCycles = false //cual es el maximo??
+
+  //VARIABLES DE AUDIO
+
+  workAudio: any
+  breakAudio: any
 
   //BOTONES "SIGUIENTE" Y "ATRÁS" (ANIMACIONES) 
 
@@ -157,7 +161,7 @@ export class TimerCompComponent {
 
   //FUNCIONALIDAD
 
-  start(){ //TERMINAR  -----CICLOS-----
+  start(){
 
     this.running = true
 
@@ -207,17 +211,21 @@ export class TimerCompComponent {
   //FUNCIONES DE ALARMA (AUDIO DEL TEMPORIZADOR)
 
   playWorkAlarm(){ //Dispara la alarma de trabajo.
-    let audio = new Audio()
-    audio.src = "../assets/workAlarm.mp3"
-    audio.load()
-    audio.play()
+    this.workAudio.play()
   }
 
   playBreakAlarm(){ //Dispara la alarma de descanso.
-    let audio = new Audio()
-    audio.src = "../assets/breakAlarm.mp3"
-    audio.load()
-    audio.play()
+    this.breakAudio.play()
   }
 
+  ngOnInit(){ //Asigna los audios de las alarmas y las carga.
+    this.workAudio = new Audio()
+    this.workAudio.src = "../assets/workAlarm.mp3"
+    this.workAudio.load()
+
+    this.breakAudio = new Audio()
+    this.breakAudio.src = "../assets/breakAlarm.mp3"
+    this.breakAudio.load()
+  }
+  
 }
