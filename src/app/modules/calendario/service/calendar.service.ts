@@ -28,14 +28,6 @@ export class CalendarService {
   updateEventList(): Observable<any[]>{
       return this.RequestsService.getEvents();
   }
-  
-  borrarEvento(){
-    this.RequestsService.deleteEvent(this.eventoId).subscribe(
-      (deleteEvent : any)=>{
-        console.log('Evento eliminado con éxito:', deleteEvent);
-      }
-    )
-  }
         
   crearEvento(evento : evento){
     this.RequestsService.addEvent(evento).subscribe(
@@ -44,4 +36,18 @@ export class CalendarService {
         })
   }
     
+  borrarEvento(eventoId : string){
+    this.RequestsService.deleteEvent(eventoId).subscribe(
+      (deleteEvent : any)=>{
+        console.log('Evento eliminado con éxito:', deleteEvent);
+      }
+    )
+  }
+
+  actualizarEvento(evento : evento, eventoId : string){
+    this.RequestsService.updateEvent(evento, eventoId).subscribe(
+      (updateEvent : any) =>{
+        console.log('Evento actualizado con éxito:', updateEvent);
+      })
+  }
   }

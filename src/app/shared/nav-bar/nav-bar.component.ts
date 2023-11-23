@@ -9,7 +9,7 @@ import { Route, Router, RouterModule, RouterLink, RouterLinkActive, RouterOutlet
 
 export class NavBarComponent implements OnInit{
   
-  @Input() isUser: boolean = true; 
+  @Input() isUser: boolean = false; 
 
   ngOnInit(): void {
     

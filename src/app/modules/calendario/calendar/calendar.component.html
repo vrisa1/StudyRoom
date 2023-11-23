@@ -1,5 +1,4 @@
 <div class='demo-app'>
-
     <div class='demo-app-main'>
       <full-calendar [options]='calendarOptions'>
         <ng-template #eventContent let-arg>
@@ -8,11 +7,9 @@
         </ng-template>
       </full-calendar>
     </div>
-  
   </div>
     
-
-  <!-- Modal -->
+  <!-- Modal para agregar evento-->
   <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -28,34 +25,29 @@
             
                 <label for="description" class="col-form-label">Descripción:</label>
                 <textarea id="description" name="description" class="form-control" ngModel></textarea>
-            
-                <!-- <label for="startDateTime" class="col-form-label">Fecha y hora de inicio:</label>
-                <input type="datetime-local" id="startDateTime" name="startDateTime" class="form-control" ngModel required> -->
 
                 <label for="startDate" class="col-form-label">Fecha de inicio:</label>
                 <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" required>
 
                 <label for="endDate" class="col-form-label">Fecha de finalización:</label>
                 <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" required>
-            
-                <!-- <label for="endDateTime" class="col-form-label">Fecha y hora de fin:</label>
-                <input type="datetime-local" id="endDateTime" name="endDateTime" class="form-control" ngModel required> -->
                 
                 <label class="col-form-label"> <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
                     Todo el día
                 </label>
 
                 <div *ngIf="!isAllDay">
+                
                     <label for="startTime" class="col-form-label">Hora de inicio:</label>
-                <input type="time" id="startTime" name="startTime" class="form-control" ngModel>
+                    <input type="time" id="startTime" name="startTime" class="form-control" ngModel>
 
-                <label for="endTime" class="col-form-label">Hora de finalización:</label>
-                <input type="time" id="endTime" name="endTime" class="form-control" ngModel>
+                    <label for="endTime" class="col-form-label">Hora de finalización:</label>
+                    <input type="time" id="endTime" name="endTime" class="form-control" ngModel>
 
                 </div>
                 
                 <br>
-                
+
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -66,3 +58,71 @@
     </div>
   </div>
 
+  <!-- Modal para modificar/eliminar evento -->
+  <div class="modal fade" id="clickEventModal" tabindex="-1" aria-labelledby="clickEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="clickEventModalLabel">Modificar evento</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form (ngSubmit)="modificarEvento()" #formularioModificar="ngForm">
+            <div class="modal-body">
+                
+                <label for="summary" class="col-form-label">Título:</label>
+                <input type="text" id="summary" name="summary" class="form-control" [(ngModel)]="tituloM" required>
+            
+                <label for="description" class="col-form-label">Descripción:</label>
+                <textarea id="description" name="description" class="form-control" [(ngModel)]="descripcionM"></textarea>
+
+                <label for="startDate" class="col-form-label">Fecha de inicio:</label>
+                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="fechaInicioM" required>
+
+                <label for="endDate" class="col-form-label">Fecha de finalización:</label>
+                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="fechaFinalM" required>
+                
+                <label class="col-form-label"> <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
+                    Todo el día
+                </label>
+
+                <div *ngIf="!isAllDay">
+                
+                    <label for="startTime" class="col-form-label">Hora de inicio:</label>
+                    <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="horaInicioM">
+
+                    <label for="endTime" class="col-form-label">Hora de finalización:</label>
+                    <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="horaFinalM">
+
+                </div>
+                
+                <br>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
+                    <button type="button" class="btn btn-primary" data-bs-target="#deleteEventModal" data-bs-toggle="modal">Eliminar evento</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para eliminar evento -->
+  <div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deleteEventModalLabel">Eliminar evento</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <div class="modal-body">
+                <p>Esta seguro que quiere eliminar este evento?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" (click)="borrarEvento()" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+      </div>
+    </div>
+  </div>

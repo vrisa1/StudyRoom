@@ -33,6 +33,7 @@ import { AuthGoogleService } from '../../login/service/auth-google.service';
 import { RequestsService } from 'src/app/core/services/requests.service';
 import { NgForm, FormsModule } from '@angular/forms';
 import { evento } from 'src/app/core/models';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-calendar',
@@ -40,13 +41,24 @@ import { evento } from 'src/app/core/models';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
+  
   isAllDay: boolean = false;
-  startDate: string= ""; // Asegúrate de que el tipo sea el adecuado para tus necesidades
+  startDate: string= "";
   endDate: string="";
+
+  //variables de evento para modificar evento
+  tituloM: string="";
+  descripcionM: string="";
+  fechaInicioM: string | any="";
+  fechaFinalM: string | any="";
+  horaInicioM: string | any="";
+  horaFinalM: string | any="";
+  eventoId: string="";
 
   @Output() eventoCreado = new EventEmitter<evento>();
 
   @ViewChild('formulario') formulario!: NgForm;
+  @ViewChild('formularioModificar') formularioModificar!:NgForm;
 
   ngOnInit(): void {
     this.actualizarListaDeEventos();
@@ -81,9 +93,9 @@ export class CalendarComponent implements OnInit {
     initialView: 'dayGridMonth',
     events: '',
     weekends: true,
-    editable: true,
+    //editable: true,
     selectable: true,
-    selectMirror: true,
+    //selectMirror: true,
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
@@ -101,24 +113,77 @@ export class CalendarComponent implements OnInit {
     $('#addEventModal').modal('show');
     
     const calendarApi = selectInfo.view.calendar;
-    calendarApi.unselect(); // clear date selection
+    calendarApi.unselect();
 
     const fechaInicio: any = selectInfo.startStr;
     this.startDate = fechaInicio;
 
-    const fechaFinal: any = selectInfo.startStr;
+    const fechaFinal: any = selectInfo.endStr;
     this.endDate = fechaFinal;
 
   }
 
+  formatearFecha(fecha: Date | null): string {
+    return fecha ? new Date(fecha).toISOString().split('T')[0] : '';
+  }
+  
+  formatearHora(fecha: Date | null): string {
+    return fecha ? new Date(fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+  }
+
   handleEventClick(clickInfo: EventClickArg) {
-    if (
-      confirm(
-        `Are you sure you want to delete the event '${clickInfo.event.title}'`
-      )
-    ) {
-      clickInfo.event.remove();
+    $('#clickEventModal').modal('show');
+
+    this.eventoId = clickInfo.event.id;
+    this.tituloM = clickInfo.event.title;
+    this.descripcionM = clickInfo.event.extendedProps['description'];
+    this.fechaInicioM = this.formatearFecha(clickInfo.event.start);
+    this.fechaFinalM = this.formatearFecha(clickInfo.event.end);
+    this.horaInicioM = this.formatearHora(clickInfo.event.start);
+    this.horaFinalM = this.formatearHora(clickInfo.event.end);
+
+    if(this.horaInicioM=='00:00' && (this.horaFinalM=='00:00' || this.horaFinalM=='')){
+      this.isAllDay = true;
+    } else {
+      this.isAllDay = false;
     }
+
+    console.log(this.fechaInicioM);
+    console.log(this.fechaFinalM);
+    console.log(this.horaInicioM);
+    console.log(this.horaFinalM);
+
+    /*
+    const titulo: any = document.getElementById("titulo");
+    titulo.textContent = "Titulo: ";
+    titulo.textContent += clickInfo.event.title;
+    //??????????
+    const fechaInicio: any = document.getElementById("fechaInicio");
+    fechaInicio.textContent = "Inicio: ";
+    console.log(clickInfo.event.startStr);
+    const fechaStart = new Date(clickInfo.event.startStr);
+    console.log(fechaStart);
+    let fechaIFormat: any = "";
+    if(fechaStart.getHours()===0 && fechaStart.getMinutes()===0){
+      fechaIFormat = format(fechaStart, 'dd/MM/yyyy');
+    } else {
+      fechaIFormat = format(fechaStart, 'dd/MM/yyyy HH:mm');
+    }
+    fechaInicio.textContent += fechaIFormat; 
+
+    const fechaFin: any = document.getElementById("fechaFin");
+    fechaFin.textContent = "Final: ";
+    const fechaFFormat: any = format(new Date(clickInfo.event.endStr), 'dd/MM/yyyy HH:mm');
+    fechaFin.textContent += fechaFFormat; 
+    */
+
+    // if (
+    //   confirm(
+    //     `Are you sure you want to delete the event '${clickInfo.event.title}'`
+    //   )
+    // ) {
+    //   clickInfo.event.remove();
+    // }
   }
 
   handleEvents(events: EventApi[]) {
@@ -152,6 +217,9 @@ export class CalendarComponent implements OnInit {
         title: eventoGoogle.summary,
         start: eventoGoogle.start.dateTime || eventoGoogle.start.date, // Ajusta según tus necesidades
         end: eventoGoogle.end.dateTime || eventoGoogle.end.date, // Ajusta según tus necesidades
+        extendedProps: {
+          description: eventoGoogle.description
+        },
         // Otras propiedades según tus necesidades
       };
     });
@@ -161,7 +229,7 @@ export class CalendarComponent implements OnInit {
     this.actualizarListaDeEventos();
   }
 
-  //AGREGAR EVENTO-----------------------------------------------------------------------------------------
+  //ABM EVENTOS-----------------------------------------------------------------------------------------
 
   crearEvento() {
     let startDateTime;
@@ -180,7 +248,7 @@ export class CalendarComponent implements OnInit {
       // Si no es un evento de todo el día
       startDateTime = {
         dateTime: new Date(
-          `${this.formulario.value.startDate}T${this.formulario.value.startTime}:00Z`
+          `${this.formulario.value.startDate}T${this.formulario.value.startTime}:00`
         ).toISOString(),
         timeZone: 'America/Argentina/Buenos_Aires',
       };
@@ -206,5 +274,55 @@ export class CalendarComponent implements OnInit {
     this.manejarEventoAgregadoOEliminado();
 
     this.formulario.resetForm();
+  } 
+  
+  modificarEvento(){
+    let startDateTime;
+    let endDateTime;
+
+    if (this.formularioModificar.value.allDay) {
+      // Si es un evento de todo el día
+      startDateTime = {
+        date: this.formularioModificar.value.startDate,
+      };
+
+      endDateTime = {
+        date: this.formularioModificar.value.endDate,
+      };
+    } else {
+      // Si no es un evento de todo el día
+      startDateTime = {
+        dateTime: new Date(
+          `${this.formularioModificar.value.startDate}T${this.formularioModificar.value.startTime}:00`
+        ).toISOString(),
+        timeZone: 'America/Argentina/Buenos_Aires',
+      };
+
+      endDateTime = {
+        dateTime: new Date(
+          `${this.formularioModificar.value.endDate}T${this.formularioModificar.value.endTime}:00`
+        ).toISOString(),
+        timeZone: 'America/Argentina/Buenos_Aires',
+      };
+    }
+
+    const eventoModificado = new evento(
+      this.formularioModificar.value.summary,
+      this.formularioModificar.value.description,
+      startDateTime,
+      endDateTime
+    );
+
+    console.log(eventoModificado);
+
+    this.CalendarService.actualizarEvento(eventoModificado, this.eventoId);
+    this.manejarEventoAgregadoOEliminado();
+    this.formularioModificar.resetForm();
+
+  }
+
+  borrarEvento(){
+    this.CalendarService.borrarEvento(this.eventoId);
+    this.manejarEventoAgregadoOEliminado();
   }
 }

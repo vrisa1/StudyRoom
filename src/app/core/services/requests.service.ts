@@ -3,6 +3,7 @@ import { AuthGoogleService } from '../../modules/login/service/auth-google.servi
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { evento } from '../models';
+import { data } from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -63,8 +64,13 @@ export class RequestsService {
   }
 
   deleteEvent(eventId : string): Observable<any> {
-    const url = `${this.calendarUrl}${this.calendarId}/events/${event}`;
+    const url = `${this.calendarUrl}${this.calendarId}/events/${eventId}`;
     return this.http.delete(url, { headers: this.headers });
+  }
+
+  updateEvent(event: evento, eventId : string): Observable<any> {
+    const url = `${this.calendarUrl}${this.calendarId}/events/${eventId}`;
+    return this.http.put(url, event, { headers: this.headers });
   }
   
 }
