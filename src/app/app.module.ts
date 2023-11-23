@@ -10,8 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginModule } from './modules/login/login.module';
 import { MainModule } from './modules/main/main.module';
 import { TimerModule } from './modules/timer/timer.module';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginModule,
     MainModule,
     TimerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FullCalendarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

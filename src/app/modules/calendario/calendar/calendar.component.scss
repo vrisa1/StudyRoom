@@ -1,0 +1,41 @@
+h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+ul {
+  margin: 0;
+  padding: 0 0 0 1.5em;
+}
+
+li {
+  margin: 1.5em 0;
+  padding: 0;
+}
+
+b {
+  /* used for event dates/times */
+  margin-right: 3px;
+}
+
+.demo-app {
+  display: flex;
+  min-height: 100%;
+  font-size: 14px;
+}
+
+.demo-app-main {
+  flex-grow: 1;
+  padding: 2em;
+}
+
+//para sacar el subrayado, no funciona :(
+a.fc-daygrid-day-number{
+  color:black;
+  text-decoration:none;
+}
+
+a.fc-col-header-cell-cushion{
+  color:black;
+  text-decoration:none;
+}

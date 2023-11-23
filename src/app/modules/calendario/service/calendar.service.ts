@@ -6,6 +6,7 @@ import { evento } from 'src/app/core/models';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CalendarService {
    
   eventoId = "";
@@ -23,18 +24,9 @@ export class CalendarService {
       );
     });
   }
+
   updateEventList(): Observable<any[]>{
       return this.RequestsService.getEvents();
-    }
-  
-  
-  
-  borrarEvento(eventoId : string){
-    this.RequestsService.deleteEvent(eventoId).subscribe(
-      (deleteEvent : any)=>{
-        console.log('Evento eliminado con éxito:', deleteEvent);
-      }
-    )
   }
 
   actualizarEvento(evento : evento, eventoId : string){
@@ -51,4 +43,11 @@ export class CalendarService {
         })
   }
     
+  borrarEvento(eventoId : string){
+    this.RequestsService.deleteEvent(eventoId).subscribe(
+      (deleteEvent : any)=>{
+        console.log('Evento eliminado con éxito:', deleteEvent);
+      }
+    )
   }
+}
