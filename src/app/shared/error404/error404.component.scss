@@ -15,12 +15,12 @@
 }
 
 .btn-bd-primary {
-     --bs-btn-color: var(--bg-color);
-     --bs-btn-bg: var(--txt-color);
-     --bs-btn-border-color: var(--txt-color);
-     --bs-btn-hover-color: var(--txt-color);
-     --bs-btn-hover-bg: rgb(175, 175, 175);
-}
+    --bs-btn-color: var(--bg-color);
+    --bs-btn-bg: var(--color10);
+    --bs-btn-border-color: var(--color10);
+    --bs-btn-hover-color: var(--bg-color);
+    --bs-btn-hover-bg: var(--txt-color);
+  }
 
 #boton{
     display: block;

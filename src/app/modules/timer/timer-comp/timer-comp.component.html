@@ -1,7 +1,5 @@
-<app-nav-bar ></app-nav-bar>
-
-
-
+<div id="timerPage">
+<app-nav-bar [isUser]="true"></app-nav-bar>
 
 <div class="card">
 
@@ -46,7 +44,7 @@
     <div class="flex">
       <h1 class="title">{{stage}}</h1>
       <div class="counter">
-        <div class="duration">{{minutes | number: '2.'}}:{{seconds | number: '2.'}}</div>
+        <div class="duration">{{minutes | number: '2.'}}:{{seconds | number: '2.'}}</div> <!-- Formato para mostrar números de dos dígitos: {{nombreVariable | number: '2.'}} -->
       </div>
       <div *ngIf="!running" class="buttons">
         <button (click)="toggle('three')">Atrás</button>
@@ -63,10 +61,6 @@
   
 </div>
 
-
-<!-- ctrl + shift + p => wrap => dar formato al elemento seleccionado -->
-
-<!-- Formato para mostrar números de dos dígitos: {{nombreVariable | number: '2.'}} -->
-
 <app-footer></app-footer>
+</div>
 

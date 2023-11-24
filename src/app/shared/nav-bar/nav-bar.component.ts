@@ -18,13 +18,10 @@ export class NavBarComponent implements OnInit{
     /*
     this.authGoogleService.userProfileSubject.subscribe(user => {
       if(user){
-        this.isUser= true;
+        this.isUser = true;
       }
       console.log(this.isUser);
     });
     */
-  }
-  //rutas
-  
-
+  }  
 }
