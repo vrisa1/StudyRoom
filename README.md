@@ -1,7 +1,7 @@
 # StudyRoom
 
-Trabajo final
-Tecnicatura Universitaria en Programacion
+Trabajo final  
+Tecnicatura Universitaria en Programacion  
 UTN Mar del Plata, Argentina.
 
 ## ACLARACIONES:
