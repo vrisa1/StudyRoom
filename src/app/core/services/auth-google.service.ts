@@ -68,6 +68,9 @@ export class AuthGoogleService {
   getToken(): string {
     return this.oauthService.getAccessToken();
   }
+  getProfile(){
+    return this.oauthService.getIdentityClaims();
+  }
 
 }
 
