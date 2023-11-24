@@ -5,6 +5,8 @@ import { TareasRoutingModule } from './tareas-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TasksPageComponent } from './tasks-page/tasks-page.component';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { TasksPageComponent } from './tasks-page/tasks-page.component';
   imports: [
     CommonModule,
     TareasRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
 ]})
 export class TareasModule { }

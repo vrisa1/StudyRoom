@@ -10,9 +10,16 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class TasksPageComponent {
   tasks: any[] = [];
   taskForm: FormGroup;
+  editForm: FormGroup;
+
+  task: any;
 
   constructor(private fb: FormBuilder, private tasksService: TasksService) {
     this.taskForm = this.fb.group({
+      title: ['', Validators.required],
+      description: [''],
+    });
+    this.editForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
     });
@@ -39,7 +46,20 @@ export class TasksPageComponent {
     }
   }
 
-  
+  markAsToDo(task: any){
+    task.state = 'todo';
+    this.tasksService.updateTask(task).subscribe(()=>{
+      console.log("Marcada como pendiente")
+    });
+  }
+
+  markAsInCourse(task: any){
+    task.state = 'inCourse';
+    this.tasksService.updateTask(task).subscribe(()=>{
+      console.log("Marcada como en proceso")
+    });
+  }
+
   markAsCompleted(task: any): void {
     task.state = 'completed';
     this.tasksService.updateTask(task).subscribe(()=>{
@@ -54,30 +74,26 @@ export class TasksPageComponent {
     });
   }
   
-  editando : Boolean= false;
-
   editTask(task: any): void {
-    this.taskForm.reset(); 
-    this.editando = true
-    this.taskForm.patchValue({
+    this.task = task;
+    console.log(task);
+    this.editForm.reset(); 
+    console.log(task);
+    this.editForm.patchValue({
       title: task.title,
       description: task.description,
     });
 
   }
   
-  acceptChanges(task: any): void {
-    const updatedTask: any = this.taskForm.value;
-    updatedTask.id = task.id; // Mantener el ID original
+  acceptChanges(): void {
+    const updatedTask: any = this.editForm.value;
+    updatedTask.id = this.task.id; // Mantener el ID original
+    updatedTask.state = this.task.state;
     this.tasksService.updateTask(updatedTask).subscribe(() => {
       this.loadTasks();
-      this.taskForm.reset();
+      this.editForm.reset();
   })}
   
-  rejectChanges(): void {
-    this.taskForm.reset();
-    this.editando = false
-  }
 
-  
 }

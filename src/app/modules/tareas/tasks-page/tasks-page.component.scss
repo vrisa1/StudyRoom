@@ -1,0 +1,79 @@
+#tasks-container{
+    background-color: var(--color3);
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 2.5em;
+    padding-top: 4em;
+}
+
+.card{
+    background-color: var(--color2); //color2
+    max-width: 80rem;
+    width: 100%;
+    margin: 3em auto 3em auto; //arriba der abajo izq
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 2px solid rgb(170, 191, 194);
+    height: auto;
+    padding: 1em;
+}
+
+#category-division{
+    border-style: solid;
+    border-width: 1.7px;
+}
+
+#task-division{
+    border-style: dashed;
+    border-width: 1.5px;
+    margin-right: 2em;
+}
+
+#add-task-title{
+    text-indent: 1.5em;
+}
+
+#add-task{
+    margin-top: 10px;
+    display: grid;
+    grid-template-areas: "title description button";
+    grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+#title{
+    grid-area: title;
+    padding: 1em;
+}
+
+#description{
+    grid-area: description;
+    padding: 1em;
+}
+
+#button{
+    grid-area: button;
+    width: auto;
+    height: 2.5em;
+    justify-self: center;
+    align-self: flex-end;
+    margin-bottom: 1em;
+
+}
+
+.title{
+    font-size: 1.3rem;
+    font-weight: 330;
+}
+
+.btn-bd-primary {
+    --bs-btn-color: var(--txt-color);
+    --bs-btn-border-color: var(--color10);
+    --bs-btn-hover-color: var(--bg-color);
+    --bs-btn-hover-bg: var(--txt-color);
+}
+
+.task-style{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 2em;
+}
