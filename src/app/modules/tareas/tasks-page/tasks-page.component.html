@@ -1,42 +1,173 @@
-<p>tasks-page works!</p>
+ <div id="tasks-container">
 
-<div>
-  <form [formGroup]="taskForm">
-    <label>Title:</label>
-    <input formControlName="title" />
-  
-    <label>Description:</label>
-    <input formControlName="description" />
-  
-    <button type="button" (click)="addTask()">Add Task</button>
+ <app-nav-bar [isUser]="true"></app-nav-bar>
 
-  </form>
+  <div class="card">
 
-  <ul>
-    <label>Tareas Pendientes</label>
-    <li *ngFor="let task of tasks">
-      <ng-container *ngIf="task.state !== 'completed'">
-      {{ task.title }} - {{ task.description }} - {{ task.state }}
-      <button type="button" (click)="editTask(task)">Edit</button>
 
-      <ng-container *ngIf="editando">
-        <button type="button" (click)="acceptChanges(task)">Accept Changes</button>
-        <button type="button" (click)="rejectChanges()">Reject Changes</button>
-      </ng-container>
+    <h1 class="title" id="add-task-title">Agregar tarea</h1>
+    <form [formGroup]="taskForm" id="add-task">
+      <div id="title">
+        <label class="col-form-label">Título:</label>
+        <input class="form-control" formControlName="title" />
+      </div>
+      <div id="description">
+        <label class="col-form-label">Descripción:</label>
+        <input class="form-control" formControlName="description" />
+      </div>
+      <button class="btn btn-bd-primary" type="button" (click)="addTask()" id="button" [disabled]="taskForm.invalid">Aceptar</button>
+    </form>
 
-      <button type="button" (click)="deleteTask(task.id)">Delete</button>
-      <button type="button" (click)="markAsCompleted(task)">Mark as Completed</button>
-      </ng-container>
-    </li>
-  </ul>
- 
-  <ul>
-    <label>Tareas Completadas</label>
-    <li *ngFor="let task of tasks">
-      <ng-container *ngIf="task.state === 'completed'">
-        {{ task.title }} - {{ task.description }} - {{ task.state }}
-        <button type="button" (click)="deleteTask(task.id)">Delete</button>
-      </ng-container>
-    </li>
-  </ul>
+
+    <hr id="category-division">
+
+    
+    <ul>
+      <h1 class="title">Tareas pendientes</h1>
+      <div *ngFor="let task of tasks">
+        <ng-container *ngIf="task.state === 'todo'">
+         <hr id="task-division">
+         <div class="task-style">
+            {{ task.title }} - {{ task.description }}
+            <button class="btn btn-bd-primary" type="button" data-bs-target="#edit-task1" data-bs-toggle="modal" (click)="editTask(task)">Editar</button>
+            
+            <div class="modal fade" id="edit-task1" tabindex="-1" aria-labelledby="edit-task-label1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="edit-task-label1">Editar tarea</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form [formGroup]="editForm">
+                      <div class="modal-body">
+            
+                        <label class="col-form-label">Título:</label>
+                        <input class="form-control" formControlName="title" />
+            
+                        <label class="col-form-label">Descripción:</label>
+                        <input class="form-control" formControlName="description" />
+
+                          <div class="modal-footer">
+                              <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" (click)="acceptChanges()" [disabled]="editForm.invalid">Guardar</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          </div>
+
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-bd-primary" type="button" (click)="deleteTask(task.id)">Eliminar</button>
+            <button class="btn btn-bd-primary" type="button" (click)="markAsInCourse(task)">Marcar como en proceso</button>
+            <button class="btn btn-bd-primary" type="button" (click)="markAsCompleted(task)">Marcar como completada</button>
+
+        </div>
+        </ng-container>
+      </div>
+    </ul>
+
+
+    <hr id="category-division">
+
+
+    <ul>
+      <h1 class="title">Tareas en proceso</h1>
+      <div *ngFor="let task of tasks">
+        <ng-container *ngIf="task.state === 'inCourse'">
+            <hr id="task-division">
+            <div class="task-style">
+              {{ task.title }} - {{ task.description }}
+              <button class="btn btn-bd-primary" type="button" data-bs-target="#edit-task2" data-bs-toggle="modal" (click)="editTask(task)">Editar</button>
+            
+              <div class="modal fade" id="edit-task2" tabindex="-1" aria-labelledby="edit-task-label2" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="edit-task-label2">Editar tarea</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form [formGroup]="editForm">
+                      <div class="modal-body">
+            
+                        <label class="col-form-label">Título:</label>
+                        <input class="form-control" formControlName="title" />
+            
+                        <label class="col-form-label">Descripción:</label>
+                        <input class="form-control" formControlName="description" />
+
+                          <div class="modal-footer">
+                              <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" (click)="acceptChanges()" [disabled]="editForm.invalid">Guardar</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          </div>
+
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+              <button class="btn btn-bd-primary" type="button" (click)="deleteTask(task.id)">Eliminar</button>
+              <button class="btn btn-bd-primary" (click)="markAsToDo(task)">Marcar como pendiente</button>
+              <button class="btn btn-bd-primary" type="button" (click)="markAsCompleted(task)">Marcar como completada</button>
+
+            </div> 
+        </ng-container>
+      </div>
+    </ul>
+
+
+    <hr id="category-division">
+
+
+    <ul>
+      <h1 class="title">Tareas completadas</h1>
+      <div *ngFor="let task of tasks">
+        <ng-container *ngIf="task.state === 'completed'">
+          <hr id="task-division">
+          <div class="task-style">
+            {{ task.title }} - {{ task.description }}
+            <button class="btn btn-bd-primary" type="button" data-bs-target="#edit-task3" data-bs-toggle="modal" (click)="editTask(task)">Editar</button>
+            
+            <div class="modal fade" id="edit-task3" tabindex="-1" aria-labelledby="edit-task-label3" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="edit-task-label3">Editar tarea</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form [formGroup]="editForm">
+                      <div class="modal-body">
+            
+                        <label class="col-form-label">Título:</label>
+                        <input class="form-control" formControlName="title" />
+            
+                        <label class="col-form-label">Descripción:</label>
+                        <input class="form-control" formControlName="description" />
+
+                          <div class="modal-footer">
+                              <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" (click)="acceptChanges()" [disabled]="editForm.invalid">Guardar</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          </div>
+                          
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-bd-primary" type="button" (click)="deleteTask(task.id)">Eliminar</button>
+            <button class="btn btn-bd-primary" (click)="markAsToDo(task)">Marcar como pendiente</button>
+            <button class="btn btn-bd-primary" type="button" (click)="markAsInCourse(task)">Marcar como en proceso</button>
+
+          </div>
+        </ng-container>
+      </div>
+    </ul>
+
+
+  </div>
+
+  <app-footer></app-footer>
+
 </div>
