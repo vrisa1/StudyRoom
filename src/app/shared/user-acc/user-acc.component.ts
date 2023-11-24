@@ -16,11 +16,11 @@ export class UserAccComponent implements OnInit{
   constructor(private AuthGoogleService : AuthGoogleService, private Router : Router){}
   
   ngOnInit(): void {
-    /*
+    
     this.AuthGoogleService.userProfileSubject.subscribe((user) => {
       this.usuarioNuevo = user;
       console.log('Datos del usuario:', this.usuarioNuevo);
-    });*/
+    });
     this.usuarioNuevo = this.AuthGoogleService.getProfile()
   }
 

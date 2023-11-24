@@ -22,27 +22,26 @@ const routes: Routes = [
   {
     path: 'main', 
     component: MainPageComponent,
-    loadChildren: ()=> import("./modules/main/main.module").then(m => m.MainModule),
-    //canActivate:[authGuard]
+    loadChildren: ()=> import("./modules/main/main.module").then(m => m.MainModule)
   }, 
   {
     path: 'timer', 
     component: TimerCompComponent,
     loadChildren: ()=> import("./modules/timer/timer.module").then(m => m.TimerModule),
-    //canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   {
     path: 'calendar',
     component: CalendarPageComponent,
     loadChildren: ()=> import("./modules/calendario/calendario.module").then(m=>m.CalendarioModule),
-    //canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   {
 
     path: 'tasks',
     component: TasksPageComponent,
     loadChildren: ()=> import("./modules/tareas/tareas.module").then(m=>m.TareasModule),
-    //canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   // {
   //   path: 'files',
