@@ -21,13 +21,13 @@
     {
       "title": "Organizar reunión trabajo",
       "description": "Reunión fin de año",
-      "state": "inCourse",
+      "state": "completed",
       "id": 4
     },
     {
       "title": "Presentar tp lab",
       "description": "¡¡¡TP final!!!",
-      "state": "todo",
+      "state": "inCourse",
       "id": 5
     },
     {
