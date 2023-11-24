@@ -1,7 +1,6 @@
 
 <nav class="fixed-top" role="navigation">
 
-  <!-- *ngIf="isUser" -->
   <div *ngIf="isUser" id="menuToggle" class="ocultar">
     <input type="checkbox" />
 
@@ -10,10 +9,10 @@
     <span></span>
 
     <ul id="menu">
-      <a routerLink="/main"><li>Inicio</li></a> <!-- Inicio o Principal? -->
-      <a routerLink="/calendar"><li>Calendario</li></a> <!-- el calendario y las tareas estan en la misma pestaña  -->
-      <a href="#"><li>Gestor de archivos</li></a> <!-- los archivos y TTS tambien  -->
-      <a href="#"><li>Temporizador</li></a>
+      <a routerLink="/main"><li>Inicio</li></a>
+      <a routerLink="/calendar"><li>Calendario</li></a> 
+      <a routerLink="/tasks"><li>Lista de tareas</li></a>
+      <a routerLink="/timer"><li>Temporizador</li></a>
   
     </ul>
   </div>
@@ -22,7 +21,6 @@
 
   <app-user-acc *ngIf="isUser" id="usuario"></app-user-acc>
 
-  <app-login-comp *ngIf="!isUser" id="login"></app-login-comp>
 </nav>
 
 <router-outlet></router-outlet>

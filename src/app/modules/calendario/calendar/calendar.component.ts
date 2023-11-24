@@ -43,10 +43,11 @@ import { format } from 'date-fns';
 export class CalendarComponent implements OnInit {
   
   isAllDay: boolean = false;
+  
   startDate: string= "";
   endDate: string="";
 
-  //variables de evento para modificar evento
+  //variables de evento para modificarEvento()
   tituloM: string="";
   descripcionM: string="";
   fechaInicioM: string | any="";
@@ -93,18 +94,11 @@ export class CalendarComponent implements OnInit {
     initialView: 'dayGridMonth',
     events: '',
     weekends: true,
-    //editable: true,
     selectable: true,
-    //selectMirror: true,
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
-    /* you can update a remote database when these fire:
-    eventAdd:
-    eventChange:
-    eventRemove:
-    */
   };
 
   currentEvents = signal<EventApi[]>([]);
@@ -112,6 +106,8 @@ export class CalendarComponent implements OnInit {
   handleDateSelect(selectInfo: DateSelectArg) {
     $('#addEventModal').modal('show');
     
+    this.formulario.resetForm();
+
     const calendarApi = selectInfo.view.calendar;
     calendarApi.unselect();
 
@@ -147,48 +143,15 @@ export class CalendarComponent implements OnInit {
     } else {
       this.isAllDay = false;
     }
-
-    console.log(this.fechaInicioM);
-    console.log(this.fechaFinalM);
-    console.log(this.horaInicioM);
-    console.log(this.horaFinalM);
-
-    /*
-    const titulo: any = document.getElementById("titulo");
-    titulo.textContent = "Titulo: ";
-    titulo.textContent += clickInfo.event.title;
-    //??????????
-    const fechaInicio: any = document.getElementById("fechaInicio");
-    fechaInicio.textContent = "Inicio: ";
-    console.log(clickInfo.event.startStr);
-    const fechaStart = new Date(clickInfo.event.startStr);
-    console.log(fechaStart);
-    let fechaIFormat: any = "";
-    if(fechaStart.getHours()===0 && fechaStart.getMinutes()===0){
-      fechaIFormat = format(fechaStart, 'dd/MM/yyyy');
-    } else {
-      fechaIFormat = format(fechaStart, 'dd/MM/yyyy HH:mm');
-    }
-    fechaInicio.textContent += fechaIFormat; 
-
-    const fechaFin: any = document.getElementById("fechaFin");
-    fechaFin.textContent = "Final: ";
-    const fechaFFormat: any = format(new Date(clickInfo.event.endStr), 'dd/MM/yyyy HH:mm');
-    fechaFin.textContent += fechaFFormat; 
-    */
-
-    // if (
-    //   confirm(
-    //     `Are you sure you want to delete the event '${clickInfo.event.title}'`
-    //   )
-    // ) {
-    //   clickInfo.event.remove();
-    // }
+    // console.log(this.fechaInicioM);
+    // console.log(this.fechaFinalM);
+    // console.log(this.horaInicioM);
+    // console.log(this.horaFinalM);
   }
 
   handleEvents(events: EventApi[]) {
     this.currentEvents.set(events);
-    this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
+    this.changeDetector.detectChanges(); 
   }
 
   //GOOGLE CALENDAR----------------------------------------------------------------------------------------
@@ -196,7 +159,7 @@ export class CalendarComponent implements OnInit {
     this.CalendarService.iniciarCalendario()
       .pipe(
         switchMap(() => this.CalendarService.updateEventList()),
-        map((data: any) => this.transformarEventos(data)) // Transforma los eventos aquí
+        map((data: any) => this.transformarEventos(data)) // Transforma los eventos 
       )
       .subscribe(
         (eventosTransformados: any) => {
@@ -210,17 +173,15 @@ export class CalendarComponent implements OnInit {
   }
 
   private transformarEventos(eventosGoogle: any[]): any[] {
-    // Realiza la lógica de transformación aquí
     return eventosGoogle.map((eventoGoogle) => {
       return {
         id: eventoGoogle.id,
         title: eventoGoogle.summary,
-        start: eventoGoogle.start.dateTime || eventoGoogle.start.date, // Ajusta según tus necesidades
-        end: eventoGoogle.end.dateTime || eventoGoogle.end.date, // Ajusta según tus necesidades
+        start: eventoGoogle.start.dateTime || eventoGoogle.start.date,
+        end: eventoGoogle.end.dateTime || eventoGoogle.end.date,
         extendedProps: {
           description: eventoGoogle.description
         },
-        // Otras propiedades según tus necesidades
       };
     });
   }
@@ -240,7 +201,6 @@ export class CalendarComponent implements OnInit {
       startDateTime = {
         date: this.formulario.value.startDate,
       };
-
       endDateTime = {
         date: this.formulario.value.endDate,
       };
@@ -252,7 +212,6 @@ export class CalendarComponent implements OnInit {
         ).toISOString(),
         timeZone: 'America/Argentina/Buenos_Aires',
       };
-
       endDateTime = {
         dateTime: new Date(
           `${this.formulario.value.endDate}T${this.formulario.value.endTime}:00`
@@ -260,32 +219,26 @@ export class CalendarComponent implements OnInit {
         timeZone: 'America/Argentina/Buenos_Aires',
       };
     }
-
     const nuevoEvento = new evento(
       this.formulario.value.summary,
       this.formulario.value.description,
       startDateTime,
       endDateTime
     );
-
-    console.log(nuevoEvento);
-
+    //console.log(nuevoEvento);
     this.CalendarService.crearEvento(nuevoEvento);
     this.manejarEventoAgregadoOEliminado();
-
     this.formulario.resetForm();
   } 
   
   modificarEvento(){
     let startDateTime;
     let endDateTime;
-
     if (this.formularioModificar.value.allDay) {
       // Si es un evento de todo el día
       startDateTime = {
         date: this.formularioModificar.value.startDate,
       };
-
       endDateTime = {
         date: this.formularioModificar.value.endDate,
       };
@@ -297,7 +250,6 @@ export class CalendarComponent implements OnInit {
         ).toISOString(),
         timeZone: 'America/Argentina/Buenos_Aires',
       };
-
       endDateTime = {
         dateTime: new Date(
           `${this.formularioModificar.value.endDate}T${this.formularioModificar.value.endTime}:00`
@@ -305,20 +257,16 @@ export class CalendarComponent implements OnInit {
         timeZone: 'America/Argentina/Buenos_Aires',
       };
     }
-
     const eventoModificado = new evento(
       this.formularioModificar.value.summary,
       this.formularioModificar.value.description,
       startDateTime,
       endDateTime
     );
-
-    console.log(eventoModificado);
-
+    //console.log(eventoModificado);
     this.CalendarService.actualizarEvento(eventoModificado, this.eventoId);
     this.manejarEventoAgregadoOEliminado();
     this.formularioModificar.resetForm();
-
   }
 
   borrarEvento(){

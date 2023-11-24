@@ -1,3 +1,11 @@
+.btn-bd-primary {
+  --bs-btn-color: var(--bg-color);
+  --bs-btn-bg: var(--color10);
+  --bs-btn-border-color: var(--color10);
+  --bs-btn-hover-color: var(--bg-color);
+  --bs-btn-hover-bg: var(--txt-color);
+}
+
 h2 {
   margin: 0;
   font-size: 16px;
@@ -14,7 +22,6 @@ li {
 }
 
 b {
-  /* used for event dates/times */
   margin-right: 3px;
 }
 
@@ -29,13 +36,3 @@ b {
   padding: 2em;
 }
 
-//para sacar el subrayado, no funciona :(
-a.fc-daygrid-day-number{
-  color:black;
-  text-decoration:none;
-}
-
-a.fc-col-header-cell-cushion{
-  color:black;
-  text-decoration:none;
-}

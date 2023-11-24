@@ -25,6 +25,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     ])
   ]
 })
+
 export class TimerCompComponent implements OnInit{
   
   //VARIABLE DE PÁGINA (ANIMACIÓN)
@@ -62,7 +63,7 @@ export class TimerCompComponent implements OnInit{
 
   //LÍMITES DE CANTIDAD DE CICLOS
   minCycles = false
-  maxCycles = false //cual es el maximo??
+  maxCycles = false 
 
   //VARIABLES DE AUDIO
 

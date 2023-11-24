@@ -34,15 +34,15 @@ const routes: Routes = [
     loadChildren: ()=> import("./modules/calendario/calendario.module").then(m=>m.CalendarioModule)
   },
   {
-    path: 'files',
-    component: FilesPageComponent,
-    loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule)
-  },
-  {
     path: 'tasks',
     component: TasksPageComponent,
     loadChildren: ()=> import("./modules/tareas/tareas.module").then(m=>m.TareasModule)
   },
+  // {
+  //   path: 'files',
+  //   component: FilesPageComponent,
+  //   loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule)
+  // },
   {
     path: '',
     redirectTo: 'landing',

@@ -39,17 +39,17 @@
                 <div *ngIf="!isAllDay">
                 
                     <label for="startTime" class="col-form-label">Hora de inicio:</label>
-                    <input type="time" id="startTime" name="startTime" class="form-control" ngModel>
+                    <input type="time" id="startTime" name="startTime" class="form-control" ngModel required>
 
                     <label for="endTime" class="col-form-label">Hora de finalización:</label>
-                    <input type="time" id="endTime" name="endTime" class="form-control" ngModel>
+                    <input type="time" id="endTime" name="endTime" class="form-control" ngModel required>
 
                 </div>
                 
                 <br>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" [disabled]="formulario.invalid">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -88,18 +88,18 @@
                 <div *ngIf="!isAllDay">
                 
                     <label for="startTime" class="col-form-label">Hora de inicio:</label>
-                    <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="horaInicioM">
+                    <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="horaInicioM" required>
 
                     <label for="endTime" class="col-form-label">Hora de finalización:</label>
-                    <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="horaFinalM">
+                    <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="horaFinalM" required>
 
                 </div>
                 
                 <br>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar cambios</button>
-                    <button type="button" class="btn btn-primary" data-bs-target="#deleteEventModal" data-bs-toggle="modal">Eliminar evento</button>
+                    <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" [disabled]="formularioModificar.invalid">Guardar cambios</button>
+                    <button type="button" class="btn btn-bd-primary" data-bs-target="#deleteEventModal" data-bs-toggle="modal">Eliminar evento</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                 <p>Esta seguro que quiere eliminar este evento?</p>
             </div>
             <div class="modal-footer">
-                <button type="submit" (click)="borrarEvento()" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                <button type="submit" (click)="borrarEvento()" class="btn btn-bd-primary" data-bs-dismiss="modal">Aceptar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
       </div>
