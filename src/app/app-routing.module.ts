@@ -11,6 +11,7 @@ import { TimerCompComponent } from './modules/timer/timer-comp/timer-comp.compon
 import { CalendarPageComponent } from './modules/calendario/calendar-page/calendar-page.component';
 import { FilesPageComponent } from './modules/files/files-page/files-page.component';
 import { TasksPageComponent } from './modules/tareas/tasks-page/tasks-page.component';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -21,27 +22,32 @@ const routes: Routes = [
   {
     path: 'main', 
     component: MainPageComponent,
-    loadChildren: ()=> import("./modules/main/main.module").then(m => m.MainModule)
+    loadChildren: ()=> import("./modules/main/main.module").then(m => m.MainModule),
+    //canActivate:[authGuard]
   }, 
   {
     path: 'timer', 
     component: TimerCompComponent,
-    loadChildren: ()=> import("./modules/timer/timer.module").then(m => m.TimerModule)
+    loadChildren: ()=> import("./modules/timer/timer.module").then(m => m.TimerModule),
+    //canActivate:[authGuard]
   },
   {
     path: 'calendar',
     component: CalendarPageComponent,
-    loadChildren: ()=> import("./modules/calendario/calendario.module").then(m=>m.CalendarioModule)
+    loadChildren: ()=> import("./modules/calendario/calendario.module").then(m=>m.CalendarioModule),
+    //canActivate:[authGuard]
   },
   {
     path: 'files',
     component: FilesPageComponent,
-    loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule)
+    loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule),
+    //canActivate:[authGuard]
   },
   {
     path: 'tasks',
     component: TasksPageComponent,
-    loadChildren: ()=> import("./modules/tareas/tareas.module").then(m=>m.TareasModule)
+    loadChildren: ()=> import("./modules/tareas/tareas.module").then(m=>m.TareasModule),
+    //canActivate:[authGuard]
   },
   {
     path: '',

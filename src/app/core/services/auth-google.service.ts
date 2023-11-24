@@ -68,9 +68,17 @@ export class AuthGoogleService {
   getToken(): string {
     return this.oauthService.getAccessToken();
   }
+
   getProfile(){
     return this.oauthService.getIdentityClaims();
   }
 
+  public checkAuthentication(): boolean{
+    return this.oauthService.hasValidAccessToken();
+    //return this.oauthService.getAccessToken() ? true : false;
+    
+  }
+
+  
 }
 
