@@ -1,16 +1,52 @@
 {
   "tasks": [
     {
-      "title": "tarea1",
-      "description": "holaa",
-      "state": "completed",
-      "id": 1
+      "title": "Calendario (tp final)",
+      "description": "Terminar componente Calendario",
+      "id": 1,
+      "state": "completed"
     },
     {
-      "title": "tarea2",
-      "description": "holaaa",
+      "title": "Consulta parcial BDD",
+      "description": "Preguntas sobre simulacro",
       "state": "completed",
       "id": 2
+    },
+    {
+      "title": "Ir al súper",
+      "description": "Compras de la semana",
+      "state": "completed",
+      "id": 3
+    },
+    {
+      "title": "Organizar reunión trabajo",
+      "description": "Reunión fin de año",
+      "state": "inCourse",
+      "id": 4
+    },
+    {
+      "title": "Presentar tp lab",
+      "description": "¡¡¡TP final!!!",
+      "state": "todo",
+      "id": 5
+    },
+    {
+      "title": "Reunión con coordinador",
+      "description": "Prácticas profesionales",
+      "state": "todo",
+      "id": 6
+    },
+    {
+      "title": "Comprar regalo",
+      "description": "Cumple de Irina",
+      "state": "todo",
+      "id": 7
+    },
+    {
+      "title": "Informe tp final",
+      "description": "Prácticas profesionales",
+      "state": "inCourse",
+      "id": 8
     }
   ]
 }
