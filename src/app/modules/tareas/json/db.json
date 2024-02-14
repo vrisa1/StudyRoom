@@ -3,50 +3,50 @@
     {
       "title": "Calendario (tp final)",
       "description": "Terminar componente Calendario",
-      "id": 1,
-      "state": "completed"
+      "id": "1",
+      "state": "inCourse"
     },
     {
       "title": "Consulta parcial BDD",
       "description": "Preguntas sobre simulacro",
-      "state": "completed",
-      "id": 2
+      "state": "inCourse",
+      "id": "2"
     },
     {
       "title": "Ir al súper",
-      "description": "Compras de la semana",
-      "state": "completed",
-      "id": 3
+      "description": "Compras de la semana: manzanas - peras - bananas - fideos - arroz - aceite",
+      "id": "3",
+      "state": "todo"
     },
     {
       "title": "Organizar reunión trabajo",
-      "description": "Reunión fin de año",
-      "state": "completed",
-      "id": 4
+      "description": "Reunión fin de año!!!",
+      "id": "4",
+      "state": "completed"
     },
     {
       "title": "Presentar tp lab",
-      "description": "¡¡¡TP final!!!",
-      "state": "inCourse",
-      "id": 5
+      "description": "",
+      "id": "5",
+      "state": "inCourse"
     },
     {
       "title": "Reunión con coordinador",
       "description": "Prácticas profesionales",
-      "state": "todo",
-      "id": 6
+      "state": "completed",
+      "id": "6"
     },
     {
       "title": "Comprar regalo",
       "description": "Cumple de Irina",
-      "state": "todo",
-      "id": 7
+      "id": "7",
+      "state": "todo"
     },
     {
       "title": "Informe tp final",
       "description": "Prácticas profesionales",
-      "state": "inCourse",
-      "id": 8
+      "state": "completed",
+      "id": "8"
     }
   ]
 }

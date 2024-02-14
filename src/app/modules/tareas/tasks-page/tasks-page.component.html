@@ -3,9 +3,19 @@
  <app-nav-bar [isUser]="true"></app-nav-bar>
 
   <div class="card">
+    
+    <div id="principal">
+      <h1 class="title" id="task-title" >Mis tareas</h1>
+      <button class="btn btn-bd-primary" type="button" data-bs-target="#add-task" data-bs-toggle="modal" id="botonAgregar">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M12 5l0 14" />
+        <path d="M5 12l14 0" />
+      </svg>
+    </button>
+    </div>
 
-
-    <h1 class="title" id="add-task-title">Agregar tarea</h1>
+    <!-- <h1 class="title" id="add-task-title">Agregar tarea</h1>
     <form [formGroup]="taskForm" id="add-task">
       <div id="title">
         <label class="col-form-label">Título:</label>
@@ -16,51 +26,135 @@
         <input class="form-control" formControlName="description" />
       </div>
       <button class="btn btn-bd-primary" type="button" (click)="addTask()" id="button" [disabled]="taskForm.invalid">Aceptar</button>
-    </form>
+    </form> -->
 
+    <!-- Modal para agregar tarea -->
+    <div class="modal fade" id="add-task" tabindex="-1" aria-labelledby="add-task-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="add-task-label">Agregar tarea</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form [formGroup]="taskForm">
+              <div class="modal-body">
+    
+                <label class="col-form-label">Título:</label>
+                <input class="form-control" formControlName="title" />
+    
+                <label class="col-form-label">Descripción:</label>
+                <input class="form-control" formControlName="description" />
+
+                  <div class="modal-footer">
+                    <button class="btn btn-bd-primary" type="button" (click)="addTask()" id="button" [disabled]="taskForm.invalid" data-bs-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  </div>
+
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <hr id="category-division">
 
+    <!-- Modal para editar tarea -->
+    <div class="modal fade" id="edit-task1" tabindex="-1" aria-labelledby="edit-task-label1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="edit-task-label1">Editar tarea</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form [formGroup]="editForm">
+              <div class="modal-body">
+    
+                <label class="col-form-label">Título:</label>
+                <input class="form-control" formControlName="title" />
+    
+                <label class="col-form-label">Descripción:</label>
+                <input class="form-control" formControlName="description" />
+
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" (click)="acceptChanges()" [disabled]="editForm.invalid">Guardar</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  </div>
+
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para eliminar tarea -->
+  <div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deleteEventModalLabel">Eliminar tarea</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <div class="modal-body">
+                <p>Esta seguro que quiere eliminar esta tarea?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" (click)="deleteTask()" class="btn btn-bd-primary" data-bs-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+      </div>
+    </div>
+  </div>
+
     
     <ul>
-      <h1 class="title">Tareas pendientes</h1>
+      <h1 class="title">Pendientes</h1>
       <div *ngFor="let task of tasks">
         <ng-container *ngIf="task.state === 'todo'">
          <hr id="task-division">
          <div class="task-style">
-            {{ task.title }} - {{ task.description }}
-            <button class="btn btn-bd-primary" type="button" data-bs-target="#edit-task1" data-bs-toggle="modal" (click)="editTask(task)">Editar</button>
-            
-            <div class="modal fade" id="edit-task1" tabindex="-1" aria-labelledby="edit-task-label1" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="edit-task-label1">Editar tarea</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form [formGroup]="editForm">
-                      <div class="modal-body">
-            
-                        <label class="col-form-label">Título:</label>
-                        <input class="form-control" formControlName="title" />
-            
-                        <label class="col-form-label">Descripción:</label>
-                        <input class="form-control" formControlName="description" />
+          <div class="tareaDesc">
+            <div id="tareaTit">{{ task.title }}</div>
+            {{ task.description }}
+          </div>
 
-                          <div class="modal-footer">
-                              <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" (click)="acceptChanges()" [disabled]="editForm.invalid">Guardar</button>
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                          </div>
-
-                      </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-            <button class="btn btn-bd-primary" type="button" (click)="deleteTask(task.id)">Eliminar</button>
-            <button class="btn btn-bd-primary" type="button" (click)="markAsInCourse(task)">Marcar como en proceso</button>
-            <button class="btn btn-bd-primary" type="button" (click)="markAsCompleted(task)">Marcar como completada</button>
+            <button class="btn btn-bd-primary" type="button" id="botonEnProceso" (click)="markAsInCourse(task)"> <!--En proceso-->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-progress-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M10 20.777a8.942 8.942 0 0 1 -2.48 -.969" />
+                <path d="M14 3.223a9.003 9.003 0 0 1 0 17.554" />
+                <path d="M4.579 17.093a8.961 8.961 0 0 1 -1.227 -2.592" />
+                <path d="M3.124 10.5c.16 -.95 .468 -1.85 .9 -2.675l.169 -.305" />
+                <path d="M6.907 4.579a8.954 8.954 0 0 1 3.093 -1.356" />
+                <path d="M9 12l2 2l4 -4" />
+              </svg>
+            </button>
+            <button class="btn btn-bd-primary" type="button" id="botonCompletada" (click)="markAsCompleted(task)"> <!--Completada -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M5 12l5 5l10 -10" />
+              </svg>
+              <!-- <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 7L11.5 17.5L7.5 13.5M6 17.5L2 13.5M16.5 7L11.5 12" stroke="#f0fbfa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg> -->
+            </button>
+            <button class="btn btn-bd-primary" type="button" id="botonEditar" data-bs-target="#edit-task1" data-bs-toggle="modal" (click)="editTask(task)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                <path d="M13.5 6.5l4 4" />
+              </svg>
+              </button>
+            <button class="btn btn-bd-primary" type="button" id="botonEliminar" data-bs-target="#deleteTaskModal" data-bs-toggle="modal" (click)="getIdToDelete(task.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 7l16 0" />
+                <path d="M10 11l0 6" />
+                <path d="M14 11l0 6" />
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+              </svg>
+            </button>
+            
 
         </div>
         </ng-container>
@@ -72,44 +166,47 @@
 
 
     <ul>
-      <h1 class="title">Tareas en proceso</h1>
+      <h1 class="title">En proceso</h1>
       <div *ngFor="let task of tasks">
         <ng-container *ngIf="task.state === 'inCourse'">
             <hr id="task-division">
             <div class="task-style">
-              {{ task.title }} - {{ task.description }}
-              <button class="btn btn-bd-primary" type="button" data-bs-target="#edit-task2" data-bs-toggle="modal" (click)="editTask(task)">Editar</button>
-            
-              <div class="modal fade" id="edit-task2" tabindex="-1" aria-labelledby="edit-task-label2" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="edit-task-label2">Editar tarea</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form [formGroup]="editForm">
-                      <div class="modal-body">
-            
-                        <label class="col-form-label">Título:</label>
-                        <input class="form-control" formControlName="title" />
-            
-                        <label class="col-form-label">Descripción:</label>
-                        <input class="form-control" formControlName="description" />
-
-                          <div class="modal-footer">
-                              <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" (click)="acceptChanges()" [disabled]="editForm.invalid">Guardar</button>
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                          </div>
-
-                      </div>
-                  </form>
-                </div>
+              <div class="tareaDesc">
+                <div id="tareaTit">{{ task.title }}</div>
+                {{ task.description }}
               </div>
-            </div>
 
-              <button class="btn btn-bd-primary" type="button" (click)="deleteTask(task.id)">Eliminar</button>
-              <button class="btn btn-bd-primary" (click)="markAsToDo(task)">Marcar como pendiente</button>
-              <button class="btn btn-bd-primary" type="button" (click)="markAsCompleted(task)">Marcar como completada</button>
+              <button class="btn btn-bd-primary" type="button" id="botonEnProceso" (click)="markAsToDo(task)"> <!--Pendiente-->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                  <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                  <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                </svg>
+              </button>
+              <button class="btn btn-bd-primary" type="button" id="botonCompletada" (click)="markAsCompleted(task)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+              </button>
+              <button class="btn btn-bd-primary" type="button" id="botonEditar" data-bs-target="#edit-task1" data-bs-toggle="modal" (click)="editTask(task)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                  <path d="M13.5 6.5l4 4" />
+                </svg>
+              </button>
+              <button class="btn btn-bd-primary" type="button" id="botonEliminar" data-bs-target="#deleteTaskModal" data-bs-toggle="modal" (click)="getIdToDelete(task.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M4 7l16 0" />
+                  <path d="M10 11l0 6" />
+                  <path d="M14 11l0 6" />
+                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                </svg>
+              </button>
 
             </div> 
         </ng-container>
@@ -121,44 +218,52 @@
 
 
     <ul>
-      <h1 class="title">Tareas completadas</h1>
+      <h1 class="title">Completadas</h1>
       <div *ngFor="let task of tasks">
         <ng-container *ngIf="task.state === 'completed'">
           <hr id="task-division">
           <div class="task-style">
-            {{ task.title }} - {{ task.description }}
-            <button class="btn btn-bd-primary" type="button" data-bs-target="#edit-task3" data-bs-toggle="modal" (click)="editTask(task)">Editar</button>
-            
-            <div class="modal fade" id="edit-task3" tabindex="-1" aria-labelledby="edit-task-label3" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="edit-task-label3">Editar tarea</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form [formGroup]="editForm">
-                      <div class="modal-body">
-            
-                        <label class="col-form-label">Título:</label>
-                        <input class="form-control" formControlName="title" />
-            
-                        <label class="col-form-label">Descripción:</label>
-                        <input class="form-control" formControlName="description" />
-
-                          <div class="modal-footer">
-                              <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" (click)="acceptChanges()" [disabled]="editForm.invalid">Guardar</button>
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                          </div>
-                          
-                      </div>
-                  </form>
-                </div>
-              </div>
+            <div class="tareaDesc">
+              <div id="tareaTit">{{ task.title }}</div>
+              {{ task.description }}
             </div>
 
-            <button class="btn btn-bd-primary" type="button" (click)="deleteTask(task.id)">Eliminar</button>
-            <button class="btn btn-bd-primary" (click)="markAsToDo(task)">Marcar como pendiente</button>
-            <button class="btn btn-bd-primary" type="button" (click)="markAsInCourse(task)">Marcar como en proceso</button>
+            <button class="btn btn-bd-primary" type="button" id="botonEnProceso" (click)="markAsToDo(task)"> <!-- Pendiente -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+              </svg>
+            </button>
+            <button class="btn btn-bd-primary" type="button" id="botonCompletada" (click)="markAsInCourse(task)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-progress-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M10 20.777a8.942 8.942 0 0 1 -2.48 -.969" />
+                <path d="M14 3.223a9.003 9.003 0 0 1 0 17.554" />
+                <path d="M4.579 17.093a8.961 8.961 0 0 1 -1.227 -2.592" />
+                <path d="M3.124 10.5c.16 -.95 .468 -1.85 .9 -2.675l.169 -.305" />
+                <path d="M6.907 4.579a8.954 8.954 0 0 1 3.093 -1.356" />
+                <path d="M9 12l2 2l4 -4" />
+              </svg>
+            </button>
+            <button class="btn btn-bd-primary" type="button" id="botonEditar" data-bs-target="#edit-task1" data-bs-toggle="modal" (click)="editTask(task)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                <path d="M13.5 6.5l4 4" />
+              </svg>
+            </button>
+            <button class="btn btn-bd-primary" type="button" id="botonEliminar" data-bs-target="#deleteTaskModal" data-bs-toggle="modal" (click)="getIdToDelete(task.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 7l16 0" />
+                <path d="M10 11l0 6" />
+                <path d="M14 11l0 6" />
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+              </svg>
+            </button>
 
           </div>
         </ng-container>

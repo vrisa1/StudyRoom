@@ -13,6 +13,7 @@ export class TasksPageComponent {
   editForm: FormGroup;
 
   task: any;
+  taskIdToDelete: any;
 
   constructor(private fb: FormBuilder, private tasksService: TasksService) {
     this.taskForm = this.fb.group({
@@ -67,8 +68,12 @@ export class TasksPageComponent {
     });
   }
 
-  deleteTask(taskId: number): void {
-    this.tasksService.deleteTask(taskId).subscribe(() => {
+  getIdToDelete(taskId: number): void{
+    this.taskIdToDelete = taskId; 
+  }
+
+  deleteTask(): void {
+    this.tasksService.deleteTask(this.taskIdToDelete).subscribe(() => {
       this.loadTasks();
       this.taskForm.reset();
     });

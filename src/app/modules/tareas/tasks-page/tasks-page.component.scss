@@ -1,5 +1,7 @@
 #tasks-container{
     background-color: var(--color3);
+    background-image: url("/assets/bgitasks.png");
+    background-size: 600px;
     min-height: 100%;
     position: relative;
     padding-bottom: 2.5em;
@@ -7,15 +9,16 @@
 }
 
 .card{
-    background-color: var(--color2); //color2
-    max-width: 80rem;
+    background-color: var(--bg-color); //color2
+    max-width: 65rem; //80
     width: 100%;
     margin: 3em auto 3em auto; //arriba der abajo izq
     border-radius: 1rem;
     overflow: hidden;
-    border: 2px solid rgb(170, 191, 194);
+    border: 3px solid rgb(170, 191, 194);
     height: auto;
     padding: 1em;
+    //box-shadow: 1px 1px;
 }
 
 #category-division{
@@ -29,51 +32,123 @@
     margin-right: 2em;
 }
 
-#add-task-title{
-    text-indent: 1.5em;
-}
 
-#add-task{
-    margin-top: 10px;
+// #add-task-title{
+//     text-indent: 1.5em;
+// }
+
+// #add-task{
+//     margin-top: 10px;
+//     display: grid;
+//     grid-template-areas: "title description button";
+//     grid-template-columns: 33.3% 33.3% 33.3%;
+// }
+
+// #title{
+//     grid-area: title;
+//     padding: 1em;
+// }
+
+// #description{
+//     grid-area: description;
+//     padding: 1em;
+// }
+
+// #button{
+//     grid-area: button;
+//     width: auto;
+//     height: 2.5em;
+//     justify-self: center;
+//     align-self: flex-end;
+//     margin-bottom: 1em;
+
+// }
+#principal{
     display: grid;
-    grid-template-areas: "title description button";
-    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-areas: "title button";
+    grid-template-columns: 50% 50%;
 }
 
-#title{
+#task-title{
     grid-area: title;
-    padding: 1em;
+    align-self: center;
+    justify-self: left;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--color9);
+    margin-left: 30px;
 }
 
-#description{
-    grid-area: description;
-    padding: 1em;
-}
-
-#button{
+#botonAgregar{
     grid-area: button;
-    width: auto;
-    height: 2.5em;
-    justify-self: center;
-    align-self: flex-end;
-    margin-bottom: 1em;
-
+    align-self: center;
+    justify-self: right;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin-right: 25px;
 }
 
 .title{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 600;
+    color: var(--txt-color);
 }
 
 .btn-bd-primary {
-    --bs-btn-color: var(--txt-color);
-    --bs-btn-border-color: var(--color10);
+    --bs-btn-color: var(--bg-color);
+    --bs-btn-bg: var(--color8);
+    --bs-btn-border-color: var(--color9);
     --bs-btn-hover-color: var(--bg-color);
     --bs-btn-hover-bg: var(--txt-color);
 }
 
 .task-style{
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
     margin-right: 2em;
+    display: grid;
+    grid-template-areas: "tarea enProceso completada editar eliminar";
+    grid-template-columns: 55% 15% 10% 10% 10%;
+}
+
+.tareaDesc{
+    font-size: 1.2rem;
+    //font-weight: 450;
+    grid-area: tarea;
+    justify-self: left;
+    align-self: center;
+    width: 550px;
+    //para que no muestre cuando se pasa
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis; 
+}
+
+#tareaTit{
+    font-weight: 600;
+}
+
+#botonEditar{
+    grid-area: editar;
+    justify-self: right;
+    align-self: center;
+}
+
+#botonEliminar{
+    grid-area: eliminar;
+    justify-self: right;
+    align-self: center;
+}
+
+#botonEnProceso{
+    grid-area: enProceso;
+    justify-self: right;
+    align-self: center;
+}
+
+#botonCompletada{
+    grid-area: completada;
+    justify-self: right;
+    align-self: center;
 }
