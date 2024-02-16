@@ -7,8 +7,12 @@ footer{
     box-shadow: 0 -3px 3px -3px rgb(100, 100, 100);
 }
 
-div{
-    color: var(--bg-color);
+div, a{
+    color: var(--color3);
     font-size: medium;
     padding: 0.4em;
+}
+
+a:hover{
+    color: var(--color5);
 }
