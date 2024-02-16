@@ -40,12 +40,16 @@ import { format } from 'date-fns';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
 })
+
 export class CalendarComponent implements OnInit {
   
-  isAllDay: boolean = false;
-  
+  title: string="";
+  description: string="";
   startDate: string= "";
   endDate: string="";
+  isAllDay: boolean = false; 
+  startTime: string="";
+  endTime: string="";
 
   //variables de evento para modificarEvento()
   tituloM: string="";
@@ -103,19 +107,38 @@ export class CalendarComponent implements OnInit {
 
   currentEvents = signal<EventApi[]>([]);
 
-  handleDateSelect(selectInfo: DateSelectArg) {
-    $('#addEventModal').modal('show');
+  handleDateSelect(selectInfo: DateSelectArg) {    
     
-    this.formulario.resetForm();
+    this.title="";
+    this.description="";
+    const fechaInicio: any = selectInfo.startStr;
+    //this.startDate = fechaInicio;
+    const fechaFinal: any = selectInfo.endStr;
+    //this.endDate = fechaFinal;
+    this.startDate = this.formatearFecha(fechaInicio);
+    this.endDate = this.formatearFecha(fechaFinal);
+
+    const allDay: any = selectInfo.allDay;
+    this.isAllDay = allDay;
+
+    console.log(this.startDate);
+    console.log(this.endDate);
+
+    if(!allDay){
+      this.startTime = this.formatearHora(fechaInicio);
+      this.endTime = this.formatearHora(fechaFinal);
+    } else {
+      this.startTime="";
+      this.endTime="";
+    }
+
+    console.log(this.startTime);
+    console.log(this.endTime);
 
     const calendarApi = selectInfo.view.calendar;
     calendarApi.unselect();
 
-    const fechaInicio: any = selectInfo.startStr;
-    this.startDate = fechaInicio;
-
-    const fechaFinal: any = selectInfo.endStr;
-    this.endDate = fechaFinal;
+    $('#addEventModal').modal('show');
 
   }
 

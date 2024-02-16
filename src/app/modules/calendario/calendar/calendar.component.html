@@ -21,10 +21,10 @@
             <div class="modal-body">
                 
                 <label for="summary" class="col-form-label">Título:</label>
-                <input type="text" id="summary" name="summary" class="form-control" ngModel required>
+                <input type="text" id="summary" name="summary" class="form-control" [(ngModel)]="title" required>
             
                 <label for="description" class="col-form-label">Descripción:</label>
-                <textarea id="description" name="description" class="form-control" ngModel></textarea>
+                <textarea id="description" name="description" class="form-control" [(ngModel)]="description"></textarea>
 
                 <label for="startDate" class="col-form-label">Fecha de inicio:</label>
                 <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" required>
@@ -32,17 +32,17 @@
                 <label for="endDate" class="col-form-label">Fecha de finalización:</label>
                 <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" required>
                 
-                <label class="col-form-label"> <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
-                    Todo el día
-                </label>
+                <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
+                <label class="col-form-label">&nbsp;Todo el día</label>
+                
 
                 <div *ngIf="!isAllDay">
                 
                     <label for="startTime" class="col-form-label">Hora de inicio:</label>
-                    <input type="time" id="startTime" name="startTime" class="form-control" ngModel required>
+                    <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="startTime" required>
 
                     <label for="endTime" class="col-form-label">Hora de finalización:</label>
-                    <input type="time" id="endTime" name="endTime" class="form-control" ngModel required>
+                    <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="endTime" required>
 
                 </div>
                 
