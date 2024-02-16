@@ -4,6 +4,7 @@ nav{
     grid-template-areas: "hamburguesa logotipo usuario";
     grid-template-columns: 20% 60% 20%;
     background-color: var(--color9);
+    box-shadow: 0 3px 2px -2px rgb(100, 100, 100);
 }
 
 #logotipo{
