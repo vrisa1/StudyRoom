@@ -9,7 +9,7 @@
     {
       "title": "Consulta parcial BDD",
       "description": "Preguntas sobre simulacro",
-      "state": "inCourse",
+      "state": "todo",
       "id": "2"
     },
     {
@@ -33,19 +33,19 @@
     {
       "title": "Reunión con coordinador",
       "description": "Prácticas profesionales",
-      "state": "completed",
+      "state": "inCourse",
       "id": "6"
     },
     {
       "title": "Comprar regalo",
       "description": "Cumple de Irina",
       "id": "7",
-      "state": "todo"
+      "state": "completed"
     },
     {
       "title": "Informe tp final",
       "description": "Prácticas profesionales",
-      "state": "completed",
+      "state": "inCourse",
       "id": "8"
     }
   ]

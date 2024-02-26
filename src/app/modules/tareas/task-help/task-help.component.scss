@@ -1,0 +1,30 @@
+#help{
+    position: fixed;
+    bottom: 65px; 
+    left: 45px; 
+    z-index: 1000;
+}
+
+#helpButton{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    box-shadow:  1px 1px 9px 1px rgb(100, 100, 100);
+}
+
+.modal-content{
+    background-color: var(--color2);
+    border-color: var(--color4);
+    color: var(--txt-color);
+}
+.modal-header, .modal-footer{
+    border-color: var(--color4);
+}
+
+.btn-bd-primary {
+    --bs-btn-color: var(--bg-color);
+    --bs-btn-bg: var(--color7);
+    --bs-btn-border-color: var(--color7);
+    --bs-btn-hover-color: var(--bg-color);
+    --bs-btn-hover-bg: var(--txt-color);
+}

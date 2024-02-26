@@ -99,6 +99,32 @@ export class TasksPageComponent {
       this.loadTasks();
       this.editForm.reset();
   })}
-  
 
+  toDoExist(): boolean {
+    for (let task of this.tasks){
+      if(task.state === 'todo'){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  inCourseExist(): boolean {
+    for (let task of this.tasks){
+      if(task.state === 'inCourse'){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  completedExist(): boolean {
+    for (let task of this.tasks){
+      if(task.state === 'completed'){
+        return true;
+      }
+    }
+    return false;
+  }
+  
 }

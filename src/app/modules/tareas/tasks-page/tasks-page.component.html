@@ -46,7 +46,7 @@
                 <input class="form-control" formControlName="description" />
 
                   <div class="modal-footer">
-                    <button class="btn btn-bd-primary" type="button" (click)="addTask()" id="button" [disabled]="taskForm.invalid" data-bs-dismiss="modal">Aceptar</button>
+                    <button class="btn btn-bd-primary" type="button" (click)="addTask()" id="button" [disabled]="taskForm.invalid" data-bs-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                   </div>
 
@@ -55,8 +55,6 @@
         </div>
       </div>
     </div>
-
-    <hr id="category-division">
 
     <!-- Modal para editar tarea -->
     <div class="modal fade" id="edit-task1" tabindex="-1" aria-labelledby="edit-task-label1" aria-hidden="true">
@@ -105,9 +103,11 @@
     </div>
   </div>
 
-    
+  
+  <hr id="category-division" *ngIf="toDoExist()">  
+
     <ul>
-      <h1 class="title">Pendientes</h1>
+      <h1 class="title" *ngIf="toDoExist()">Pendientes</h1>
       <div *ngFor="let task of tasks">
         <ng-container *ngIf="task.state === 'todo'">
          <hr id="task-division">
@@ -162,11 +162,11 @@
     </ul>
 
 
-    <hr id="category-division">
+    <hr id="category-division" *ngIf="inCourseExist()">
 
 
     <ul>
-      <h1 class="title">En proceso</h1>
+      <h1 class="title" *ngIf="inCourseExist()">En proceso</h1>
       <div *ngFor="let task of tasks">
         <ng-container *ngIf="task.state === 'inCourse'">
             <hr id="task-division">
@@ -214,11 +214,11 @@
     </ul>
 
 
-    <hr id="category-division">
+    <hr id="category-division" *ngIf="completedExist()">
 
 
     <ul>
-      <h1 class="title">Completadas</h1>
+      <h1 class="title" *ngIf="completedExist()">Completadas</h1>
       <div *ngFor="let task of tasks">
         <ng-container *ngIf="task.state === 'completed'">
           <hr id="task-division">
@@ -272,6 +272,8 @@
 
 
   </div>
+
+  <app-task-help></app-task-help>
 
   <app-footer></app-footer>
 
