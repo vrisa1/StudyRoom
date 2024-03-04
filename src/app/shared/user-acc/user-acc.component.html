@@ -1,13 +1,17 @@
+<!--Informacion del usuario-->
 <div class="dropdown" *ngIf="usuarioNuevo">
-    <button id="dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img id="imgUser" src="{{usuarioNuevo.picture}}" alt="">
-    </button>
-    <ul class="dropdown-menu">
+  <!--DropDown/ vista previa-->  
+  <button id="dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img id="imgUser" src="{{usuarioNuevo.picture}}" alt="" onerror="this.onerror=null; this.src='/assets/user-alt.png';"> <!--Si el usuario no tiene foto se muestra una imagen alternativa -->
+  </button>
+    
+  <!--Informacion completa-->
+  <ul class="dropdown-menu">
       <li><h6>{{usuarioNuevo.name}}</h6></li>
-      <li><img id="imgUser2" src="{{usuarioNuevo.picture}}" alt=""></li>
+      <li><img id="imgUser2" src="{{usuarioNuevo.picture}}" alt="" onerror="this.onerror=null; this.src='/assets/user-alt.png';"></li> <!--Si el usuario no tiene foto se muestra una imagen alternativa -->
       <li><h6>{{usuarioNuevo.email}}</h6></li>
       <li><button (click)="logout()" type="button" class="btn btn-bd-primary" id="botonCS">Cerrar Sesión</button></li>
-    </ul>
-  </div>
+  </ul>
+</div>
 
 

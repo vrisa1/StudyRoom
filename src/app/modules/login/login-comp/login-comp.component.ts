@@ -10,6 +10,7 @@ export class LoginCompComponent {
 
   constructor(private AuthGoogleService : AuthGoogleService){}
 
+  //LLama al servicio de login de google
   login(){
     this.AuthGoogleService.login(); 
   }

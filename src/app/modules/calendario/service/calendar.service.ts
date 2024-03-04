@@ -7,12 +7,14 @@ import { evento } from 'src/app/core/models';
   providedIn: 'root'
 })
 
+//Servicio de google calendar
 export class CalendarService {
    
   eventoId = "";
 
   constructor(private RequestsService : RequestsService ) { }
 
+  //Iniciar calendario
   iniciarCalendario(): Observable<void> {
     return new Observable<void>((observer) => {
       this.RequestsService.calendarInit().subscribe(
@@ -25,6 +27,7 @@ export class CalendarService {
     });
   }
 
+  //Obtener eventos existentes
   updateEventList(): Observable<any[]>{
       return this.RequestsService.getEvents();
   }

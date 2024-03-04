@@ -5,12 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
 })
+
 export class AccordionComponent {
   ngOnInit(): void {
     this.accordion();
   }
 
-  public accordion() {
+  //Funcionamiento del acordeon
+  accordion() {
     const cardsContainer: HTMLElement | null =
       document.querySelector('.container');
 

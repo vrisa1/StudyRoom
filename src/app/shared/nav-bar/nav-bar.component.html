@@ -1,6 +1,7 @@
-
+<!--Barra de navegacion y hamburguesa-->
 <nav class="fixed-top" role="navigation">
 
+  <!--Hamburguesa-->
   <div *ngIf="isUser" id="menuToggle" class="ocultar">
     <input type="checkbox" />
 
@@ -13,10 +14,10 @@
       <a routerLink="/calendar"><li>Calendario</li></a> 
       <a routerLink="/tasks"><li>Lista de tareas</li></a>
       <a routerLink="/timer"><li>Temporizador</li></a>
-  
     </ul>
   </div>
 
+  <!--Logo-->
   <img id="logotipo" src="assets/studyroomlogo2.png" alt="" />
 
   <app-user-acc *ngIf="isUser" id="usuario"></app-user-acc>

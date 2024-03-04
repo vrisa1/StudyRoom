@@ -17,13 +17,14 @@ export class UserAccComponent implements OnInit{
   
   ngOnInit(): void {
     
+    //Obtener la informacion del usuario logueado
     this.AuthGoogleService.userProfileSubject.subscribe((user) => {
       this.usuarioNuevo = user;
-      console.log('Datos del usuario:', this.usuarioNuevo);
     });
     this.usuarioNuevo = this.AuthGoogleService.getProfile()
   }
 
+  //Cerrar sesion 
   logout(){
     this.AuthGoogleService.logout();
     this.Router.navigate(['landing']);

@@ -10,18 +10,23 @@
 ul{
     background-color: var(--color2); 
     text-align: center;
-    width: 16em;
-    height: 16em;
+    width: fit-content;
+    height: fit-content;
+    padding: 1em;
     filter: drop-shadow(rgb(100, 100, 100) 1px 1px 2px);
 }
 
 li{
     color: var(--txt-color); 
-    margin-bottom: 12px;
+    padding-bottom: 15px;
+}
+
+#imgUser2{
+    width: 95px;
+    border-radius: 50%;
 }
 
 #botonCS{
-    margin-top: 10px;
     border-radius: 20px;
 }
 
@@ -31,9 +36,4 @@ li{
     --bs-btn-border-color: var(--color10);
     --bs-btn-hover-color: var(--bg-color);
     --bs-btn-hover-bg: var(--txt-color);
-  }
-
-#imgUser2{
-    width: 95px;
-    border-radius: 50%;
 }

@@ -1,10 +1,12 @@
 <div id="timerPage">
 <app-nav-bar [isUser]="true"></app-nav-bar>
 
+<!--Temporizador-->
 <div class="card">
 
   <section class="position" [@pageNumber]="pageNumber">
 
+    <!--Elegir tiempo de trabajo-->
     <div class="flex">
       <h1 class="title">Tiempo de trabajo</h1>
       <div class="counter">
@@ -15,6 +17,7 @@
       <button (click)="toggle('two')">Siguiente</button>
     </div>
 
+    <!--Elegir tiempo de descanso-->
     <div class="flex">
       <h1 class="title">Tiempo de descanso</h1>
       <div class="counter">
@@ -28,6 +31,7 @@
       </div>
     </div>
 
+    <!--Elegir cantidad de ciclos-->
     <div class="flex">
       <h1 class="title">Cantidad de ciclos</h1>
       <div class="counter">
@@ -41,6 +45,7 @@
       </div>
     </div>
 
+    <!--Iniciar/ Pausar/ Detener-->
     <div class="flex">
       <h1 class="title">{{stage}}</h1>
       <div class="counter">
@@ -61,6 +66,7 @@
   
 </div>
 
-<app-footer></app-footer>
+  <app-timer-help></app-timer-help>
+  <app-footer></app-footer>
 </div>
 

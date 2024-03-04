@@ -1,0 +1,77 @@
+<!-- Boton de instrucciones/ayuda -->
+<div id="help">
+    <button class="btn btn-bd-primary" type="button" data-bs-target="#helpModalToggle" data-bs-toggle="modal" id="helpButton">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="45" height="60" viewBox="0 0 24 24" stroke-width="2.5" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" />
+            <path d="M12 19l0 .01" />
+          </svg>
+    </button>
+</div>
+
+    <!-- Modal de instrucciones 1: Agregar eventos -->
+    <div class="modal fade" id="helpModalToggle" aria-hidden="true" aria-labelledby="helpModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title fs-5" id="helpModalToggleLabel">Instrucciones de uso</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5>Agregar eventos:</h5>
+              <b>1.</b> Haz clic en el día u hora deseada en tu calendario para agregar un nuevo evento.
+              <br><b>2.</b> Completa el formulario proporcionando el título, descripción, fecha y hora (opcional) de tu evento.
+              <br><b>3.</b> Presiona "Guardar" para crear tu evento y observa cómo este aparece en tu calendario.
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-bd-primary" data-bs-target="#helpModalToggle2" data-bs-toggle="modal">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal de instrucciones 2: Editar/eliminar eventos -->
+      <div class="modal fade" id="helpModalToggle2" aria-hidden="true" aria-labelledby="helpModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="helpModalToggleLabel2">Instrucciones de uso</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Gestionar eventos:</h5>
+                <b>1.</b> Haz clic en un evento existente para verlo, editarlo o eliminarlo.
+                <br><b>2.</b> En el formulario de edición, realiza los cambios necesarios y guarda las modificaciones.
+                <br><b>3.</b> Si deseas eliminar el evento, selecciona la opción "Eliminar evento" y confirma tu decisión.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-target="#helpModalToggle" data-bs-toggle="modal">Atrás</button>
+                <button class="btn btn-bd-primary" data-bs-target="#helpModalToggle3" data-bs-toggle="modal">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Modal de instrucciones 3: Vistas -->
+      <div class="modal fade" id="helpModalToggle3" aria-hidden="true" aria-labelledby="helpModalToggleLabel3" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="helpModalToggleLabel3">Instrucciones de uso</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Vistas:</h5>
+                <b>1.</b> Visualiza tu calendario en diferentes perspectivas: año, mes, semana, día y agenda.
+                <br><b>2.</b> La vista del mes actual será la que se muestra por defecto.
+                <br><b>3.</b> Utiliza los botones ubicados en la esquina superior derecha para navegar entre las diferentes vistas.
+                <br><b>4.</b> Puedes utilizar las funciones de agregar, modificar y eliminar eventos en todas las vistas del calendario.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-target="#helpModalToggle2" data-bs-toggle="modal">Atrás</button>
+                <button class="btn btn-bd-primary" data-bs-dismiss="modal">Listo</button>
+            </div>
+          </div>
+        </div>
+      </div>

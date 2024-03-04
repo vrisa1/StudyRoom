@@ -173,7 +173,6 @@ export class TimerCompComponent implements OnInit{
       if(!this.paused){ //Si el temporizador no está pausado,
 
         this.seconds -- //se decrementa 1 segundo.
-        //console.log(this.interval)
 
         if(this.seconds == -1 && this.minutes == 0 && this.stage == "Pomodoro"){ //Cuando el tiempo de trabajo se termina,
           this.playBreakAlarm() //suena la alarma,

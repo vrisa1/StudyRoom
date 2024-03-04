@@ -25,7 +25,6 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import esLocale from '@fullcalendar/core/locales/es';
 import multiMonthPlugin from '@fullcalendar/multimonth';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
-
 import { CalendarPageComponent } from '../calendar-page/calendar-page.component';
 import { CalendarService } from '../service/calendar.service';
 import { map, switchMap } from 'rxjs';
@@ -43,6 +42,7 @@ import { format } from 'date-fns';
 
 export class CalendarComponent implements OnInit {
   
+  //variables para agregar eventos
   title: string="";
   description: string="";
   startDate: string= "";
@@ -67,7 +67,6 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.actualizarListaDeEventos();
-    console.log(this.actualizarListaDeEventos());
   }
 
   constructor(
@@ -78,7 +77,7 @@ export class CalendarComponent implements OnInit {
     private RequestsService: RequestsService
   ) {}
 
-  //FULL CALENDAR------------------------------------------------------------------------------------------
+  //FULL CALENDAR plugin configuracion -------------------------------------------------------------------
   calendarOptions: CalendarOptions = {
     plugins: [
       interactionPlugin,
@@ -107,14 +106,13 @@ export class CalendarComponent implements OnInit {
 
   currentEvents = signal<EventApi[]>([]);
 
+  //Manejar cuando se clickea una fecha u hora, para crear un evento
   handleDateSelect(selectInfo: DateSelectArg) {    
     
     this.title="";
     this.description="";
     const fechaInicio: any = selectInfo.startStr;
-    //this.startDate = fechaInicio;
     const fechaFinal: any = selectInfo.endStr;
-    //this.endDate = fechaFinal;
     this.startDate = this.formatearFecha(fechaInicio);
     this.endDate = this.formatearFecha(fechaFinal);
 
@@ -150,6 +148,7 @@ export class CalendarComponent implements OnInit {
     return fecha ? new Date(fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
   }
 
+  //Manejar cuando se clickea un evento, para editarlo o eliminarlo
   handleEventClick(clickInfo: EventClickArg) {
     $('#clickEventModal').modal('show');
 
@@ -166,10 +165,7 @@ export class CalendarComponent implements OnInit {
     } else {
       this.isAllDay = false;
     }
-    // console.log(this.fechaInicioM);
-    // console.log(this.fechaFinalM);
-    // console.log(this.horaInicioM);
-    // console.log(this.horaFinalM);
+    
   }
 
   handleEvents(events: EventApi[]) {
@@ -182,7 +178,7 @@ export class CalendarComponent implements OnInit {
     this.CalendarService.iniciarCalendario()
       .pipe(
         switchMap(() => this.CalendarService.updateEventList()),
-        map((data: any) => this.transformarEventos(data)) // Transforma los eventos 
+        map((data: any) => this.transformarEventos(data))
       )
       .subscribe(
         (eventosTransformados: any) => {
@@ -195,6 +191,7 @@ export class CalendarComponent implements OnInit {
       );
   }
 
+  //Transforma los eventos de google calendar
   private transformarEventos(eventosGoogle: any[]): any[] {
     return eventosGoogle.map((eventoGoogle) => {
       return {
@@ -213,8 +210,7 @@ export class CalendarComponent implements OnInit {
     this.actualizarListaDeEventos();
   }
 
-  //ABM EVENTOS-----------------------------------------------------------------------------------------
-
+  //ABM DE EVENTOS-------------------------------------------------------------------------------------------
   crearEvento() {
     let startDateTime;
     let endDateTime;
@@ -248,7 +244,7 @@ export class CalendarComponent implements OnInit {
       startDateTime,
       endDateTime
     );
-    //console.log(nuevoEvento);
+
     this.CalendarService.crearEvento(nuevoEvento);
     this.manejarEventoAgregadoOEliminado();
     this.formulario.resetForm();
@@ -286,7 +282,7 @@ export class CalendarComponent implements OnInit {
       startDateTime,
       endDateTime
     );
-    //console.log(eventoModificado);
+  
     this.CalendarService.actualizarEvento(eventoModificado, this.eventoId);
     this.manejarEventoAgregadoOEliminado();
     this.formularioModificar.resetForm();

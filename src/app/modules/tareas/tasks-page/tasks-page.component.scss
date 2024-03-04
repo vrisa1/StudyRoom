@@ -32,38 +32,6 @@
     margin-right: 2em;
 }
 
-
-// #add-task-title{
-//     text-indent: 1.5em;
-// }
-
-// #add-task{
-//     margin-top: 10px;
-//     display: grid;
-//     grid-template-areas: "title description button";
-//     grid-template-columns: 33.3% 33.3% 33.3%;
-// }
-
-// #title{
-//     grid-area: title;
-//     padding: 1em;
-// }
-
-// #description{
-//     grid-area: description;
-//     padding: 1em;
-// }
-
-// #button{
-//     grid-area: button;
-//     width: auto;
-//     height: 2.5em;
-//     justify-self: center;
-//     align-self: flex-end;
-//     margin-bottom: 1em;
-
-// }
-
 #principal{
     display: grid;
     grid-template-areas: "title button";

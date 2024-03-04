@@ -7,6 +7,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './tasks-page.component.html',
   styleUrls: ['./tasks-page.component.scss']
 })
+
 export class TasksPageComponent {
   tasks: any[] = [];
   taskForm: FormGroup;
@@ -16,10 +17,12 @@ export class TasksPageComponent {
   taskIdToDelete: any;
 
   constructor(private fb: FormBuilder, private tasksService: TasksService) {
+    //Formulario para agregar tarea
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
     });
+    //Formulario para editar tarea
     this.editForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
@@ -30,12 +33,14 @@ export class TasksPageComponent {
     this.loadTasks();
   }
 
+  //Obtener el arreglo de las tareas existentes
   loadTasks(): void {
     this.tasksService.getTasks().subscribe(tasks => {
       this.tasks = tasks;
     });
   }
 
+  //Agregar tarea
   addTask(): void {
     if (this.taskForm.valid) {
       const newTask: any = this.taskForm.value;
@@ -47,6 +52,7 @@ export class TasksPageComponent {
     }
   }
 
+  //Marcar tarea como pendiente
   markAsToDo(task: any){
     task.state = 'todo';
     this.tasksService.updateTask(task).subscribe(()=>{
@@ -54,6 +60,7 @@ export class TasksPageComponent {
     });
   }
 
+  //Marcar tarea como en proceso
   markAsInCourse(task: any){
     task.state = 'inCourse';
     this.tasksService.updateTask(task).subscribe(()=>{
@@ -61,6 +68,7 @@ export class TasksPageComponent {
     });
   }
 
+  //Marcar tarea como completada
   markAsCompleted(task: any): void {
     task.state = 'completed';
     this.tasksService.updateTask(task).subscribe(()=>{
@@ -68,10 +76,12 @@ export class TasksPageComponent {
     });
   }
 
+  //Obtener ID de la tarea a eliminar
   getIdToDelete(taskId: number): void{
     this.taskIdToDelete = taskId; 
   }
 
+  //Eliminar tarea
   deleteTask(): void {
     this.tasksService.deleteTask(this.taskIdToDelete).subscribe(() => {
       this.loadTasks();
@@ -79,18 +89,17 @@ export class TasksPageComponent {
     });
   }
   
+  //Editar tarea
   editTask(task: any): void {
     this.task = task;
-    console.log(task);
     this.editForm.reset(); 
-    console.log(task);
     this.editForm.patchValue({
       title: task.title,
       description: task.description,
     });
-
   }
   
+  //Aceptar cambios al editar tarea
   acceptChanges(): void {
     const updatedTask: any = this.editForm.value;
     updatedTask.id = this.task.id; // Mantener el ID original
@@ -100,6 +109,7 @@ export class TasksPageComponent {
       this.editForm.reset();
   })}
 
+  //Si existe alguna tarea con estado pendiente
   toDoExist(): boolean {
     for (let task of this.tasks){
       if(task.state === 'todo'){
@@ -109,6 +119,7 @@ export class TasksPageComponent {
     return false;
   }
 
+  //Si existe alguna tarea con estado en proceso
   inCourseExist(): boolean {
     for (let task of this.tasks){
       if(task.state === 'inCourse'){
@@ -118,6 +129,7 @@ export class TasksPageComponent {
     return false;
   }
 
+  //Si existe alguna tarea con estado completada
   completedExist(): boolean {
     for (let task of this.tasks){
       if(task.state === 'completed'){
@@ -126,5 +138,5 @@ export class TasksPageComponent {
     }
     return false;
   }
-  
+
 }

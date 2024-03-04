@@ -1,0 +1,54 @@
+<!-- Boton de instrucciones/ayuda -->
+<div id="help">
+    <button class="btn btn-bd-primary" type="button" data-bs-target="#helpModalToggle" data-bs-toggle="modal" id="helpButton">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-question-mark" width="45" height="60" viewBox="0 0 24 24" stroke-width="2.5" stroke="#f0fbfa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4" />
+            <path d="M12 19l0 .01" />
+          </svg>
+    </button>
+</div>
+
+    <!-- Modal de instrucciones 1: Personalizar -->
+    <div class="modal fade" id="helpModalToggle" aria-hidden="true" aria-labelledby="helpModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title fs-5" id="helpModalToggleLabel">Instrucciones de uso</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5>Personalizar:</h5>
+              <b>1.</b> Establece la duración de tu sesión de trabajo según tus preferencias.
+              <br><b>2.</b> Elige el tiempo de descanso que se activará después de cada sesión de trabajo.
+              <br><b>3.</b> Selecciona la cantidad de ciclos que deseas completar.
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-bd-primary" data-bs-target="#helpModalToggle2" data-bs-toggle="modal">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal de instrucciones 2: Iniciar/pausar/detener -->
+      <div class="modal fade" id="helpModalToggle2" aria-hidden="true" aria-labelledby="helpModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="helpModalToggleLabel2">Instrucciones de uso</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>Funcionamiento:</h5>
+                <b>1.</b> Haz clic en "Comenzar" para iniciar tu sesión de trabajo.
+                <br><b>2.</b> Utiliza los botones de "Pausar" y "Reanudar" para interrumpir temporalmente una sesión y retomarla cuando desees.
+                <br><b>3.</b> Presiona "Detener" para borrar tu progreso actual y reconfigurar el temporizador según tus necesidades.
+                <br><b>4.</b> Después de cada periodo de trabajo o descanso, escucharás una alarma distintiva que te indicará el final de ese intervalo específico.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-target="#helpModalToggle" data-bs-toggle="modal">Atrás</button>
+                <button class="btn btn-bd-primary" data-bs-dismiss="modal">Listo</button>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -8,12 +8,14 @@ import { TasksPageComponent } from '../tareas/tasks-page/tasks-page.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { SharedModule } from "../../shared/shared.module";
+import { CalendarHelpComponent } from './calendar-help/calendar-help.component';
 
 
 @NgModule({
   declarations: [
     CalendarPageComponent,
-    CalendarComponent
+    CalendarComponent,
+    CalendarHelpComponent
   ],
   imports: [
     CommonModule,

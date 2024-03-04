@@ -1,52 +1,3 @@
-// #card1, #card2, #card3{
-//     max-width: 100%;
-//     height: 20em;
-//     border-radius: 0px;
-//     display: block;
-// }
-
-// #card1{
-//     background-color: var(--light-green);
-// }
-
-// #card2{
-//     background-color: var(--lila2);
-// }
-
-// #card3{
-//     background-color: var(--light-pink);
-// }
-
-// #contImg1, #contImg2, #contImg3{
-//     margin-left: auto;
-//     margin-right: auto;
-// }
-
-// #contImg1{
-//     margin-top: 8px;
-//     max-width: 19em;
-// }
-
-// #contImg2{
-//     margin-top: 18px;
-//     max-width: 17.5em;
-// }
-
-// #contImg3{
-//     margin-top: 18px;
-//     max-width: 17.5em;
-// }
-
-// #cardBody2{
-//     margin-left: 30px;
-//     margin-top: 20px;
-// }
-
-//  #cardBody1, #cardBody3{
-//      margin-right: 25px;
-//      margin-top: 20px;
-//  }
-
 #container{
     display: flex;
     margin: 40px 20px 40px 20px;
@@ -63,16 +14,14 @@ p {
 }
 
 .card{
-    //background-color: var(--color5);
+
     width: 25rem;
     height: 510px;
     border-radius: 50px;
     box-shadow:  1px 1px 10px 1px rgb(100, 100, 100);
     transition: all .2s ease-in-out;
-
 }
 
-//distintos colores o el mismo??
 #card1{
     background-color: var(--color5);
 }
@@ -99,7 +48,6 @@ p {
 
 .card:hover{
     transform: scale(1.06); 
-    //background-color: var(--color7);
 }
 
 .card:hover h4{
