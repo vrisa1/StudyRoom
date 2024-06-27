@@ -10,18 +10,17 @@ import { AuthGoogleService } from 'src/app/core/services/auth-google.service';
 
 export class NavBarComponent implements OnInit{
   
-  @Input() isUser: boolean = false;
+  isUser: any;
 
   constructor(private authGoogleService: AuthGoogleService) { }
 
   ngOnInit(): void {
-    /*
-    this.authGoogleService.userProfileSubject.subscribe(user => {
-      if(user){
-        this.isUser = true;
-      }
-      console.log(this.isUser);
+
+    //Corrobora si hay un usuario logeado o no 
+    this.authGoogleService.userProfileSubject.subscribe((user) => {
+      this.isUser = !!user;
     });
-    */
+
+    this.isUser = !!this.authGoogleService.getProfile()
   }  
 }

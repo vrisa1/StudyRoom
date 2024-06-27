@@ -20,7 +20,8 @@
   <!--Logo-->
   <img id="logotipo" src="assets/studyroomlogo2.png" alt="" />
 
-  <app-user-acc *ngIf="isUser" id="usuario"></app-user-acc>
+  <app-user-acc id="usuario"></app-user-acc>
+  <app-login-comp *ngIf="!isUser" id="usuario"></app-login-comp>
 
 </nav>
 

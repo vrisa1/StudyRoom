@@ -31,6 +31,7 @@ export class TasksPageComponent {
 
   ngOnInit(): void {
     this.loadTasks();
+  
   }
 
   //Obtener el arreglo de las tareas existentes
