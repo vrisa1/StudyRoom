@@ -19,10 +19,10 @@ export class FilesPageComponent implements OnInit{
   constructor(private DriveService : DriveService, private sanitizer : DomSanitizer){}
  
   ngOnInit(): void {
-    this.actualizarListaDeEventos();
+    this.actualizarListaDeArchivos();
   }
   
-  private actualizarListaDeEventos(): void{
+  private actualizarListaDeArchivos(): void{
     this.DriveService.iniciarFiles().pipe(
       switchMap(() => this.DriveService.listarArchivos())
     ).subscribe(

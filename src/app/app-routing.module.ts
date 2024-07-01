@@ -46,7 +46,8 @@ const routes: Routes = [
   {
      path: 'files',
      component: FilesPageComponent,
-     loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule)
+     loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule),
+     canActivate:[authGuard]
   },
   {
     path: '',

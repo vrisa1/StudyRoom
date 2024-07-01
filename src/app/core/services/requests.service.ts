@@ -120,7 +120,7 @@ export class RequestsService {
   }
 
   getFilesInFolder(): Observable<any> {
-    const params = new HttpParams().set('q', `'${this.folderId}' in parents`);
+    const params = new HttpParams().set('q', `'${this.folderId}' in parents and trashed = false`);
     return this.http.get(`${this.driveUrl}?${params.toString()}`, { headers: this.headers });
   }
 
@@ -156,8 +156,9 @@ export class RequestsService {
     return this.http.post(this.driveUrl, body,{headers : this.headers});
   }
   
-  tareasInit(){
-    this.filesInit().pipe(
+  tareasInit(): Observable<any>{
+    return new Observable<any>((observer)=>{
+      this.filesInit().pipe(
       switchMap(()=> this.getFilesInFolder())
     ).subscribe(
       (files: any) => {
@@ -167,15 +168,20 @@ export class RequestsService {
             (response) => {
               console.log('Respuesta del servidor:', response);
               this.bddFile= response.id;
+              observer.next();
+              observer.complete();
             },
             (error) => {
               console.error('Error al agregar archivo:', error);
             })
         }else{
           this.bddFile = bdd.id;
+          observer.next();
+          observer.complete();
         }
       },
     )
+    })
   }
 
   updateBddTareas(tareas:any){

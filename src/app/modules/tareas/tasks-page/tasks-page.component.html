@@ -1,8 +1,12 @@
  <div id="tasks-container">
   <app-nav-bar></app-nav-bar>
 
+  <div *ngIf="loading" class="loading-spinner">
+    <p>Cargando tareas...</p>
+  </div>
+
  <!--Listas de tareas--> 
-  <div class="card">
+  <div class="card" *ngIf="!loading">
     
   <!--Titulo principal y boton de agregar (+) -->  
   <div id="principal">
