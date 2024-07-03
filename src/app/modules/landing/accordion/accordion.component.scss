@@ -7,31 +7,32 @@
   box-sizing: border-box;
 }
 
-.icon {
-  width: 35px;
-  color: var(--txt-color);
+.container {
+  width: 55vw;
+  height: 31vw;
+  gap: 10px;
+  display: flex;
+  margin: 4vw 5vw 2vw 4vw;
 }
 
 .background {
-  width: 20.5em;
+  width: 24vw; 
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-top: 8px;
+  margin-bottom: 2vw;
   position: absolute;
   z-index: 1;
 }
 
-.container {
-  height: 420px;
-  width: 800px;
-  gap: 10px;
-  display: flex;
-  margin: 4em 0 0 5em;
+.icon {
+  width: 3vw;
+  color: var(--txt-color);
 }
 
 .card {
-  min-width: 72px;
+  min-width: 5.3vw;
   height: 100%;
   border-radius: 30px;
   
@@ -50,74 +51,105 @@
   --transition-timing: 0.25s;
 
   box-shadow:  1px 1px 10px 1px rgb(150, 150, 150);
+
+  .background {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: left;
+    filter: brightness(0.6);
+    z-index: -1;
+    transition: var(--transition-timing) ease;
+  }
+
+  .card-content {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0.7vw;
+    right: 0.7vw;
+    bottom: 1.5vw;
+    overflow: hidden;
+    transition: var(--transition-timing);
+    z-index: 10;
+  }
+
+  .backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 7vw;
+    z-index: 0;
+    background: linear-gradient(to bottom, transparent, var(--color7));
+  }
 }
 
 .card.active {
   flex-grow: 100;
-}
 
-.card > .background {
-  position: absolute;
-  inset: 0;
-  object-fit: cover;
-  object-position: left;
-  filter: brightness(0.6);
-  z-index: -1;
-  transition: var(--transition-timing) ease;
-}
+  .background {
+    filter: brightness(1) grayscale(0);
+  }
 
-.card.active > .background {
-  filter: brightness(1) grayscale(0);
-}
+  .card-content {
+    inset: 1.5vw;
+    top: auto;
 
-.card > .card-content {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 20px;
-  overflow: hidden;
-  transition: var(--transition-timing);
-  z-index: 10;
-}
+    .texto {
+      opacity: 1;
+      translate: 0 0;
 
-.card-content > .texto {
-  display: flex;
-  flex-direction: column;
-  margin-left: 1em;
-  margin-bottom: 5px;
-  white-space: pre;
-  translate: 0 100%;
-  opacity: 0;
-  transition-delay: 0.3s;
-  color: var(--txt-color);
-}
-
-.card.active .texto {
-  opacity: 1;
-  translate: 0 0;
-}
-
-.card.active > .card-content {
-  inset: 20px;
-  top: auto;
+      .title {
+        opacity: 1;
+        translate: 0 0;
+        font-size: 2vw;
+      }
+  
+      .card-text{
+        font-size: 1.3vw;
+      }
+    }
+  }
 }
 
 .card-content * {
   transition: var(--transition-timing);
 }
 
-.card-content > .profile-image {
-  min-width: 50px;
-  max-width: 50px;
-  height: 50px;
-  border: 1px solid var(--bg-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  overflow: hidden;
+.card-content {
+
+  .profile-image {
+    min-width: 3.7vw;
+    max-width: 3.7vw;
+    height: 3.7vw;
+    border: 1px solid var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .texto {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5vw;
+    margin-bottom: 0.4vw;
+    white-space: pre;
+    translate: 0 100%;
+    opacity: 0;
+    transition-delay: 0.3s;
+    color: var(--txt-color);
+  }
+}
+
+.card-content > .title {
+  white-space: pre;
+  translate: 0 100%;
+  opacity: 0;
+  transition-delay: 0.3s;
+  color: var(--txt-color);
 }
 
 .card.active .profile-image {
@@ -128,28 +160,4 @@
 }
 .card.active .profile-image > svg {
   stroke: var(--txt-color);
-}
-
-.card-content > .title {
-  white-space: pre;
-  margin-left: 10px;
-  translate: 0 100%;
-  opacity: 0;
-  transition-delay: 0.3s;
-  color: var(--txt-color);
-}
-
-.card.active .title {
-  opacity: 1;
-  translate: 0 0;
-}
-
-.card > .backdrop {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 90px;
-  z-index: 0;
-  background: linear-gradient(to bottom, transparent, var(--color7));
 }

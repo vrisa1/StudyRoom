@@ -1,10 +1,12 @@
 button{
     border-radius: 50px;
     width: auto;
-    height: 2.8em;
+    height: fit-content;
+    font-size: 1.2vw;
+    padding: 0 0.8vw 0 0.2vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(35, 35, 35);
+    color: rgb(40, 40, 40);
     box-shadow:  1px 1px 10px 1px rgb(150, 150, 150);
 }

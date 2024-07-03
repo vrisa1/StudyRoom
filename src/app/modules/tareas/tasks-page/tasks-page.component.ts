@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TasksService } from '../service/tasks.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -8,7 +8,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./tasks-page.component.scss']
 })
 
-export class TasksPageComponent {
+export class TasksPageComponent implements OnInit{
+
   tasks: any[] = [];
   taskForm: FormGroup;
   editForm: FormGroup;
@@ -17,11 +18,13 @@ export class TasksPageComponent {
   taskIdToDelete: any;
 
   constructor(private fb: FormBuilder, private tasksService: TasksService) {
+    
     //Formulario para agregar tarea
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
     });
+
     //Formulario para editar tarea
     this.editForm = this.fb.group({
       title: ['', Validators.required],
@@ -31,7 +34,11 @@ export class TasksPageComponent {
 
   ngOnInit(): void {
     this.loadTasks();
-  
+
+  }
+
+  resetForm(): void {
+    this.taskForm.reset();
   }
 
   //Obtener el arreglo de las tareas existentes
