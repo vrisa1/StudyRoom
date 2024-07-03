@@ -152,6 +152,10 @@ export class TasksPageComponent {
     const updatedTask: any = this.editForm.value;
     updatedTask.id = this.task.id; // Mantener el ID original
     updatedTask.state = this.task.state;
+    
+    // Elimina la tarea existente y agrega la actualizada
+    this.tasks = this.tasks.filter(task => task.id !== updatedTask.id).concat(updatedTask);
+
     this.saveTasks();
 }
 
