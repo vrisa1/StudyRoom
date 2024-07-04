@@ -133,8 +133,14 @@ export class TasksPageComponent {
 
   //Eliminar tarea
   deleteTask(): void {
-    this.tasks = this.tasks.filter(task => task.id !==  this.taskIdToDelete)
-    this.saveTasks(true);
+    this.tasks = this.tasks
+    .filter(task => task.id !==  this.taskIdToDelete)
+    .map(
+      (task: any, index: number) => {
+      task.id = index + 1;
+      return task;
+    });
+    this.saveTasks();
   }
   
   //Editar tarea
@@ -159,9 +165,8 @@ export class TasksPageComponent {
     this.saveTasks();
 }
 
-  private saveTasks(load: boolean = false): void {
+  private saveTasks(): void {
   this.tasksService.editarTareas(this.tasks).subscribe(() => {
-    if(load) this.loadTasks();
     this.taskForm.reset();
     this.editForm.reset();
   });

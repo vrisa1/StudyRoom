@@ -26,12 +26,7 @@ export class TasksService {
   actualizarTareas(): Observable<any> {
     return this.requestsService.getTareas().pipe(
       map((tareas) => {
-        if(tareas){
-          tareas.forEach((tarea: any, index: number) => {
-            tarea.id = index + 1;
-          })}else{
-            tareas = [];
-        }
+        if(!tareas)tareas = [];          
         return tareas;
         }))
   }
