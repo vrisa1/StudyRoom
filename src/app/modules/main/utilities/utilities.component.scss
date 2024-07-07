@@ -1,8 +1,10 @@
 #container{
     display: flex;
-    margin: 40px 20px 40px 20px;
+    flex-wrap: wrap;
+    margin: 40px 60px 40px 60px;
     align-items: center;
     justify-content: space-evenly;
+    gap: 5em;
 }
 
 h4 {
@@ -34,6 +36,10 @@ p {
     background-color: var(--color4);
 }
 
+#card4{
+    background-color: var(--color6);
+}
+
 #card1:hover{
     background-color: var(--color7);
 }
@@ -43,6 +49,10 @@ p {
 }
 
 #card3:hover{
+    background-color: var(--color7);
+}
+
+#card4:hover{
     background-color: var(--color7);
 }
 
@@ -75,4 +85,5 @@ a{
     --bs-btn-bg: var(--bg-color);
     --bs-btn-border-color: var(--bg-color);
     --bs-btn-hover-bg: rgb(170, 170, 170);
+    box-shadow:  1px 1px 10px 1px rgb(100, 100, 100);
 }

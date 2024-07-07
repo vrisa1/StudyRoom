@@ -8,15 +8,18 @@
 }
 
 .container {
-  width: 55vw;
+  width: 56vw;
   height: 31vw;
+  min-width: 25em;
+  min-height: 16em;
   gap: 10px;
   display: flex;
   margin: 4vw 5vw 2vw 4vw;
 }
 
 .background {
-  width: 24vw; 
+  width: 24vw;
+  min-width: 12.5em; 
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -32,14 +35,12 @@
 }
 
 .card {
-  min-width: 5.3vw;
+  width: 5vw;
+  min-width: 2em;
   height: 100%;
   border-radius: 30px;
-  
   overflow: hidden;
-  
   background-color: #c9cef5;
-
   display: flex;
   align-items: flex-end;
   flex-grow: 1;
@@ -47,9 +48,7 @@
   position: relative;
   transition: 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   z-index: 0;
-
   --transition-timing: 0.25s;
-
   box-shadow:  1px 1px 10px 1px rgb(150, 150, 150);
 
   .background {
@@ -103,11 +102,11 @@
       .title {
         opacity: 1;
         translate: 0 0;
-        font-size: 2vw;
+        font-size: calc(0.7em + 1vw);
       }
   
       .card-text{
-        font-size: 1.3vw;
+        font-size: calc(0.5em + 0.5vw);
       }
     }
   }
@@ -121,8 +120,7 @@
 
   .profile-image {
     min-width: 3.7vw;
-    max-width: 3.7vw;
-    height: 3.7vw;
+    min-height: 3.7vw;
     border: 1px solid var(--bg-color);
     display: flex;
     justify-content: center;

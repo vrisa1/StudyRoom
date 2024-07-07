@@ -3,12 +3,15 @@
     position: relative;
     padding-top: 4em;
     padding-bottom: 2.5em;
+    min-width: 45em;
+    overflow: auto;
     background-color: var(--color5);
 }
 
 #presentacion{
     display: inline-block;
     width: 25%;
+    min-width: 10em;
     height: auto;
     margin: 4vw 4vw 2vw 5vw;
     vertical-align: top;
@@ -17,12 +20,12 @@
 
 .card-title{
     color: var(--bg-color);
-    font-size: 2.5vw;
+    font-size: calc(1em + 1vw);
 }
 
 .card-text{
     color: var(--bg-color);
-    font-size: 1.25vw;
+    font-size: calc(0.5em + 0.5vw);
 }
 
 #acordion{
