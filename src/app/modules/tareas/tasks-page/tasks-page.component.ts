@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TasksService } from '../service/tasks.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-tasks-page',
@@ -10,9 +11,61 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 export class TasksPageComponent implements OnInit{
 
+  /*tasks: any[] =[
+    {
+      "title": "Calendario (tp final)",
+      "description": "Terminar componente Calendario",
+      "id": "1",
+      "state": "inCourse"
+    },
+    {
+      "title": "Consulta parcial BDD",
+      "description": "Preguntas sobre simulacro",
+      "state": "todo",
+      "id": "2"
+    },
+    {
+      "title": "Ir al súper",
+      "description": "Compras de la semana: manzanas - peras - bananas - fideos - arroz - aceite",
+      "id": "3",
+      "state": "todo"
+    },
+    {
+      "title": "Organizar reunión trabajo",
+      "description": "Reunión fin de año!!!",
+      "id": "4",
+      "state": "completed"
+    },
+    {
+      "title": "Presentar tp lab",
+      "description": "",
+      "id": "5",
+      "state": "inCourse"
+    },
+    {
+      "title": "Reunión con coordinador",
+      "description": "Prácticas profesionales",
+      "state": "inCourse",
+      "id": "6"
+    },
+    {
+      "title": "Comprar regalo",
+      "description": "Cumple de Irina",
+      "id": "7",
+      "state": "completed"
+    },
+    {
+      "title": "Informe tp final",
+      "description": "Prácticas profesionales",
+      "state": "inCourse",
+      "id": "8"
+    }
+  ];*/
+
   tasks: any[] = [];
   taskForm: FormGroup;
   editForm: FormGroup;
+  loading: boolean = true;
 
   task: any;
   taskIdToDelete: any;
@@ -33,8 +86,12 @@ export class TasksPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.loadTasks();
-
+    
+    this.tasksService.iniciarTareas().subscribe((tasks)=>{
+      this.tasks = tasks;
+      this.loading = false;
+      console.log("Tareas: "+JSON.stringify(this.tasks));
+    })
   }
 
   resetForm(): void {
@@ -42,48 +99,42 @@ export class TasksPageComponent implements OnInit{
   }
 
   //Obtener el arreglo de las tareas existentes
-  loadTasks(): void {
-    this.tasksService.getTasks().subscribe(tasks => {
-      this.tasks = tasks;
-    });
+  loadTasks(): void{
+    this.tasksService.actualizarTareas().subscribe(tasks=>{
+        this.tasks = tasks;
+        console.log('Tareas actualizadas:', this.tasks);
+    }) 
   }
-
+  
   //Agregar tarea
   addTask(): void {
     if (this.taskForm.valid) {
       const newTask: any = this.taskForm.value;
       newTask.state = 'todo'; // Establecer el estado predeterminado
-      this.tasksService.addTask(newTask).subscribe(() => {
-        this.loadTasks();
-        this.taskForm.reset();
-      });
+      newTask.id = this.tasks.length + 1; //// Asignar un ID basado en la longitud del arreglo
+      this.tasks.push(newTask);
+      this.saveTasks();
     }
   }
 
   //Marcar tarea como pendiente
   markAsToDo(task: any){
     task.state = 'todo';
-    this.tasksService.updateTask(task).subscribe(()=>{
-      console.log("Marcada como pendiente")
-    });
+    this.saveTasks();
   }
 
   //Marcar tarea como en proceso
   markAsInCourse(task: any){
     task.state = 'inCourse';
-    this.tasksService.updateTask(task).subscribe(()=>{
-      console.log("Marcada como en proceso")
-    });
+    this.saveTasks();
   }
 
   //Marcar tarea como completada
   markAsCompleted(task: any): void {
     task.state = 'completed';
-    this.tasksService.updateTask(task).subscribe(()=>{
-      console.log("Marcada como completada")
-    });
+    this.saveTasks();
   }
-
+  
   //Obtener ID de la tarea a eliminar
   getIdToDelete(taskId: number): void{
     this.taskIdToDelete = taskId; 
@@ -91,10 +142,14 @@ export class TasksPageComponent implements OnInit{
 
   //Eliminar tarea
   deleteTask(): void {
-    this.tasksService.deleteTask(this.taskIdToDelete).subscribe(() => {
-      this.loadTasks();
-      this.taskForm.reset();
+    this.tasks = this.tasks
+    .filter(task => task.id !==  this.taskIdToDelete)
+    .map(
+      (task: any, index: number) => {
+      task.id = index + 1;
+      return task;
     });
+    this.saveTasks();
   }
   
   //Editar tarea
@@ -112,10 +167,19 @@ export class TasksPageComponent implements OnInit{
     const updatedTask: any = this.editForm.value;
     updatedTask.id = this.task.id; // Mantener el ID original
     updatedTask.state = this.task.state;
-    this.tasksService.updateTask(updatedTask).subscribe(() => {
-      this.loadTasks();
-      this.editForm.reset();
-  })}
+    
+    // Elimina la tarea existente y agrega la actualizada
+    this.tasks = this.tasks.filter(task => task.id !== updatedTask.id).concat(updatedTask);
+
+    this.saveTasks();
+}
+
+  private saveTasks(): void {
+  this.tasksService.editarTareas(this.tasks).subscribe(() => {
+    this.taskForm.reset();
+    this.editForm.reset();
+  });
+}
 
   //Si existe alguna tarea con estado pendiente
   toDoExist(): boolean {

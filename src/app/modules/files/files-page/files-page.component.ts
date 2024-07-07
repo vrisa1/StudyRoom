@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DriveService } from '../service/drive.service';
-import { switchMap } from 'rxjs';
+import { map, switchMap } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+
 
 @Component({
   selector: 'app-files-page',
@@ -10,21 +13,21 @@ import { switchMap } from 'rxjs';
 export class FilesPageComponent implements OnInit{
   
   archivos: any[] = [];
+  archivoSeleccionado: any;
+  fileContent: SafeResourceUrl | null = null;
 
-  constructor(private DriveService : DriveService){}
+  constructor(private DriveService : DriveService, private sanitizer : DomSanitizer){}
  
   ngOnInit(): void {
-    //this.DriveService.listaArchivosCarpeta();
-    this.actualizarListaDeEventos();
-    this.leerArchivo();
+    this.actualizarListaDeArchivos();
   }
-
-  private actualizarListaDeEventos(): void{
+  
+  private actualizarListaDeArchivos(): void{
     this.DriveService.iniciarFiles().pipe(
       switchMap(() => this.DriveService.listarArchivos())
     ).subscribe(
-      (data: any) => {
-        this.archivos = data;
+      (data: any[]) => {
+        this.archivos = data.filter((a:any)=> a.mimeType !== 'application/json');
         console.log('Archivos obtenidos:', this.archivos);
       },
       (error) => {
@@ -32,13 +35,17 @@ export class FilesPageComponent implements OnInit{
       }
     );
   }
-  fileId = '1eCMdReiH9HA1y41oSmTZ1bsbI568h8soUS08Ujgm6vg';
-  mimeType = 'text/plain'
-  fileUrl= '';
-
-  leerArchivo(){
-    this.DriveService.readFileContent(this.fileId, this.mimeType).subscribe((data)=>{
-      console.log("texto: "+data);
+  
+ 
+  leerArchivo(fileId: string){
+    this.DriveService.readFile(fileId).subscribe((data)=>{
+      this.fileContent = this.sanitizer.bypassSecurityTrustResourceUrl(data.content);
     })
+  }
+
+  seleccionarArchivo(): void {
+    if (this.archivoSeleccionado) {
+      this.leerArchivo(this.archivoSeleccionado.id); 
+    }
   }
 }

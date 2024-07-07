@@ -1,13 +1,21 @@
-<p>files-page works!</p>
-
-<div *ngFor="let archivo of archivos">
-    {{ archivo.name }}
+<div>
+  <h2>Seleccionar Archivo</h2>
+  <select [(ngModel)]="archivoSeleccionado" (change)="seleccionarArchivo()">
+    <option *ngFor="let archivo of archivos" [ngValue]="archivo">{{ archivo.name }}</option>
+  </select>
+  <div *ngIf="archivoSeleccionado">
+    <h3>Archivo Seleccionado</h3>
+    <p>{{ archivoSeleccionado.name }}</p>
+  </div>
 </div>
 
-<p>Esto es un iframe??</p>
-<iframe
-  *ngIf="fileUrl"
-  [src]="fileUrl"
-  width="100%"
-  height="600"
-></iframe>
+<div *ngIf="archivoSeleccionado">
+  <div *ngIf="fileContent">
+      <iframe [src]="fileContent" width="100%" height="600px"></iframe>
+  </div>
+  <div *ngIf="!fileContent">
+    Cargando archivo...
+  </div>
+</div>
+
+

@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthGoogleService } from './auth-google.service';
 import { Injectable, OnInit } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { evento, usuario } from '../models';
 import { data } from 'jquery';
+import { bD } from '@fullcalendar/core/internal-common';
 
 @Injectable({
   providedIn: 'root'
@@ -78,7 +79,7 @@ export class RequestsService {
   }
   
 
-  //Request Drive
+  //Request Files
 
   private readonly driveUrl = 'https://www.googleapis.com/drive/v3/files';
   private folderId =""
@@ -119,13 +120,77 @@ export class RequestsService {
   }
 
   getFilesInFolder(): Observable<any> {
-    const params = new HttpParams().set('q', `'${this.folderId}' in parents`);
+    const params = new HttpParams().set('q', `'${this.folderId}' in parents and trashed = false`);
     return this.http.get(`${this.driveUrl}?${params.toString()}`, { headers: this.headers });
   }
 
 
-  getFileContent(fileId: string, mimeType: string): Observable<any> {
-    const exportUrl = `https://www.googleapis.com/drive/v3/files/${fileId}/export?mimeType=${mimeType}`;
-    return this.http.get(exportUrl, { headers: this.headers, responseType: 'text' });
+  getFileContent(fileId: string): Observable<any> {
+    const exportUrl = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`;
+    return this.http.get(exportUrl, { headers: this.headers, responseType: 'blob' });
   }
+  
+  getFileContentText(fileId: string, mimeType: string): Observable<any> {
+    const exportUrl = `https://www.googleapis.com/drive/v3/files/${fileId}/export?mimeType=${mimeType}`;
+    return this.http.get(exportUrl, { headers: this.headers, responseType: 'blob' });
+  }
+  
+  getFileMimeType(fileId: string): Observable<string> {
+    return this.http.get(`${this.driveUrl}/${fileId}?fields=mimeType`, {
+      headers: this.headers,
+    }).pipe(
+      map((response: any) => response.mimeType)
+    );
+  }
+
+  //Request tareas
+ 
+  private bddFile="";
+
+  private addBdd(): Observable<any>{
+    const body = {
+      name: 'BddTareas',
+      parents: [this.folderId],
+      mimeType: 'application/json'
+    };
+    return this.http.post(this.driveUrl, body,{headers : this.headers});
+  }
+  
+  tareasInit(): Observable<any>{
+    return new Observable<any>((observer)=>{
+      this.filesInit().pipe(
+      switchMap(()=> this.getFilesInFolder())
+    ).subscribe(
+      (files: any) => {
+        const bdd = files.files.find((fil: any) => fil.name === 'BddTareas');
+        if (!bdd) {
+          this.addBdd().subscribe(
+            (response) => {
+              console.log('Respuesta del servidor:', response);
+              this.bddFile= response.id;
+              observer.next();
+              observer.complete();
+            },
+            (error) => {
+              console.error('Error al agregar archivo:', error);
+            })
+        }else{
+          this.bddFile = bdd.id;
+          observer.next();
+          observer.complete();
+        }
+      },
+    )
+    })
+  }
+
+  updateBddTareas(tareas:any){
+  const body = JSON.stringify(tareas);
+  return this.http.patch(`https://www.googleapis.com/upload/drive/v3/files/${this.bddFile}?uploadType=media`, body, {headers: this.headers.append('Content-Type', 'application/json')});
+  }
+
+  getTareas():Observable<any>{
+    return this.http.get(`https://www.googleapis.com/drive/v3/files/${this.bddFile}/?alt=media`, { headers: this.headers, responseType: 'json' });
+  }
+
 }

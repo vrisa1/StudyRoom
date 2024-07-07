@@ -43,11 +43,12 @@ const routes: Routes = [
     loadChildren: ()=> import("./modules/tareas/tareas.module").then(m=>m.TareasModule),
     canActivate:[authGuard]
   },
-  // {
-  //   path: 'files',
-  //   component: FilesPageComponent,
-  //   loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule)
-  // },
+  {
+     path: 'files',
+     component: FilesPageComponent,
+     loadChildren: ()=> import("./modules/files/files.module").then(m=>m.FilesModule),
+     canActivate:[authGuard]
+  },
   {
     path: '',
     redirectTo: 'main',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { RequestsService } from 'src/app/core/services/requests.service';
 
 @Injectable({
@@ -7,9 +7,7 @@ import { RequestsService } from 'src/app/core/services/requests.service';
 })
 export class DriveService {
 
-  constructor(private RequestsService : RequestsService ) { }
-
-  nombreCarpeta : string = "StudyRoom";
+  constructor(private RequestsService: RequestsService) { }
 
   iniciarFiles(): Observable<void> {
     return new Observable<void>((observer) => {
@@ -22,7 +20,7 @@ export class DriveService {
       );
     });
   }
-  
+
   listarArchivos(): Observable<string[]> {
     return this.RequestsService.getFilesInFolder().pipe(
       map((data: any) => {
@@ -31,27 +29,35 @@ export class DriveService {
     );
   }
 
-  listaArchivosCarpeta(){
-    this.RequestsService.getFilesInFolder().subscribe(
-      (data : any)=>{
-        console.log(data);
-      }
-    )
-  }
-
-  
-  readFileContent(fileId: string, mimeType: string): Observable<string> {
-    return new Observable<string>((observer) => {
-      this.RequestsService.getFileContent(fileId, mimeType).subscribe(
-        (content: string) => {
-          observer.next(content);
-          observer.complete();
-        },
-        (error) => {
-          console.error('Error al obtener el contenido del archivo:', error);
-          observer.error(error);
+  readFile(fileId: string): Observable<any> {
+    return this.RequestsService.getFileMimeType(fileId).pipe(
+      switchMap((mimeType) => {
+        switch (mimeType) {
+          case 'application/pdf':
+            return this.RequestsService.getFileContent(fileId).pipe(
+              map(blob => {
+                const url = URL.createObjectURL(blob);
+                return { type: 'pdf', content: url };
+              })
+            );
+          case 'image/jpeg':
+          case 'image/png':
+            return this.RequestsService.getFileContent(fileId).pipe(
+              map(blob => {
+                const url = URL.createObjectURL(blob);
+                return { type: 'img', content: url };
+              })
+            );
+          default:
+            return this.RequestsService.getFileContentText(fileId, 'application/pdf').pipe(
+              map(blob => {
+                const url = URL.createObjectURL(blob);
+                return { type: 'text', content: url };
+              })
+            );
         }
-      );
-    });
+      })
+    );
   }
+  
 }
