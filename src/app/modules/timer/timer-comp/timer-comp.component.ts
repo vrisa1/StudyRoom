@@ -69,6 +69,7 @@ export class TimerCompComponent implements OnInit{
 
   workAudio: any
   breakAudio: any
+  silenced = false
 
   //BOTONES "SIGUIENTE" Y "ATRÁS" (ANIMACIONES) 
 
@@ -212,12 +213,29 @@ export class TimerCompComponent implements OnInit{
   //FUNCIONES DE ALARMA (AUDIO DEL TEMPORIZADOR)
 
   playWorkAlarm(){ //Dispara la alarma de trabajo.
-    this.workAudio.play()
+    if(!this.silenced){
+      this.workAudio.play()
+    }
+    
   }
 
   playBreakAlarm(){ //Dispara la alarma de descanso.
-    this.breakAudio.play()
+    if(!this.silenced){
+      this.breakAudio.play()
+    }
+    
   }
+
+  silenceAlarm(){
+    if(!this.silenced){
+      this.silenced = true
+    } else {
+      this.silenced = false
+    }
+    console.log("silencio: " + this.silenced);
+  }
+
+  //COMIENZO Y CIERRE DEL COMPONENTE TIMER
 
   ngOnInit(){ //Asigna los audios de las alarmas y las carga.
     this.workAudio = new Audio()

@@ -74,6 +74,19 @@
   </div>
 </div>
 
+<!-- Muestra selección de personalización + botón silencio/sonido -->
+<div class="infoBlock">
+  <div class="info">
+  Pomodoro: {{workDuration}} min - Descanso: {{breakDuration}} min
+  </div>
+  <button *ngIf="!silenced" class="silenceButton" (click)="silenceAlarm()">
+    <img src="../assets/volume.png" alt="">
+  </button>
+  <button *ngIf="silenced" class="silenceButton" (click)="silenceAlarm()">
+    <img src="../assets/mute.png" alt="">
+  </button>
+</div>
+
 <!-- Footer -->
   <app-timer-help></app-timer-help>
   <app-footer></app-footer>

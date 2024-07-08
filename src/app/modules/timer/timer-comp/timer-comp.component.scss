@@ -93,6 +93,18 @@ button:not([disabled]):hover{
   background-color: var(--color3);
 }
 
+.silenceButton {
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  right: 20px; /* Ajusta la distancia desde el borde derecho */
+  transform: translateY(-50%); /* Centra verticalmente el botón */
+  border-radius: 50%; /* Borde redondeado */
+  cursor: pointer;
+  padding: 5px; /* Modifica el padding para ajustar el borde al tamaño de la imagen */
+}
+
+
 //BARRA INDICADORA DE PROGRESO
 
 .progress-bar {
@@ -140,4 +152,28 @@ button:not([disabled]):hover{
 .hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+//MUESTRA DURACIÓN TOTAL SELECCIONADA
+
+.infoBlock {
+  background-color: var(--color2);
+  max-width: 23rem;
+  width: 80%;
+  max-height: 30px;
+  border: 1px solid var(--color5); /* Grosor y color del borde */
+  border-radius: 25px; /* Borde redondeado */
+  position: relative;
+  margin: auto;
+  margin-top: 10px;
+  padding: 25px;
+  box-shadow:  1px 1px 9px 1px rgb(150, 150, 150);
+  
+  display: flex; /* Añadir flexbox */
+  justify-content: left; /* Ubicar a la izquierda */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.info {
+  text-align: center;
 }
