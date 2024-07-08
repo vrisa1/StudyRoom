@@ -59,6 +59,7 @@ export class CalendarComponent implements OnInit {
   horaInicioM: string | any="";
   horaFinalM: string | any="";
   eventoId: string="";
+  minEndDate: string="";
 
   @Output() eventoCreado = new EventEmitter<evento>();
 
@@ -209,6 +210,17 @@ export class CalendarComponent implements OnInit {
   manejarEventoAgregadoOEliminado(): void {
     this.actualizarListaDeEventos();
   }
+
+  updateEndDateMin(start: string) {
+    if (start) {
+      const startDate = new Date(start);
+      startDate.setDate(startDate.getDate() + 1); // Incrementar la fecha de inicio en un día
+      this.endDate = startDate.toISOString().split('T')[0]; // Actualizar endDate con la fecha mínima permitida
+    } else {
+      this.endDate = ''; // Si no hay fecha de inicio válida, limpiar endDate
+    }
+  }
+
 
   //ABM DE EVENTOS-------------------------------------------------------------------------------------------
   crearEvento() {

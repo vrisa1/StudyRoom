@@ -28,10 +28,10 @@
                 <textarea id="description" name="description" class="form-control" [(ngModel)]="description"></textarea>
 
                 <label for="startDate" class="col-form-label">Fecha de inicio:</label>
-                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" required>
+                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" (change)="updateEndDateMin(startDate)" required>
 
                 <label for="endDate" class="col-form-label">Fecha de finalización:</label>
-                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" required>
+                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" [attr.min]="endDate" required>
                 
                 <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
                 <label class="col-form-label">&nbsp;Todo el día</label>
