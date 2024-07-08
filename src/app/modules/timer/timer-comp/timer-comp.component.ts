@@ -232,7 +232,6 @@ export class TimerCompComponent implements OnInit{
     } else {
       this.silenced = false
     }
-    console.log("silencio: " + this.silenced);
   }
 
   //COMIENZO Y CIERRE DEL COMPONENTE TIMER
