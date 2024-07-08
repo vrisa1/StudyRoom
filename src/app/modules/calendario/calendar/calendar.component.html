@@ -28,23 +28,20 @@
                 <textarea id="description" name="description" class="form-control" [(ngModel)]="description"></textarea>
 
                 <label for="startDate" class="col-form-label">Fecha de inicio:</label>
-                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" (change)="updateEndDateMin(startDate)" required>
+                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" (change)="updateEndDateMin(startDate, isAllDay, startTime)" required>
 
                 <label for="endDate" class="col-form-label">Fecha de finalización:</label>
-                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" [attr.min]="endDate" required>
-                
-                <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
+                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" [attr.min]="minEndDate" required>
+    
+                <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay" (change)="updateEndDateMin(startDate, isAllDay, startTime)">
                 <label class="col-form-label">&nbsp;Todo el día</label>
-                
-
+    
                 <div *ngIf="!isAllDay">
-                
-                    <label for="startTime" class="col-form-label">Hora de inicio:</label>
-                    <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="startTime" required>
+                  <label for="startTime" class="col-form-label">Hora de inicio:</label>
+                  <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="startTime" (change)="updateEndDateMin(startDate, isAllDay, startTime)" required>
 
-                    <label for="endTime" class="col-form-label">Hora de finalización:</label>
-                    <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="endTime" required>
-
+                  <label for="endTime" class="col-form-label">Hora de finalización:</label>
+                  <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="endTime" [attr.min]="minEndTime" required>
                 </div>
                 
                 <br>

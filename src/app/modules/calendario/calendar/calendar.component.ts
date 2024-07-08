@@ -33,6 +33,7 @@ import { RequestsService } from 'src/app/core/services/requests.service';
 import { NgForm, FormsModule } from '@angular/forms';
 import { evento } from 'src/app/core/models';
 import { format } from 'date-fns';
+import { co } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-calendar',
@@ -60,6 +61,7 @@ export class CalendarComponent implements OnInit {
   horaFinalM: string | any="";
   eventoId: string="";
   minEndDate: string="";
+  minEndTime: string="";
 
   @Output() eventoCreado = new EventEmitter<evento>();
 
@@ -211,15 +213,29 @@ export class CalendarComponent implements OnInit {
     this.actualizarListaDeEventos();
   }
 
-  updateEndDateMin(start: string) {
-    if (start) {
-      const startDate = new Date(start);
-      startDate.setDate(startDate.getDate() + 1); // Incrementar la fecha de inicio en un día
-      this.endDate = startDate.toISOString().split('T')[0]; // Actualizar endDate con la fecha mínima permitida
+  updateEndDateMin(start: string, allDay: boolean, startHM?: string) {
+    console.log('updateEndDateMin called with', start, allDay, startHM);
+
+    if (start && allDay) {
+        const startDate = new Date(start);
+        startDate.setDate(startDate.getDate() + 1); // Incrementar la fecha de inicio en un día
+        this.minEndDate = startDate.toISOString().split('T')[0]; // Actualizar endDate con la fecha mínima permitida
+        this.endDate = this.minEndDate; // Establecer endDate en la fecha mínima permitida
+        this.minEndTime = ''; // Limpiar minEndTime cuando es todo el día
+    } else if (start && !allDay) {
+        this.minEndDate = start; // La fecha mínima permitida para endDate es la misma que la fecha de inicio
+        this.endDate = start; // La fecha de finalización debe ser al menos la misma que la fecha de inicio
+
+        if (startHM && this.startDate === this.endDate) {
+          this.minEndTime = startHM;
+        } else {
+          this.minEndTime = ''; // Limpiar minEndTime si las fechas no son iguales o no hay startHM
+        }
     } else {
-      this.endDate = ''; // Si no hay fecha de inicio válida, limpiar endDate
+        this.minEndDate = ''; // Si no hay fecha de inicio válida, limpiar endDate
+        this.minEndTime = ''; // Limpiar minEndTime también
     }
-  }
+}
 
 
   //ABM DE EVENTOS-------------------------------------------------------------------------------------------
