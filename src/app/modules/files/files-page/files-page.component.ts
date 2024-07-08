@@ -10,6 +10,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './files-page.component.html',
   styleUrls: ['./files-page.component.scss']
 })
+
 export class FilesPageComponent implements OnInit{
   
   archivos: any[] = [];
@@ -43,9 +44,13 @@ export class FilesPageComponent implements OnInit{
     })
   }
 
-  seleccionarArchivo(): void {
-    if (this.archivoSeleccionado) {
-      this.leerArchivo(this.archivoSeleccionado.id); 
-    }
+  seleccionarArchivo(archivo: any): void {
+    this.archivoSeleccionado = archivo;
+    this.leerArchivo(archivo.id);
+  }
+
+  cerrarArchivo(): void {
+    this.archivoSeleccionado = null;
+    this.fileContent = null;
   }
 }

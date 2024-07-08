@@ -11,57 +11,6 @@ import { Observable, switchMap } from 'rxjs';
 
 export class TasksPageComponent implements OnInit{
 
-  /*tasks: any[] =[
-    {
-      "title": "Calendario (tp final)",
-      "description": "Terminar componente Calendario",
-      "id": "1",
-      "state": "inCourse"
-    },
-    {
-      "title": "Consulta parcial BDD",
-      "description": "Preguntas sobre simulacro",
-      "state": "todo",
-      "id": "2"
-    },
-    {
-      "title": "Ir al súper",
-      "description": "Compras de la semana: manzanas - peras - bananas - fideos - arroz - aceite",
-      "id": "3",
-      "state": "todo"
-    },
-    {
-      "title": "Organizar reunión trabajo",
-      "description": "Reunión fin de año!!!",
-      "id": "4",
-      "state": "completed"
-    },
-    {
-      "title": "Presentar tp lab",
-      "description": "",
-      "id": "5",
-      "state": "inCourse"
-    },
-    {
-      "title": "Reunión con coordinador",
-      "description": "Prácticas profesionales",
-      "state": "inCourse",
-      "id": "6"
-    },
-    {
-      "title": "Comprar regalo",
-      "description": "Cumple de Irina",
-      "id": "7",
-      "state": "completed"
-    },
-    {
-      "title": "Informe tp final",
-      "description": "Prácticas profesionales",
-      "state": "inCourse",
-      "id": "8"
-    }
-  ];*/
-
   tasks: any[] = [];
   taskForm: FormGroup;
   editForm: FormGroup;

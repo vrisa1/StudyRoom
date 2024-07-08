@@ -112,14 +112,13 @@ nav{
   transform: rotate(-45deg) translate(0, -1px);
 }
 
-#menu
-{
+#menu {
   position: absolute;
   width: 280px;
-  height: 44.5em; 
-  margin: -100px 0 0 -50px;
+  height: 100vh; 
+  margin: -48px 0 0 -50px;
   padding: 50px;
-  padding-top: 125px;
+  padding-top: 60px;
   background: var(--color2);
   filter: drop-shadow(rgb(100, 100, 100) 1px 0px 2px);
 

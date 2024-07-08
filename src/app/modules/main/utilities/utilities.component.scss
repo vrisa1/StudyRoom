@@ -1,10 +1,10 @@
 #container{
     display: flex;
     flex-wrap: wrap;
-    margin: 40px 60px 40px 60px;
+    margin: 40px 20px 40px 20px;
     align-items: center;
     justify-content: space-evenly;
-    gap: 5em;
+    gap: 0.5em;
 }
 
 h4 {
@@ -16,12 +16,20 @@ p {
 }
 
 .card{
-
-    width: 25rem;
-    height: 510px;
+    width: 38em;
+    height: 18em;
+    padding: 0.5em;
     border-radius: 50px;
     box-shadow:  1px 1px 10px 1px rgb(100, 100, 100);
     transition: all .2s ease-in-out;
+}
+
+.card-body{
+    padding-left: 2em;
+}
+
+img{
+    width: 15em;
 }
 
 #card1{
@@ -37,7 +45,7 @@ p {
 }
 
 #card4{
-    background-color: var(--color6);
+    background-color: var(--color5);
 }
 
 #card1:hover{
@@ -66,15 +74,6 @@ p {
 
 .card:hover p{
     color: var(--bg-color);
-}
-
-img{
-    margin: 10px auto 0px auto;
-    width: 250px;
-}
-
-#img1{
-    width: 270px;
 }
 
 a{
