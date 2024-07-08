@@ -1,3 +1,5 @@
+//FONDO DE PANTALLA
+
 #timerPage{
   min-height: 100%;
   position: relative;
@@ -7,6 +9,8 @@
   background-size: 1500px;
 }
 
+//RECUADRO CON INFORMACIÓN DEL TEMPORIZADOR
+
 .card{
   background-color: var(--color2);
   max-width: 23rem;
@@ -14,10 +18,17 @@
   aspect-ratio: 2/1.5;
   margin: auto;
   transform: translateY(calc(42vh - 7rem));
-  border-radius: 1rem;
   overflow: hidden;
-  border-color: var(--color4);
+  border: 1px solid var(--color5); /* Grosor y color del borde */
+  border-radius: 25px; /* Borde redondeado */
   box-shadow:  1px 1px 9px 1px rgb(150, 150, 150);
+}
+
+.position{
+  display: flex;
+  width: 400%;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .flex{
@@ -29,12 +40,16 @@
   flex: 1;
 }
 
+//TÍTULO DE ESTADO (POMODORO, DESCANSO)
+
 .title{
   text-align: center;
   font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--txt-color);
+  font-weight: 400;
+  color: var(--color10);
 }
+
+//CUENTA REGRESIVA
 
 .duration{
   color: var(--color10);
@@ -45,20 +60,16 @@
   align-items: center;
 }
 
-.counter button{
-  margin: 0 0.5rem;
-}
 
 .counter div{
   font-size: 3rem;
   font-weight: bold;
 }
 
-.position{
-  display: flex;
-  width: 400%; 
-  height: 100%;
-  justify-content: space-between;
+//BOTONES
+
+.counter button{
+  margin: 0 0.5rem;
 }
 
 .buttons{
@@ -71,7 +82,7 @@
 
 button{
   background-color: transparent;
-  border: 2px solid var(--color5); 
+  border: 2px solid var(--color5);
   outline: none;
   cursor: pointer;
   padding: 0.5rem;
@@ -79,6 +90,54 @@ button{
 }
 
 button:not([disabled]):hover{
-  background-color: var(--color3); 
+  background-color: var(--color3);
 }
 
+//BARRA INDICADORA DE PROGRESO
+
+.progress-bar {
+  max-width: 23rem;
+  width: 80%;
+  background-color: var(--bg-color);
+  border: 1px solid var(--color5); /* Grosor y color del borde */
+  border-radius: 25px; /* Borde redondeado */
+  overflow: hidden;
+  height: 25px; /* Altura de la barra de progreso */
+  position: relative;
+  margin: auto; /* Centrar barra de progreso */
+  margin-top: 180px; /* Ubicar barra de progreso debajo del recuadro del temporizador */
+  box-shadow:  1px 1px 9px 1px rgb(150, 150, 150);
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--color3);
+  width: 0;
+  transition: width 0.3s ease; /* Animación del progreso */
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 25px;
+}
+
+//INDICADOR DE CICLOS
+
+.cycleCounter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Texto centrado */
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400; /* Grosor de la letra */
+  color: var(--color10); /* Color del texto */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  z-index: 1; /* Asegura que el texto esté encima de la barra de progreso */
+}
+
+//OCULTAR LA BARRA DE PROGRESO CUANDO EL TEMPORIZADOR NO ESTÁ ACTIVADO
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}

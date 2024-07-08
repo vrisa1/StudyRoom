@@ -158,6 +158,7 @@ export class TimerCompComponent implements OnInit{
     this.minutes = this.workDuration
     this.seconds = 0
     this.stage = "Pomodoro"
+    this.currentCycle = 1
   }
 
   //FUNCIONALIDAD
@@ -226,6 +227,10 @@ export class TimerCompComponent implements OnInit{
     this.breakAudio = new Audio()
     this.breakAudio.src = "../assets/breakAlarm.mp3"
     this.breakAudio.load()
+  }
+
+  ngOnDestroy(){ //Detiene el conteo al salir de la página del temporizador
+    clearInterval(this.interval)
   }
   
 }
