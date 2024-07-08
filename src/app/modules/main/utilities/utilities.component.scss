@@ -1,8 +1,10 @@
 #container{
     display: flex;
+    flex-wrap: wrap;
     margin: 40px 20px 40px 20px;
     align-items: center;
     justify-content: space-evenly;
+    gap: 0.5em;
 }
 
 h4 {
@@ -14,12 +16,20 @@ p {
 }
 
 .card{
-
-    width: 25rem;
-    height: 510px;
+    width: 38em;
+    height: 18em;
+    padding: 0.5em;
     border-radius: 50px;
     box-shadow:  1px 1px 10px 1px rgb(100, 100, 100);
     transition: all .2s ease-in-out;
+}
+
+.card-body{
+    padding-left: 2em;
+}
+
+img{
+    width: 15em;
 }
 
 #card1{
@@ -34,6 +44,10 @@ p {
     background-color: var(--color4);
 }
 
+#card4{
+    background-color: var(--color5);
+}
+
 #card1:hover{
     background-color: var(--color7);
 }
@@ -43,6 +57,10 @@ p {
 }
 
 #card3:hover{
+    background-color: var(--color7);
+}
+
+#card4:hover{
     background-color: var(--color7);
 }
 
@@ -58,15 +76,6 @@ p {
     color: var(--bg-color);
 }
 
-img{
-    margin: 10px auto 0px auto;
-    width: 250px;
-}
-
-#img1{
-    width: 270px;
-}
-
 a{
     font-weight: 600;
 }
@@ -75,4 +84,5 @@ a{
     --bs-btn-bg: var(--bg-color);
     --bs-btn-border-color: var(--bg-color);
     --bs-btn-hover-bg: rgb(170, 170, 170);
+    box-shadow:  1px 1px 10px 1px rgb(100, 100, 100);
 }
