@@ -33,6 +33,7 @@ import { RequestsService } from 'src/app/core/services/requests.service';
 import { NgForm, FormsModule } from '@angular/forms';
 import { evento } from 'src/app/core/models';
 import { format } from 'date-fns';
+import { co } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-calendar',
@@ -59,6 +60,11 @@ export class CalendarComponent implements OnInit {
   horaInicioM: string | any="";
   horaFinalM: string | any="";
   eventoId: string="";
+
+  minEndDate: string="";
+  minEndTime: string="";
+
+  timeError: boolean = false;
 
   @Output() eventoCreado = new EventEmitter<evento>();
 
@@ -133,6 +139,8 @@ export class CalendarComponent implements OnInit {
     console.log(this.startTime);
     console.log(this.endTime);
 
+    this.timeError=false;
+
     const calendarApi = selectInfo.view.calendar;
     calendarApi.unselect();
 
@@ -146,6 +154,26 @@ export class CalendarComponent implements OnInit {
   
   formatearHora(fecha: Date | null): string {
     return fecha ? new Date(fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+  }
+
+  validateTimes() {
+    if (!this.isAllDay && this.startTime && this.endTime && this.startDate === this.endDate) {
+      const [startHour, startMinute] = this.startTime.split(':').map(Number);
+      const [endHour, endMinute] = this.endTime.split(':').map(Number);
+      this.timeError = endHour < startHour || (endHour === startHour && endMinute <= startMinute);
+    } else {
+      this.timeError = false;
+    }
+  }
+
+  validateTimesMod() {
+    if (!this.isAllDay && this.horaInicioM && this.horaFinalM && this.fechaInicioM === this.fechaFinalM) {
+      const [startHour, startMinute] = this.horaInicioM.split(':').map(Number);
+      const [endHour, endMinute] = this.horaFinalM.split(':').map(Number);
+      this.timeError = endHour < startHour || (endHour === startHour && endMinute <= startMinute);
+    } else {
+      this.timeError = false;
+    }
   }
 
   //Manejar cuando se clickea un evento, para editarlo o eliminarlo
@@ -209,6 +237,55 @@ export class CalendarComponent implements OnInit {
   manejarEventoAgregadoOEliminado(): void {
     this.actualizarListaDeEventos();
   }
+
+  updateEndDateMin(start: string, allDay: boolean, startHM?: string) {
+    console.log('updateEndDateMin called with', start, allDay, startHM);
+
+    if (start && allDay) {
+        const startDate = new Date(start);
+        startDate.setDate(startDate.getDate() + 1); // Incrementar la fecha de inicio en un día
+        this.minEndDate = startDate.toISOString().split('T')[0]; // Actualizar endDate con la fecha mínima permitida
+        this.endDate = this.minEndDate; // Establecer endDate en la fecha mínima permitida
+        this.minEndTime = ''; // Limpiar minEndTime cuando es todo el día
+    } else if (start && !allDay) {
+        this.minEndDate = start; // La fecha mínima permitida para endDate es la misma que la fecha de inicio
+        this.endDate = start; // La fecha de finalización debe ser al menos la misma que la fecha de inicio
+
+        if (startHM && this.startDate === this.endDate) {
+          this.minEndTime = startHM;
+        } else {
+          this.minEndTime = ''; // Limpiar minEndTime si las fechas no son iguales o no hay startHM
+        }
+    } else {
+        this.minEndDate = ''; // Si no hay fecha de inicio válida, limpiar endDate
+        this.minEndTime = ''; // Limpiar minEndTime también
+    }
+}
+
+updateEndDateMinMod(start: string, allDay: boolean, startHM?: string) {
+  console.log('updateEndDateMin called with', start, allDay, startHM);
+
+  if (start && allDay) {
+      const startDate = new Date(start);
+      startDate.setDate(startDate.getDate() + 1); // Incrementar la fecha de inicio en un día
+      this.minEndDate = startDate.toISOString().split('T')[0]; // Actualizar endDate con la fecha mínima permitida
+      this.fechaFinalM = this.minEndDate; // Establecer endDate en la fecha mínima permitida
+      this.minEndTime = ''; // Limpiar minEndTime cuando es todo el día
+  } else if (start && !allDay) {
+      this.minEndDate = start; // La fecha mínima permitida para endDate es la misma que la fecha de inicio
+      this.fechaFinalM = start; // La fecha de finalización debe ser al menos la misma que la fecha de inicio
+
+      if (startHM && this.fechaInicioM === this.fechaFinalM) {
+        this.minEndTime = startHM;
+      } else {
+        this.minEndTime = ''; // Limpiar minEndTime si las fechas no son iguales o no hay startHM
+      }
+  } else {
+      this.minEndDate = ''; // Si no hay fecha de inicio válida, limpiar endDate
+      this.minEndTime = ''; // Limpiar minEndTime también
+  }
+}
+
 
   //ABM DE EVENTOS-------------------------------------------------------------------------------------------
   crearEvento() {

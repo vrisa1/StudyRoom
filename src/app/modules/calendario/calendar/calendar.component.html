@@ -28,29 +28,31 @@
                 <textarea id="description" name="description" class="form-control" [(ngModel)]="description"></textarea>
 
                 <label for="startDate" class="col-form-label">Fecha de inicio:</label>
-                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" required>
+                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="startDate" (change)="updateEndDateMin(startDate, isAllDay, startTime)" required>
 
                 <label for="endDate" class="col-form-label">Fecha de finalización:</label>
-                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" required>
-                
-                <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
+                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="endDate" [attr.min]="minEndDate" required>
+    
+                <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay" (change)="updateEndDateMin(startDate, isAllDay, startTime)">
                 <label class="col-form-label">&nbsp;Todo el día</label>
-                
-
+    
                 <div *ngIf="!isAllDay">
-                
-                    <label for="startTime" class="col-form-label">Hora de inicio:</label>
-                    <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="startTime" required>
+                  <label for="startTime" class="col-form-label">Hora de inicio:</label>
+                  <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="startTime" (change)="validateTimes()" required>
 
-                    <label for="endTime" class="col-form-label">Hora de finalización:</label>
-                    <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="endTime" required>
+                  <label for="endTime" class="col-form-label">Hora de finalización:</label>
+                  <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="endTime" (change)="validateTimes()" required>
 
+                  <br>
+                    <div *ngIf="timeError" class="alert alert-danger">
+                      La hora de finalización no puede ser anterior a la hora de inicio.
+                    </div>
                 </div>
                 
                 <br>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" [disabled]="formulario.invalid">Guardar</button>
+                    <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" [disabled]="formulario.invalid || timeError">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -77,29 +79,34 @@
                 <textarea id="description" name="description" class="form-control" [(ngModel)]="descripcionM"></textarea>
 
                 <label for="startDate" class="col-form-label">Fecha de inicio:</label>
-                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="fechaInicioM" required>
+                <input type="date" id="startDate" name="startDate" class="form-control" [(ngModel)]="fechaInicioM" (change)="updateEndDateMinMod(fechaInicioM, isAllDay, horaInicioM)" required>
 
                 <label for="endDate" class="col-form-label">Fecha de finalización:</label>
-                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="fechaFinalM" required>
+                <input type="date" id="endDate" name="endDate" class="form-control" [(ngModel)]="fechaFinalM" [attr.min]="minEndDate" required>
                 
-                <label class="col-form-label"> <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay">
+                <label class="col-form-label"> <input type='checkbox' id="allDay" name="allDay" [(ngModel)]="isAllDay" (change)="updateEndDateMinMod(fechaInicioM, isAllDay, horaInicioM)">
                     Todo el día
                 </label>
 
                 <div *ngIf="!isAllDay">
                 
                     <label for="startTime" class="col-form-label">Hora de inicio:</label>
-                    <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="horaInicioM" required>
+                    <input type="time" id="startTime" name="startTime" class="form-control" [(ngModel)]="horaInicioM" (change)="validateTimesMod()" required>
 
                     <label for="endTime" class="col-form-label">Hora de finalización:</label>
-                    <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="horaFinalM" required>
+                    <input type="time" id="endTime" name="endTime" class="form-control" [(ngModel)]="horaFinalM" (change)="validateTimesMod()" required>
+
+                    <br>
+                    <div *ngIf="timeError" class="alert alert-danger">
+                      La hora de finalización no puede ser anterior a la hora de inicio.
+                    </div>
 
                 </div>
                 
                 <br>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" [disabled]="formularioModificar.invalid">Guardar cambios</button>
+                    <button type="submit" class="btn btn-bd-primary" data-bs-dismiss="modal" [disabled]="formularioModificar.invalid || timeError">Guardar cambios</button>
                     <button type="button" class="btn btn-bd-primary" data-bs-target="#deleteEventModal" data-bs-toggle="modal">Eliminar evento</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
