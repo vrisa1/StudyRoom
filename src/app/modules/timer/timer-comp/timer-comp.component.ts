@@ -226,7 +226,7 @@ export class TimerCompComponent implements OnInit{
     
   }
 
-  silenceAlarm(){
+  silenceAlarm(){ //Activa y desactiva las alarmas.
     if(!this.silenced){
       this.silenced = true
     } else {
