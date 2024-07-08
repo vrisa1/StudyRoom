@@ -3,24 +3,34 @@
     position: relative;
     padding-top: 4em;
     padding-bottom: 2.5em;
+    min-width: 45em;
+    overflow: auto;
     background-color: var(--color5);
 }
 
 #presentacion{
     display: inline-block;
-    width: 20rem;
-    height: 420px;
-    margin: 4em 3em 0 4em;
+    width: 25%;
+    min-width: 10em;
+    height: auto;
+    margin: 4vw 4vw 2vw 5vw;
     vertical-align: top;
     text-align: center;
 }
 
-h3, h6{
+.card-title{
     color: var(--bg-color);
+    font-size: calc(1em + 1vw);
+}
+
+.card-text{
+    color: var(--bg-color);
+    font-size: calc(0.5em + 0.5vw);
 }
 
 #acordion{
     display: inline-block;
+    float: right;
 }
 
 #login{

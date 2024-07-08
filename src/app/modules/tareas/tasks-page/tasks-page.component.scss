@@ -6,6 +6,8 @@
     position: relative;
     padding-bottom: 2.5em;
     padding-top: 4em;
+    min-width: 45em;
+    overflow: auto;
 }
 
 .spinner-border{
@@ -80,7 +82,8 @@
     margin-right: 2em;
     display: grid;
     grid-template-areas: "tarea enProceso completada editar eliminar";
-    grid-template-columns: 55% 15% 10% 10% 10%;
+    grid-template-columns: 55% 10% 10% 10% 10%;
+    gap: 0.6em;
 }
 
 .tareaDesc{
@@ -88,7 +91,6 @@
     grid-area: tarea;
     justify-self: left;
     align-self: center;
-    width: 550px;
 }
 
 #tareaTit{

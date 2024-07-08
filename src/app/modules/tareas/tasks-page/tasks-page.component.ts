@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TasksService } from '../service/tasks.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, switchMap } from 'rxjs';
@@ -9,57 +9,8 @@ import { Observable, switchMap } from 'rxjs';
   styleUrls: ['./tasks-page.component.scss']
 })
 
-export class TasksPageComponent {
-  /*tasks: any[] =[
-    {
-      "title": "Calendario (tp final)",
-      "description": "Terminar componente Calendario",
-      "id": "1",
-      "state": "inCourse"
-    },
-    {
-      "title": "Consulta parcial BDD",
-      "description": "Preguntas sobre simulacro",
-      "state": "todo",
-      "id": "2"
-    },
-    {
-      "title": "Ir al súper",
-      "description": "Compras de la semana: manzanas - peras - bananas - fideos - arroz - aceite",
-      "id": "3",
-      "state": "todo"
-    },
-    {
-      "title": "Organizar reunión trabajo",
-      "description": "Reunión fin de año!!!",
-      "id": "4",
-      "state": "completed"
-    },
-    {
-      "title": "Presentar tp lab",
-      "description": "",
-      "id": "5",
-      "state": "inCourse"
-    },
-    {
-      "title": "Reunión con coordinador",
-      "description": "Prácticas profesionales",
-      "state": "inCourse",
-      "id": "6"
-    },
-    {
-      "title": "Comprar regalo",
-      "description": "Cumple de Irina",
-      "id": "7",
-      "state": "completed"
-    },
-    {
-      "title": "Informe tp final",
-      "description": "Prácticas profesionales",
-      "state": "inCourse",
-      "id": "8"
-    }
-  ];*/
+export class TasksPageComponent implements OnInit{
+
   tasks: any[] = [];
   taskForm: FormGroup;
   editForm: FormGroup;
@@ -69,11 +20,13 @@ export class TasksPageComponent {
   taskIdToDelete: any;
 
   constructor(private fb: FormBuilder, private tasksService: TasksService) {
+    
     //Formulario para agregar tarea
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
     });
+
     //Formulario para editar tarea
     this.editForm = this.fb.group({
       title: ['', Validators.required],
@@ -90,6 +43,11 @@ export class TasksPageComponent {
     })
   }
 
+  resetForm(): void {
+    this.taskForm.reset();
+  }
+
+  //Obtener el arreglo de las tareas existentes
   loadTasks(): void{
     this.tasksService.actualizarTareas().subscribe(tasks=>{
         this.tasks = tasks;

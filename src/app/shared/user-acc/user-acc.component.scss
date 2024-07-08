@@ -5,6 +5,8 @@
 #imgUser{
     width: 48px;
     border-radius: 50%;
+    box-shadow:  1px 1px 10px 1px rgb(120, 120, 120);
+    margin-right: 5px;
 }
 
 ul{
@@ -24,10 +26,12 @@ li{
 #imgUser2{
     width: 95px;
     border-radius: 50%;
+    box-shadow:  1px 1px 10px 1px rgb(150, 150, 150);
 }
 
 #botonCS{
     border-radius: 20px;
+    box-shadow:  1px 1px 10px 1px rgb(150, 150, 150);
 }
 
 .btn-bd-primary {
