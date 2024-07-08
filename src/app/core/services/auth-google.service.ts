@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc'
 import { Observable, Subject, from, switchMap } from 'rxjs';
 import { usuario } from 'src/app/core/models';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class AuthGoogleService {
     const config: AuthConfig = {
       issuer: 'https://accounts.google.com',
       strictDiscoveryDocumentValidation: false,
-      clientId: '411879157561-3tha9273s0e8kpp1eij1198ul9amb1um.apps.googleusercontent.com',
+      clientId: environment.clientId,
       redirectUri: window.location.origin + '/main',
       scope: 'openid profile email https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/calendar',
     }
